@@ -31,6 +31,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.SystemColor;
 
@@ -40,8 +41,8 @@ public class Frames {
 	private JPanel panel_1;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private JTextField textField_1;
-	private JPasswordField passwordField_1;
+	private JTextField textFieldCadastro;
+	private JPasswordField passwordFieldCadastro;
 	private JTextField pesquisarTextField;
 
 	/**
@@ -171,6 +172,7 @@ public class Frames {
 				cadastro.setVisible(true);
 			}
 		});
+		//botão que leva a tela de cadastro
 		
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 64, 128));
@@ -201,13 +203,13 @@ public class Frames {
 		gbc_lblNewLabel_5.gridy = 3;
 		meio_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(50);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.gridx = 4;
-		gbc_textField_1.gridy = 3;
-		meio_1.add(textField_1, gbc_textField_1);
+		textFieldCadastro = new JTextField();
+		textFieldCadastro.setColumns(50);
+		GridBagConstraints gbc_textFieldCadastro = new GridBagConstraints();
+		gbc_textFieldCadastro.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldCadastro.gridx = 4;
+		gbc_textFieldCadastro.gridy = 3;
+		meio_1.add(textFieldCadastro, gbc_textFieldCadastro);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Senha:");
 		lblNewLabel_4_1.setForeground(Color.WHITE);
@@ -219,21 +221,21 @@ public class Frames {
 		gbc_lblNewLabel_4_1.gridy = 4;
 		meio_1.add(lblNewLabel_4_1, gbc_lblNewLabel_4_1);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setColumns(50);
-		GridBagConstraints gbc_passwordField_1 = new GridBagConstraints();
-		gbc_passwordField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField_1.gridx = 4;
-		gbc_passwordField_1.gridy = 4;
-		meio_1.add(passwordField_1, gbc_passwordField_1);
+		passwordFieldCadastro = new JPasswordField();
+		passwordFieldCadastro.setColumns(50);
+		GridBagConstraints gbc_passwordFieldCadastro = new GridBagConstraints();
+		gbc_passwordFieldCadastro.insets = new Insets(0, 0, 5, 0);
+		gbc_passwordFieldCadastro.gridx = 4;
+		gbc_passwordFieldCadastro.gridy = 4;
+		meio_1.add(passwordFieldCadastro, gbc_passwordFieldCadastro);
 		
-		JButton btnNewButton_1 = new JButton("Entrar");
-		btnNewButton_1.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridx = 4;
-		gbc_btnNewButton_1.gridy = 7;
-		meio_1.add(btnNewButton_1, gbc_btnNewButton_1);
+		JButton cadastrar = new JButton("Cadastrar");
+		cadastrar.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		GridBagConstraints gbc_cadastrar = new GridBagConstraints();
+		gbc_cadastrar.insets = new Insets(0, 0, 5, 0);
+		gbc_cadastrar.gridx = 4;
+		gbc_cadastrar.gridy = 7;
+		meio_1.add(cadastrar, gbc_cadastrar);
 		
 		JPanel telaInicial = new JPanel();
 		telaInicial.setBackground(new Color(255, 255, 255));
@@ -317,22 +319,78 @@ public class Frames {
 		
 		JPanel perfil = new JPanel();
 		frame.getContentPane().add(perfil, "name_399382685377000");
+		
+		JLabel lblNewLabel_6 = new JLabel("Perfil editar");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 53));
+		perfil.add(lblNewLabel_6);
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(textField.getText().equals("marialissarod") && passwordField.getText().equals("1234")) {
+				if(textField.getText().equals("") || passwordField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
+				}
+				else if(textField.getText().equalsIgnoreCase("entrar") && passwordField.getText().equalsIgnoreCase("1111")) {
+					//conta e senha correta pertecentes ao arquivo
+					
+					//EDITAR PARA PERCORRER AS CONTAS!!!!
+					
 					login.setVisible(false);
 					telaInicial.setVisible(true);
-				//}
+				}
+				else if(textField.getText().equalsIgnoreCase("usuarioexistente") && passwordField.getText().equalsIgnoreCase("1111")) {
+					//"usuario existente" seria uma conta que estaria no nosso arquivo, porem a senha estaria errada
+					
+					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE E ANALISAR A SENHA ATRELADA A ELE!!!!
+					
+					JOptionPane.showMessageDialog(null, "Senha incorreta!");
+				}
+				else {
+					//caso da conta que nao estaria no nosso arquivo
+					
+					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE!!!!
+					
+					int resposta = JOptionPane.showConfirmDialog(null, "Usuário não existe. Quer criar uma conta?", null, 2);
+					if(JOptionPane.OK_OPTION == resposta) {
+						login.setVisible(false);
+						cadastro.setVisible(true);
+					}
+				}
 			}
 		});
+		//botão de login: certificar que os dois texts labels estejam preenchidos,
+		//certificar que existe esse username e a senha atrelada a ele esteja correta 
+		
 		verPerfilButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaInicial.setVisible(false);
 				perfil.setVisible(true);
 			}
 		});
+		//botão para ver perfil
+		
+		cadastrar.addActionListener(new ActionListener() {		
+			public void actionPerformed(ActionEvent e) {
+				if(textFieldCadastro.getText().equals("") || passwordFieldCadastro.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
+				}
+				else if(textFieldCadastro.getText().equalsIgnoreCase("userexistente")) {
+					//"user existente" user qualquer que existe nos arquivos
+					
+					//EDITAR PARA PERCORRER O ARQUIVO E VER SE NÃO EXISTE NOME DE USUARIO IGUAL!!!!
+					
+					JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
+				}
+				else {
+					//caso em que o nome de usuario não existe
+					JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
+					cadastro.setVisible(false);
+					telaInicial.setVisible(true);
+				}
+			}
+		});
+		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
+		//certificar que não tem o username existentes
 	}
 }
