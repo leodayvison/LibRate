@@ -263,6 +263,7 @@ public class Frames {
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel lblNewLabel_7 = new JLabel("@user");
+		//     EDITAR!!!
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_7.gridx = 1;
