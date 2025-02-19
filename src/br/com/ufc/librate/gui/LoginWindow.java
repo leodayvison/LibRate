@@ -84,6 +84,10 @@ public class LoginWindow {
 		loginButton.setBounds(115, 187, 106, 30);
 		frame.getContentPane().add(loginButton);
 		
+		JButton registerButton = new JButton("CADASTRAR");
+		registerButton.setBounds(277, 187, 106, 30);
+		frame.getContentPane().add(registerButton);
+		
 		// login button action
 		
 		// adding listener            creating anonymous listener instance
@@ -97,15 +101,26 @@ public class LoginWindow {
 				try {
 					AccountManager.login(user, password, frame);
 				} catch(IncorrectCredentialsException ex) {
-					JOptionPane.showMessageDialog(frame, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String user = textField.getText();
+				String password = new String(passwordField.getPassword());
+				
+				try {
+					AccountManager.register(user, password, frame);
+				} catch(AccountAlreadyExistsException ex) {
+					JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		
-		JButton registerButton = new JButton("CADASTRAR");
-		registerButton.setBounds(277, 187, 106, 30);
-		frame.getContentPane().add(registerButton);
+		
+		
 	}
 		
 		
