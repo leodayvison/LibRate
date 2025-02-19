@@ -1,11 +1,12 @@
 package br.com.ufc.librate.model.classes;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import br.com.ufc.librate.model.interfaces.*;
 
 
-public class Author implements Commentable, Likeable{
+public class Author implements Commentable, Likeable, Serializable {
 
 	private String name;
 	private String bio;
@@ -13,7 +14,7 @@ public class Author implements Commentable, Likeable{
 	private List<Book> publishedBooks;
 	private List<Comment> commentList;
 
-	public Author(String name, String bio, List<Book> publishedBooks) {
+	public Author(String name, String bio) {
 		this.name = name;
 		this.bio = bio;
 		this.publishedBooks = new ArrayList<>();
@@ -48,8 +49,6 @@ public class Author implements Commentable, Likeable{
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
-
-
 
 	public List<Book> getPublishedBooks() {
 		return publishedBooks;

@@ -13,8 +13,8 @@ public class NormalAccount extends Account implements CanLike, Likeable , CanCom
 	private List<Likeable> likeds;
 	
 
-	public NormalAccount(String login, String password, String username) {
-		super(login, password, username);
+	public NormalAccount(String login, String password) {
+		super(login, password);
 		this.bio = "Amo livros!☝️🤓";
         this.likeds = new ArrayList<>();
     }

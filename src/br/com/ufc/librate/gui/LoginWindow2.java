@@ -1,25 +1,23 @@
 package br.com.ufc.librate.gui;
 // teste fjdkslhfjklfdshfjkdshnkjflfdskjnf
-import java.awt.EventQueue;
-
-
-import javax.swing.JFrame;
 
 import Data.AccountData;
 import Data.AuthorData;
 import Data.BookData;
+import Data.Database;
 import br.com.ufc.librate.collections.BookGenre;
+import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
+import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
 import br.com.ufc.librate.model.classes.Author;
 import br.com.ufc.librate.tools.AccountManager;
-import br.com.ufc.librate.exceptions.*;
-import Data.Database;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class LoginWindow {
+public class LoginWindow2 {
 
 	private JFrame frame;
     private JTextField textField;
@@ -39,7 +37,7 @@ public class LoginWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginWindow window = new LoginWindow();
+					LoginWindow2 window = new LoginWindow2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +49,7 @@ public class LoginWindow {
 	/**
 	 * Create the application.
 	 */
-	public LoginWindow() {
+	public LoginWindow2() {
 		initialize();
 	}
 
@@ -132,49 +130,6 @@ public class LoginWindow {
                 }
             }
 		});
-		try {
-			// Chamando a versão que cria um livro com autor especificado por nome e biografia
-			BookData.writeFileBook(
-					"O Senhor dos Anéis",
-					1954,
-					"J.R.R. Tolkien",
-					"Escritor britânico, famoso por suas obras de fantasia.",
-					"Allen & Unwin",
-					BookGenre.FANTASY,
-					4.9f,
-					"A jornada épica do Um Anel.",
-					100000
-			);
-
-			// Criando um autor e chamando a versão que recebe um objeto Author
-			Author author1 = new Author("Isaac Asimov", "Cientista e escritor de ficção científica.");
-			BookData.writeFileBook(
-					"Eu, Robô",
-					1950,
-					author1,
-					"Gnome Press",
-					BookGenre.FICTION,
-					4.8f,
-					"Coletânea de contos sobre robôs e as Três Leis da Robótica.",
-					75000
-			);
-
-			// Chamando a versão que cria um livro sem autor definido
-			BookData.writeFileBook(
-					"O Pequeno Príncipe",
-					1943,
-					"Reynal & Hitchcock",
-					BookGenre.HISTORICAL,
-					4.7f,
-					"Um conto filosófico sobre a inocência e a amizade.",
-					85000
-			);
-
-			System.out.println("Livros adicionados com sucesso!");
-
-		} catch (IOException e) {
-			System.err.println("Erro ao escrever livro: " + e.getMessage());
-		}
 	}
 		
 		
