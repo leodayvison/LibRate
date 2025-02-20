@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.model.interfaces.*;
 
-public abstract class Book implements Likeable, Commentable{
+public class Book implements Likeable, Commentable{
 	
 	// array de comentarios no livro
 	protected String title;

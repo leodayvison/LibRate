@@ -1,39 +1,37 @@
 package br.com.ufc.librate.gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Dimension;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import java.awt.GridLayout;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.JMenuBar;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.SystemColor;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import br.com.ufc.librate.collections.BookGenre;
+import br.com.ufc.librate.model.classes.Book;
 
 public class Frames {
 
@@ -315,7 +313,25 @@ public class Frames {
 		JButton pesquisarButton = new JButton("🔎");
 		panel_2.add(pesquisarButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
+//		Book[] livros = { new Book("Jogos Vorazes", 2008, BookGenre.FICTION, 0, "Livros distopia"),
+//						  new Book("Confissões",2017,BookGenre.THRILLER,0,"Livro de suspense")
+//						  };
+		
+//Tentamos implementar objetos de Book, não deu certo EDITAR!!!!!
+		
+		String[][] data = {
+				{"Jogos Vorazes", "Suzanne Collins", "Ficção"}, {"Confissões", "Kanae Minato", "Suspense"}
+//				{livros[0].getTitle(),livros[0].getAuthor().getName(),livros[0].getGenre().toString()},
+//				{livros[1].getTitle(),livros[1].getAuthor().getName(),livros[1].getGenre().toString()},
+		};
+		
+		String [] columns = {"Título", "Autor", "Gênero"};
+		
+		DefaultTableModel model = new DefaultTableModel(data, columns);
+		
+		JTable tabelaLivros = new JTable(model);
+		
+		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
 		telaInicial.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel perfil = new JPanel();
@@ -324,6 +340,48 @@ public class Frames {
 		JLabel lblNewLabel_6 = new JLabel("Perfil editar");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 53));
 		perfil.add(lblNewLabel_6);
+		
+		JPanel livro = new JPanel();
+		frame.getContentPane().add(livro, "name_564775775717100");
+		livro.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_5 = new JPanel();
+		livro.add(panel_5, BorderLayout.NORTH);
+	
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(255, 255, 255));
+		livro.add(panel_4, BorderLayout.WEST);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{199, 0};
+		gbl_panel_4.rowHeights = new int[]{229, 0, 0, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+		
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\Capturas de tela\\Captura de tela 2025-02-20 111024.png"));
+		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_10.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_10.gridx = 0;
+		gbc_lblNewLabel_10.gridy = 0;
+		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
+		
+		JButton btnNewButton_1 = new JButton("voltar");
+		
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_1.gridx = 0;
+		gbc_btnNewButton_1.gridy = 1;
+		panel_4.add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(0, 0, 128));
+		livro.add(panel_6, BorderLayout.CENTER);
+		
+		JPanel panel_7 = new JPanel();
+		livro.add(panel_7, BorderLayout.EAST);
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -393,5 +451,30 @@ public class Frames {
 		});
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
 		//certificar que não tem o username existentes
+		
+		tabelaLivros.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int linha = tabelaLivros.getSelectedRow();
+				String tituloLivro = tabelaLivros.getValueAt(linha, 0).toString();
+				
+				JLabel nomeLivroLabel = new JLabel(tituloLivro);
+				nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
+				panel_5.add(nomeLivroLabel);
+				
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						panel_5.remove(nomeLivroLabel);
+						livro.setVisible(false);
+						telaInicial.setVisible(true);
+					}
+				});
+				
+				telaInicial.setVisible(false);
+				livro.setVisible(true);
+				
+			}
+		});
+		//event de clicar na lista e entrar no panel livro
 	}
 }
