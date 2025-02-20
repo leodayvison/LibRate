@@ -1,5 +1,4 @@
 package br.com.ufc.librate.model.classes;
-
 public abstract class Account {
 	protected String user;
 	protected String password;
