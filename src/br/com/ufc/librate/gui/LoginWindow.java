@@ -30,7 +30,8 @@ public class LoginWindow {
 
 		Database.checkAndCreateFiles();
 		Database.readFiles();
-		AccountManager.loadMap();
+		System.out.println(AccountData.getAccountList().size());
+		new AccountManager();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -1,12 +1,17 @@
 package br.com.ufc.librate.gui;
 
-import br.com.ufc.librate.Data.*;
+import br.com.ufc.librate.Data.Database;
+import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
+import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
 import br.com.ufc.librate.tools.AccountManager;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class Frames {
@@ -27,11 +32,14 @@ public class Frames {
 		Database.readFiles();
 		new AccountManager();
 
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Frames window = new Frames();
 					window.frame.setVisible(true);
+
+					Database.updateFiles();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -307,37 +315,25 @@ public class Frames {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().equals("") || passwordField.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
+				String user = textField.getText();
+				String password = new String(passwordField.getPassword());
+
+				if (user.equals("") || password.equals("")) {
+					JOptionPane.showMessageDialog(frame, "Campo do usuário ou senha vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
+					return;
 				}
-				else if(textField.getText().equalsIgnoreCase("entrar") && passwordField.getText().equalsIgnoreCase("1111")) {
-					//conta e senha correta pertecentes ao arquivo
-
-					//EDITAR PARA PERCORRER AS CONTAS!!!!
-
+				try {
+					AccountManager.login(user, password, frame);
 					login.setVisible(false);
 					telaInicial.setVisible(true);
-				}
-				else if(textField.getText().equalsIgnoreCase("usuarioexistente") && passwordField.getText().equalsIgnoreCase("1111")) {
-					//"usuario existente" seria uma conta que estaria no nosso arquivo, porem a senha estaria errada
-
-					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE E ANALISAR A SENHA ATRELADA A ELE!!!!
-
-					JOptionPane.showMessageDialog(null, "Senha incorreta!");
-				}
-				else {
-					//caso da conta que nao estaria no nosso arquivo
-
-					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE!!!!
-
-					int resposta = JOptionPane.showConfirmDialog(null, "Usuário não existe. Quer criar uma conta?", null, 2);
-					if(JOptionPane.OK_OPTION == resposta) {
-						login.setVisible(false);
-						cadastro.setVisible(true);
-					}
+				} catch (IncorrectCredentialsException ex) {
+					JOptionPane.showMessageDialog(frame, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
 				}
 			}
 		});
+
 		//botão de login: certificar que os dois texts labels estejam preenchidos,
 		//certificar que existe esse username e a senha atrelada a ele esteja correta 
 		
@@ -348,27 +344,29 @@ public class Frames {
 			}
 		});
 		//botão para ver perfil
-		
-		cadastrar.addActionListener(new ActionListener() {		
+
+		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textFieldCadastro.getText().equals("") || passwordFieldCadastro.getText().equals("")) {
+				String user = textFieldCadastro.getText();
+				String password = new String(passwordFieldCadastro.getPassword());
+
+				if (user.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
-				}
-				else if(textFieldCadastro.getText().equalsIgnoreCase("userexistente")) {
-					//"user existente" user qualquer que existe nos arquivos
-					
-					//EDITAR PARA PERCORRER O ARQUIVO E VER SE NÃO EXISTE NOME DE USUARIO IGUAL!!!!
-					
-					JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
-				}
-				else {
-					//caso em que o nome de usuario não existe
-					JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
-					cadastro.setVisible(false);
-					telaInicial.setVisible(true);
+				} else {
+					try {
+						AccountManager.register(user, password, frame);
+						JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
+						cadastro.setVisible(false);
+						telaInicial.setVisible(true);
+					} catch (AccountAlreadyExistsException ex) {
+						JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
+					} catch (IOException ex) {
+						throw new RuntimeException(ex);
+					}
 				}
 			}
 		});
+
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
 		//certificar que não tem o username existentes
 	}

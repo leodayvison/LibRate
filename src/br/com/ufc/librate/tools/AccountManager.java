@@ -14,17 +14,17 @@ import br.com.ufc.librate.model.classes.Account;
 import br.com.ufc.librate.model.classes.NormalAccount;
 
 public class AccountManager {
-	private static Map<String, Account> accountMap = new HashMap<String, Account>();
+	public static Map<String, Account> accountMap = new HashMap<String, Account>();
 
-    public static void loadMap() {
+    public AccountManager() {
+        AccountData.readFileAccount();
         for (Account acc : AccountData.accountList) {
             if (!(AccountManager.accountMap.containsKey(acc.getUser()))) {
                 AccountManager.accountMap.put(acc.getUser(), acc);
-                System.out.println("um map");
+
             }
         }
     }
-
 
 
     public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException, IOException {
@@ -43,6 +43,7 @@ public class AccountManager {
     	} else {
     		Account newAcc = new NormalAccount(user, password);
             AccountData.writeFileAccount(user, password);
+            AccountData.readFileAccount();
     		AccountManager.accountMap.put(user, newAcc);
     		JOptionPane.showMessageDialog(frame, "Usuário cadastrado!");
     	}

@@ -102,6 +102,7 @@ public class Database {
             ioe.getMessage();
         }
 
+        System.out.println("arquivos atualizados!");
     }
 
 
