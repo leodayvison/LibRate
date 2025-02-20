@@ -1,15 +1,17 @@
-package Data;
+package br.com.ufc.librate.Data;
 
-import br.com.ufc.librate.model.classes.Account;
 import br.com.ufc.librate.model.classes.Author;
-import br.com.ufc.librate.model.classes.Book;
-import br.com.ufc.librate.model.classes.NormalAccount;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorData {
+    public static boolean authorExists(String name, String bio) {
+        Author newAuthor = new Author(name, bio);
+        return authorList.contains(newAuthor);
+    }
+
     public static List<Author> authorList = new ArrayList<>();
 
     public static List<Author> getAuthorList() {

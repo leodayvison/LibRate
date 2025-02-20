@@ -1,39 +1,13 @@
 package br.com.ufc.librate.gui;
 
-import java.awt.EventQueue;
+import br.com.ufc.librate.Data.*;
+import br.com.ufc.librate.tools.AccountManager;
 
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Dimension;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.SystemColor;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
 
 public class Frames {
 
@@ -48,7 +22,11 @@ public class Frames {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		Database.checkAndCreateFiles();
+		Database.readFiles();
+		new AccountManager();
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -326,7 +304,7 @@ public class Frames {
 		perfil.add(lblNewLabel_6);
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().equals("") || passwordField.getText().equals("")) {
@@ -334,24 +312,24 @@ public class Frames {
 				}
 				else if(textField.getText().equalsIgnoreCase("entrar") && passwordField.getText().equalsIgnoreCase("1111")) {
 					//conta e senha correta pertecentes ao arquivo
-					
+
 					//EDITAR PARA PERCORRER AS CONTAS!!!!
-					
+
 					login.setVisible(false);
 					telaInicial.setVisible(true);
 				}
 				else if(textField.getText().equalsIgnoreCase("usuarioexistente") && passwordField.getText().equalsIgnoreCase("1111")) {
 					//"usuario existente" seria uma conta que estaria no nosso arquivo, porem a senha estaria errada
-					
+
 					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE E ANALISAR A SENHA ATRELADA A ELE!!!!
-					
+
 					JOptionPane.showMessageDialog(null, "Senha incorreta!");
 				}
 				else {
 					//caso da conta que nao estaria no nosso arquivo
-					
+
 					//EDITAR PARA PERCORRER O ARQUIVO E VER SE O NOME DE USUARIO EXISTE!!!!
-					
+
 					int resposta = JOptionPane.showConfirmDialog(null, "Usuário não existe. Quer criar uma conta?", null, 2);
 					if(JOptionPane.OK_OPTION == resposta) {
 						login.setVisible(false);

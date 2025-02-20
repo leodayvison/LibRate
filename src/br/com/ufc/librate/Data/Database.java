@@ -1,32 +1,23 @@
-package Data;
+package br.com.ufc.librate.Data;
 
 import br.com.ufc.librate.model.classes.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
+import static br.com.ufc.librate.Data.LikeData.likeMap;
 
 public class Database {
-    public static List<Book> catalogue = new ArrayList<>();
-    public static List<Author> authorList = new ArrayList<>();
-
-    public static List<Book> getCatalogue() {
-        return catalogue;
-    }
-
-    public static List<Author> getAuthorList() {
-        return authorList;
-    }
 
     public static void checkAndCreateFiles() throws IOException {
 
         File[] files = {
                 new File("users.txt"),
                 new File("books.txt"),
-                new File("authors.txt")
+                new File("authors.txt"),
+                new File("likes.txt")
         };
 
-        for (int i = 0;i < 3;i++){
+        for (int i = 0;i < 4;i++){
             if (!files[i].exists()) {
                 try {
                     files[i].createNewFile();
@@ -45,11 +36,6 @@ public class Database {
     }
 
     public static void updateFiles() throws IOException {
-        File[] files = {
-                new File("users.txt"),
-                new File("books.txt"),
-                new File("authors.txt")
-        };
 
         StringBuilder data = new StringBuilder();
 
@@ -79,11 +65,14 @@ public class Database {
             if(a.getAuthor() == null){
                 data.append(a.getTitle()).append(":")
                         .append(a.getYear()).append(":")
+                        .append(" ").append(":")
+                        .append(" ").append(":")
                         .append(a.getPublisher()).append(":")
                         .append(a.getGenre().toString()).append(":")
                         .append(a.getRating()).append(":")
+                        .append(a.getRatingCount()).append(":")
                         .append(a.getSynopsis()).append(":")
-                        .append(a.getLikes()).append(System.lineSeparator());
+                        .append(System.lineSeparator());
             }else{
                 data.append(a.getTitle()).append(":")
                         .append(a.getYear()).append(":")
@@ -92,21 +81,35 @@ public class Database {
                         .append(a.getPublisher()).append(":")
                         .append(a.getGenre().toString()).append(":")
                         .append(a.getRating()).append(":")
+                        .append(a.getRatingCount()).append(":")
                         .append(a.getSynopsis()).append(":")
-                        .append(a.getLikes()).append(System.lineSeparator());
-
+                        .append(System.lineSeparator());
             }
         }try(BufferedWriter bf = new BufferedWriter(new FileWriter("books.txt",false))){
             bf.write(data.toString());
         }catch (IOException ioe){
             ioe.getMessage();
         }
+
+        data.setLength(0);
+
+        for(String id : likeMap.keySet()){
+            data.append(id).append(":")
+                    .append(likeMap.get(id));
+        }try(BufferedWriter bf = new BufferedWriter(new FileWriter("likes.txt",false))){
+            bf.write(data.toString());
+        }catch (IOException ioe){
+            ioe.getMessage();
+        }
+
     }
 
 
-
-
-
-
+    public static void readFiles() throws IOException {
+        AccountData.readFileAccount();
+        AuthorData.readFileAuthor();
+        BookData.readFileBook();
+        LikeData.readFileLike();
+    }
 }
 

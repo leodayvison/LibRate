@@ -5,14 +5,12 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import Data.AccountData;
-import Data.AuthorData;
-import Data.BookData;
-import br.com.ufc.librate.collections.BookGenre;
-import br.com.ufc.librate.model.classes.Author;
+import br.com.ufc.librate.Data.AccountData;
+import br.com.ufc.librate.Data.AuthorData;
+import br.com.ufc.librate.Data.BookData;
 import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.exceptions.*;
-import Data.Database;
+import br.com.ufc.librate.Data.Database;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,8 +20,8 @@ import java.io.IOException;
 public class LoginWindow {
 
 	private JFrame frame;
-    private JTextField textField;
-    private JPasswordField passwordField;
+	private JTextField textField;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -31,10 +29,8 @@ public class LoginWindow {
 	public static void main(String[] args) throws IOException {
 
 		Database.checkAndCreateFiles();
-		AccountData.readFileAccount();
-		AuthorData.readFileAuthor();
-		BookData.readFileBook();
-		new AccountManager();
+		Database.readFiles();
+		AccountManager.loadMap();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -63,119 +59,75 @@ public class LoginWindow {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		// Main label 
 		JLabel loginPanelLabel = new JLabel("Login roxeda");
 		loginPanelLabel.setBounds(194, 11, 91, 14);
 		frame.getContentPane().add(loginPanelLabel);
-		
+
 		// user label
 		JLabel userLabel = new JLabel("Usuário:");
 		userLabel.setBounds(46, 78, 46, 14);
 		frame.getContentPane().add(userLabel);
-		
+
 		//pass label
 		JLabel passwordLabel = new JLabel("Senha: ");
 		passwordLabel.setBounds(46, 121, 46, 14);
 		frame.getContentPane().add(passwordLabel);
-		
+
 		// user text field
 		textField = new JTextField();
 		textField.setBounds(115, 75, 213, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		//password text field
 		passwordField = new JPasswordField();
 		passwordField.setBounds(115, 118, 213, 20);
 		frame.getContentPane().add(passwordField);
-		
+
 		// login button
 		JButton loginButton = new JButton("LOGIN");
 		loginButton.setBounds(115, 187, 106, 30);
 		frame.getContentPane().add(loginButton);
-		
+
 		JButton registerButton = new JButton("CADASTRAR");
 		registerButton.setBounds(277, 187, 106, 30);
 		frame.getContentPane().add(registerButton);
-		
+
 		// login button action
-		
+
 		// adding listener            creating anonymous listener instance
 		loginButton.addActionListener(new ActionListener() {
 			// method that says what happens when the event is triggered
 			public void actionPerformed(ActionEvent e) {
 				String user = textField.getText();
 				String password = new String(passwordField.getPassword());
-				
+
 				// TODO guardar contas registradas em arquivo e arrumar o método de login em Interactions
 				try {
 					AccountManager.login(user, password, frame);
-				} catch(IncorrectCredentialsException ex) {
+				} catch (IncorrectCredentialsException ex) {
 					JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 				} catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
+					throw new RuntimeException(ex);
+				}
+			}
 		});
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String user = textField.getText();
 				String password = new String(passwordField.getPassword());
-				
+
 				try {
 					AccountManager.register(user, password, frame);
-				} catch(AccountAlreadyExistsException ex) {
+				} catch (AccountAlreadyExistsException ex) {
 					JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 				} catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
+					throw new RuntimeException(ex);
+				}
+			}
 		});
-		try {
-			// Chamando a versão que cria um livro com autor especificado por nome e biografia
-			BookData.writeFileBook(
-					"O Senhor dos Anéis",
-					1954,
-					"J.R.R. Tolkien",
-					"Escritor britânico, famoso por suas obras de fantasia.",
-					"Allen & Unwin",
-					BookGenre.FANTASY,
-					4.9f,
-					"A jornada épica do Um Anel.",
-					100000
-			);
 
-			// Criando um autor e chamando a versão que recebe um objeto Author
-			Author author1 = new Author("Isaac Asimov", "Cientista e escritor de ficção científica.");
-			BookData.writeFileBook(
-					"Eu, Robô",
-					1950,
-					author1,
-					"Gnome Press",
-					BookGenre.FICTION,
-					4.8f,
-					"Coletânea de contos sobre robôs e as Três Leis da Robótica.",
-					75000
-			);
-
-			// Chamando a versão que cria um livro sem autor definido
-			BookData.writeFileBook(
-					"O Pequeno Príncipe",
-					1943,
-					"Reynal & Hitchcock",
-					BookGenre.HISTORICAL,
-					4.7f,
-					"Um conto filosófico sobre a inocência e a amizade.",
-					85000
-			);
-
-			System.out.println("Livros adicionados com sucesso!");
-
-		} catch (IOException e) {
-			System.err.println("Erro ao escrever livro: " + e.getMessage());
-		}
 	}
-		
-		
 }

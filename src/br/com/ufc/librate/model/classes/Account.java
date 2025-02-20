@@ -26,4 +26,8 @@ public abstract class Account {
 	}
 
 	public void changeBio(String bio) { this.bio = bio; }
+
+	public void rateBook(float rating,Book book){
+
+	}
 }

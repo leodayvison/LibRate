@@ -7,8 +7,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Data.AccountData;
-import Data.Database;
+import br.com.ufc.librate.Data.AccountData;
 import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
 import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
 import br.com.ufc.librate.model.classes.Account;
@@ -17,13 +16,17 @@ import br.com.ufc.librate.model.classes.NormalAccount;
 public class AccountManager {
 	private static Map<String, Account> accountMap = new HashMap<String, Account>();
 
-    public AccountManager() {
-        for (Account acc : AccountData.accountList){
-            accountMap.put(acc.getUser(),acc);
+    public static void loadMap() {
+        for (Account acc : AccountData.accountList) {
+            if (!(AccountManager.accountMap.containsKey(acc.getUser()))) {
+                AccountManager.accountMap.put(acc.getUser(), acc);
+                System.out.println("um map");
+            }
         }
     }
-    
-    
+
+
+
     public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException, IOException {
         if(!(AccountManager.accountMap.containsKey(user) && AccountManager.accountMap.get(user).getPassword().equals(password))){
             throw new IncorrectCredentialsException();

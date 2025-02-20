@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import br.com.ufc.librate.model.interfaces.*;
 
-public class NormalAccount extends Account implements CanLike, Likeable , CanComment{
+public class NormalAccount extends Account implements CanLike, Likeable{
 	protected String bio;
 	protected int likes;
 	private List<Book> readBooks;
@@ -64,13 +64,6 @@ public class NormalAccount extends Account implements CanLike, Likeable , CanCom
 
 	public void setLikeds(List<Likeable> likeds) {
 		this.likeds = likeds;
-	}
-
-
-	@Override
-	public void MakeComment(Commentable commentable,String content) {
-		Comment c = new Comment(content);
-		commentable.addComment(c);
 	}
 
 	@Override

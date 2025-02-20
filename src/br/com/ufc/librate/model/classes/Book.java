@@ -1,65 +1,57 @@
 package br.com.ufc.librate.model.classes;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.ufc.librate.Data.BookData;
+import br.com.ufc.librate.Data.LikeData;
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.model.interfaces.*;
 
-public class Book implements Likeable, Commentable, Serializable {
-	
+public class Book implements Likeable {
+
+	private static String ID = "B" + Book.getSize();
+
+	private static int getSize(){
+		return BookData.getBookList().size();
+	}
+
 	// array de comentarios no livro
+	protected String idBook;
 	protected String title;
 	protected int year;
 	protected Author author;
 	protected String publisher;
 	protected BookGenre genre;
 	protected float rating;
+	protected float ratingCount;
 	protected String synopsis;
 	protected int likes;
-	protected List<Comment> commentList;
 
 	//Livro com todas as informações.(autor que nao foi adicionado ainda na rede)
-	public Book(String title, int year,String name, String bio, String publisher, BookGenre genre, float rating,
-			String synopsis,int likes) {
-		super();
+	public Book( String title, int year,String name, String bio, String publisher, BookGenre genre,
+				float rating, float ratingCount, String synopsis) {
+		this.idBook = Book.ID;
 		this.title = title;
 		this.year = year;
-		this.author = new Author(name, bio);
+        this.author = new Author(name, bio);
 		this.publisher = publisher;
 		this.genre = genre;
 		this.rating = rating;
+		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = likes;
-		this.commentList = new ArrayList<>();
-	}
-
-	//Autor ja adicionado na rede.
-	public Book(String title, int year,Author author,String publisher, BookGenre genre, float rating,
-			String synopsis,int likes) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.author = author;
-		this.publisher = publisher;
-		this.genre = genre;
-		this.rating = rating;
-		this.synopsis = synopsis;
-		this.likes =likes;
-		this.commentList = new ArrayList<>();
+		this.likes = LikeData.getLikeMap().get(Book.ID);
 	}
 
 	//Livro com autores desconhecidos.
-	public Book(String title, int year,String publisher, BookGenre genre, float rating,
-			String synopsis,int likes) {
-		super();
+	public Book( String title, int year, String publisher, BookGenre genre,
+				float rating, float ratingCount, String synopsis) {
+		this.idBook = Book.ID;
 		this.title = title;
 		this.year = year;
+		this.publisher = publisher;
 		this.genre = genre;
 		this.rating = rating;
+		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = likes;
-		this.commentList = new ArrayList<>();
+		this.likes = LikeData.getLikeMap().get(Book.ID);
 	}
 
 	public String getTitle() {
@@ -118,6 +110,34 @@ public class Book implements Likeable, Commentable, Serializable {
 		this.synopsis = synopsis;
 	}
 
+	public float getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(float ratingCount) {
+		this.ratingCount = ratingCount;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public static String getID() {
+		return ID;
+	}
+
+	public static void setID(String ID) {
+		Book.ID = ID;
+	}
+
+	public String getIdBook() {
+		return idBook;
+	}
+
+	public void setIdBook(String idBook) {
+		this.idBook = idBook;
+	}
+
 	@Override
 	public void addLike() {
 		this.likes++;
@@ -137,10 +157,4 @@ public class Book implements Likeable, Commentable, Serializable {
 	public boolean isLiked(NormalAccount user) {
 		return user.getLikeds().contains(this);
 	}
-
-	@Override
-	public void addComment(Comment comment) {
-		commentList.add(comment);
-	}	
-
 }

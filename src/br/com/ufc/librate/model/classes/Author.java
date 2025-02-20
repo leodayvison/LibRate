@@ -6,19 +6,17 @@ import java.util.ArrayList;
 import br.com.ufc.librate.model.interfaces.*;
 
 
-public class Author implements Commentable, Likeable, Serializable {
+public class Author implements Likeable{
 
 	private String name;
 	private String bio;
 	private int likes;
 	private List<Book> publishedBooks;
-	private List<Comment> commentList;
 
 	public Author(String name, String bio) {
 		this.name = name;
 		this.bio = bio;
 		this.publishedBooks = new ArrayList<>();
-		this.commentList = new ArrayList<>();
 		this.likes = 0;
 	}
 
@@ -42,25 +40,12 @@ public class Author implements Commentable, Likeable, Serializable {
 		this.likes = likes;
 	}
 
-	public List<Comment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(List<Comment> commentList) {
-		this.commentList = commentList;
-	}
-
 	public List<Book> getPublishedBooks() {
 		return publishedBooks;
 	}
 
 	public void setPublishedBooks(List<Book> publishedBooks) {
 		this.publishedBooks = publishedBooks;
-	}
-
-	@Override
-	public void addComment(Comment comment) {
-		commentList.add(comment);
 	}
 
 	@Override
