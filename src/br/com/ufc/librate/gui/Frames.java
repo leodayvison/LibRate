@@ -248,13 +248,13 @@ public class Frames {
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel lblNewLabel_7 = new JLabel("@user");
+		JLabel userRealLabel = new JLabel("@");
 		//     EDITAR!!!
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 1;
-		gbc_lblNewLabel_7.gridy = 0;
-		panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
+		gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_userRealLabel.gridx = 1;
+		gbc_userRealLabel.gridy = 0;
+		panel_3.add(userRealLabel, gbc_userRealLabel);
 		
 		JLabel lblNewLabel_8 = new JLabel("Amo livros!");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
@@ -301,15 +301,140 @@ public class Frames {
 		JButton pesquisarButton = new JButton("🔎");
 		panel_2.add(pesquisarButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
+//		Book[] livros = { new Book("Jogos Vorazes", 2008, BookGenre.FICTION, 0, "Livros distopia"),
+//						  new Book("Confissões",2017,BookGenre.THRILLER,0,"Livro de suspense")
+//						  };
+
+//Tentamos implementar objetos de Book, não deu certo EDITAR!!!!!
+
+		String[][] data = {
+				{"Jogos Vorazes", "Suzanne Collins", "Ficção"}, {"Confissões", "Kanae Minato", "Suspense"}
+//				{livros[0].getTitle(),livros[0].getAuthor().getName(),livros[0].getGenre().toString()},
+//				{livros[1].getTitle(),livros[1].getAuthor().getName(),livros[1].getGenre().toString()},
+		};
+
+		String [] columns = {"Título", "Autor", "Gênero"};
+
+		DefaultTableModel model = new DefaultTableModel(data, columns);
+
+		JTable tabelaLivros = new JTable(model);
+
+		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
 		telaInicial.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel perfil = new JPanel();
 		frame.getContentPane().add(perfil, "name_399382685377000");
-		
-		JLabel lblNewLabel_6 = new JLabel("Perfil editar");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 53));
-		perfil.add(lblNewLabel_6);
+		perfil.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_8, BorderLayout.NORTH);
+
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Área de Trabalho\\Captura de tela 2025-02-21 104650.png"));
+		panel_8.add(lblNewLabel_6);
+
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_9, BorderLayout.SOUTH);
+		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JButton voltarPraInicialButton = new JButton("<");
+		voltarPraInicialButton.setForeground(new Color(0, 0, 128));
+		voltarPraInicialButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(voltarPraInicialButton);
+
+		JButton livrosCurtidosButton = new JButton("Livros curtidos");
+		livrosCurtidosButton.setForeground(new Color(0, 0, 128));
+		livrosCurtidosButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		livrosCurtidosButton.setBackground(new Color(255, 255, 255));
+		panel_9.add(livrosCurtidosButton);
+
+		JButton listaToReadButton = new JButton("Lista ToRead");
+		listaToReadButton.setBackground(new Color(255, 255, 255));
+		listaToReadButton.setForeground(new Color(0, 0, 128));
+		listaToReadButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(listaToReadButton);
+
+		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new LineBorder(new Color(0, 0, 128)));
+		panel_10.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_10, BorderLayout.CENTER);
+		panel_10.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_11 = new JPanel();
+		panel_11.setBackground(new Color(255, 255, 255));
+		panel_10.add(panel_11, BorderLayout.NORTH);
+
+
+		JLabel userLabel = new JLabel("@");
+		userLabel.setText("@" + AccountManager.getLoggedAccount().getUser());
+		userLabel.revalidate();
+		userLabel.repaint();
+		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_11.add(userLabel);
+
+
+		JPanel panel_12 = new JPanel();
+		panel_12.setBackground(new Color(255, 255, 255));
+		panel_10.add(panel_12, BorderLayout.CENTER);
+		panel_12.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_15 = new JPanel();
+		panel_15.setBackground(new Color(255, 255, 255));
+		panel_12.add(panel_15, BorderLayout.CENTER);
+
+		JTextArea bioTextArea = new JTextArea();
+		bioTextArea.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		bioTextArea.setColumns(70);
+		bioTextArea.setTabSize(20);
+		bioTextArea.setRows(2);
+		bioTextArea.setText("Leio de tudo, mas nem tudo me agrada. 📖✨ Se o livro for bom, eu elogio; se for ruim, eu argumento. Expectativas altas, críticas sinceras e um toque de arrogância literária. Vamos discutir? 😏 #LeituraCrítica #OpiniõesFortes");
+		panel_15.add(bioTextArea);
+		bioTextArea.setLineWrap(true);
+		bioTextArea.setWrapStyleWord(true);
+
+		JPanel livro = new JPanel();
+		frame.getContentPane().add(livro, "name_564775775717100");
+		livro.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_5 = new JPanel();
+		livro.add(panel_5, BorderLayout.NORTH);
+
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(255, 255, 255));
+		livro.add(panel_4, BorderLayout.WEST);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{199, 0};
+		gbl_panel_4.rowHeights = new int[]{229, 0, 0, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\Capturas de tela\\Captura de tela 2025-02-20 111024.png"));
+		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_10.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_10.gridx = 0;
+		gbc_lblNewLabel_10.gridy = 0;
+		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
+
+		JButton voltarInicialButton = new JButton("voltar");
+
+		GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
+		gbc_voltarInicialButton.insets = new Insets(0, 0, 5, 0);
+		gbc_voltarInicialButton.gridx = 0;
+		gbc_voltarInicialButton.gridy = 1;
+		panel_4.add(voltarInicialButton, gbc_voltarInicialButton);
+
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(0, 0, 128));
+		livro.add(panel_6, BorderLayout.CENTER);
+
+		JPanel panel_7 = new JPanel();
+		livro.add(panel_7, BorderLayout.EAST);
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -333,7 +458,6 @@ public class Frames {
 				}
 			}
 		});
-
 		//botão de login: certificar que os dois texts labels estejam preenchidos,
 		//certificar que existe esse username e a senha atrelada a ele esteja correta 
 		
@@ -366,8 +490,43 @@ public class Frames {
 				}
 			}
 		});
-
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
 		//certificar que não tem o username existentes
+
+		tabelaLivros.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int linha = tabelaLivros.getSelectedRow();
+				String tituloLivro = tabelaLivros.getValueAt(linha, 0).toString();
+
+				JLabel nomeLivroLabel = new JLabel(tituloLivro);
+				nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
+				panel_5.add(nomeLivroLabel);
+
+				voltarInicialButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						panel_5.remove(nomeLivroLabel);
+						livro.setVisible(false);
+						telaInicial.setVisible(true);
+					}
+				});
+
+				telaInicial.setVisible(false);
+				livro.setVisible(true);
+
+			}
+		});
+		//event de clicar na lista e entrar no panel livro
+
+		voltarPraInicialButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perfil.setVisible(false);
+				telaInicial.setVisible(true);
+			}
+		});
+		//event de clicar no voltar do perfil e voltar p pagina inicial
+
 	}
+
+
 }

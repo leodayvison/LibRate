@@ -2,19 +2,19 @@ package br.com.ufc.librate.tools;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import br.com.ufc.librate.Data.AccountData;
 import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
-import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
 import br.com.ufc.librate.model.classes.Account;
 import br.com.ufc.librate.model.classes.NormalAccount;
 
 public class AccountManager {
-	public static Map<String, Account> accountMap = new HashMap<String, Account>();
+	private static Account LoggedAccount = new NormalAccount("leo", "base", "base");
+
+	private static Map<String, Account> accountMap = new HashMap<String, Account>();
 
     public AccountManager() {
         AccountData.readFileAccount();
@@ -25,6 +25,23 @@ public class AccountManager {
             }
         }
     }
+    public static Account getLoggedAccount() {
+		return LoggedAccount;
+	}
+
+	public static void setLoggedAccount(Account loggedAccount) {
+		LoggedAccount = loggedAccount;
+	}
+
+	public static Map<String, Account> getAccountMap() {
+		return accountMap;
+	}
+
+	public static void setAccountMap(Map<String, Account> accountMap) {
+		AccountManager.accountMap = accountMap;
+	}
+
+	public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException{
 
 
     public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException, IOException {
@@ -33,11 +50,14 @@ public class AccountManager {
         } else {
             // TODO code that will run when user successfully logins
         	JOptionPane.showMessageDialog(frame, "Login bem-sucedido!");
+
+        	AccountManager.LoggedAccount = AccountManager.accountMap.get(user);
+
         }
     }
-    
+
     public static void register(String user, String password, JFrame frame) throws AccountAlreadyExistsException, IOException {
-    	
+
     	if (AccountManager.accountMap.containsKey(user)) {
     		throw new AccountAlreadyExistsException();
     	} else {
@@ -47,6 +67,6 @@ public class AccountManager {
     		AccountManager.accountMap.put(user, newAcc);
     		JOptionPane.showMessageDialog(frame, "Usuário cadastrado!");
     	}
-    	
+
     }
 }
