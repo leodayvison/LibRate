@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.model.classes.Book;
+import java.awt.FlowLayout;
 
 public class Frames {
 
@@ -336,10 +337,41 @@ public class Frames {
 		
 		JPanel perfil = new JPanel();
 		frame.getContentPane().add(perfil, "name_399382685377000");
+		perfil.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_6 = new JLabel("Perfil editar");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 53));
-		perfil.add(lblNewLabel_6);
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_8, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Área de Trabalho\\Captura de tela 2025-02-21 104650.png"));
+		panel_8.add(lblNewLabel_6);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_9, BorderLayout.SOUTH);
+		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnNewButton_1 = new JButton("Livros curtidos");
+		btnNewButton_1.setForeground(new Color(0, 0, 128));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		panel_9.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Lista ToRead");
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setForeground(new Color(0, 0, 128));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("?");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(btnNewButton_3);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new LineBorder(new Color(0, 0, 128)));
+		panel_10.setBackground(new Color(255, 255, 255));
+		perfil.add(panel_10, BorderLayout.CENTER);
 		
 		JPanel livro = new JPanel();
 		frame.getContentPane().add(livro, "name_564775775717100");
@@ -368,13 +400,13 @@ public class Frames {
 		gbc_lblNewLabel_10.gridy = 0;
 		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
 		
-		JButton btnNewButton_1 = new JButton("voltar");
+		JButton voltarInicialButton = new JButton("voltar");
 		
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 1;
-		panel_4.add(btnNewButton_1, gbc_btnNewButton_1);
+		GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
+		gbc_voltarInicialButton.insets = new Insets(0, 0, 5, 0);
+		gbc_voltarInicialButton.gridx = 0;
+		gbc_voltarInicialButton.gridy = 1;
+		panel_4.add(voltarInicialButton, gbc_voltarInicialButton);
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(0, 0, 128));
@@ -429,6 +461,8 @@ public class Frames {
 		});
 		//botão para ver perfil
 		
+
+		
 		cadastrar.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {
 				if(textFieldCadastro.getText().equals("") || passwordFieldCadastro.getText().equals("")) {
@@ -462,7 +496,7 @@ public class Frames {
 				nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
 				panel_5.add(nomeLivroLabel);
 				
-				btnNewButton_1.addActionListener(new ActionListener() {
+				voltarInicialButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						panel_5.remove(nomeLivroLabel);
 						livro.setVisible(false);
@@ -477,4 +511,6 @@ public class Frames {
 		});
 		//event de clicar na lista e entrar no panel livro
 	}
+	
+	
 }
