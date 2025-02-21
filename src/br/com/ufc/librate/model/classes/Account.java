@@ -1,15 +1,12 @@
 package br.com.ufc.librate.model.classes;
-
 public abstract class Account {
 	protected String user;
 	protected String password;
-	protected String username;
 	protected String bio;
 
-	public Account(String user, String password, String username) {
+	public Account(String user, String password) {
 		this.user = user;
 		this.password = password;
-		this.username = username;
 	}
 
 	public String getUser() {
@@ -28,13 +25,9 @@ public abstract class Account {
 		this.password = password;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public void changeBio(String bio) { this.bio = bio; }
+
+	public void rateBook(float rating,Book book){
+
+	}
 }

@@ -8,23 +8,14 @@ public class ChildrensBook extends Book{
 	private String ageRange;
 	private boolean hasIlustration;
 
-	public ChildrensBook(String title, int year, String name, String bio, List<Book> publishedBooks,
-						 String publisher, BookGenre genre, float rating, String synopsis, String ageRange, boolean hasIlustration) {
-		super(title, year, name, bio, publishedBooks, publisher, genre, rating, synopsis);
+	public ChildrensBook(String title, int year, String name, String bio, String publisher, BookGenre genre, float rating, float ratingCount, String synopsis, String ageRange, boolean hasIlustration) {
+		super(title, year, name, bio, publisher, genre, rating, ratingCount, synopsis);
 		this.ageRange = ageRange;
 		this.hasIlustration = hasIlustration;
 	}
 
-	public ChildrensBook(String title, int year, Author author, BookGenre genre, float rating,
-						 String synopsis, String ageRange, boolean hasIlustration) {
-		super(title, year, author, genre, rating, synopsis);
-		this.ageRange = ageRange;
-		this.hasIlustration = hasIlustration;
-	}
-
-	public ChildrensBook(String title, int year, BookGenre genre, float rating, String synopsis,
-						 String ageRange, boolean hasIlustration) {
-		super(title, year, genre, rating, synopsis);
+	public ChildrensBook(String title, int year, String publisher, BookGenre genre, float rating, float ratingCount, String synopsis, String ageRange, boolean hasIlustration) {
+		super(title, year, publisher, genre, rating, ratingCount, synopsis);
 		this.ageRange = ageRange;
 		this.hasIlustration = hasIlustration;
 	}
