@@ -32,7 +32,11 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.model.classes.Book;
+import br.com.ufc.librate.tools.AccountManager;
+
 import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class Frames {
 
@@ -261,13 +265,13 @@ public class Frames {
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel lblNewLabel_7 = new JLabel("@user");
+		JLabel userRealLabel = new JLabel("@");
 		//     EDITAR!!!
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 1;
-		gbc_lblNewLabel_7.gridy = 0;
-		panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
+		gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_userRealLabel.gridx = 1;
+		gbc_userRealLabel.gridy = 0;
+		panel_3.add(userRealLabel, gbc_userRealLabel);
 		
 		JLabel lblNewLabel_8 = new JLabel("Amo livros!");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
@@ -352,26 +356,60 @@ public class Frames {
 		perfil.add(panel_9, BorderLayout.SOUTH);
 		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("Livros curtidos");
-		btnNewButton_1.setForeground(new Color(0, 0, 128));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		panel_9.add(btnNewButton_1);
+		JButton voltarPraInicialButton = new JButton("<");
+		voltarPraInicialButton.setForeground(new Color(0, 0, 128));
+		voltarPraInicialButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(voltarPraInicialButton);
 		
-		JButton btnNewButton_2 = new JButton("Lista ToRead");
-		btnNewButton_2.setBackground(new Color(255, 255, 255));
-		btnNewButton_2.setForeground(new Color(0, 0, 128));
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		panel_9.add(btnNewButton_2);
+		JButton livrosCurtidosButton = new JButton("Livros curtidos");
+		livrosCurtidosButton.setForeground(new Color(0, 0, 128));
+		livrosCurtidosButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		livrosCurtidosButton.setBackground(new Color(255, 255, 255));
+		panel_9.add(livrosCurtidosButton);
 		
-		JButton btnNewButton_3 = new JButton("?");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		panel_9.add(btnNewButton_3);
+		JButton listaToReadButton = new JButton("Lista ToRead");
+		listaToReadButton.setBackground(new Color(255, 255, 255));
+		listaToReadButton.setForeground(new Color(0, 0, 128));
+		listaToReadButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(listaToReadButton);
 		
 		JPanel panel_10 = new JPanel();
 		panel_10.setBorder(new LineBorder(new Color(0, 0, 128)));
 		panel_10.setBackground(new Color(255, 255, 255));
 		perfil.add(panel_10, BorderLayout.CENTER);
+		panel_10.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setBackground(new Color(255, 255, 255));
+		panel_10.add(panel_11, BorderLayout.NORTH);
+		
+		
+		JLabel userLabel = new JLabel("@");
+		userLabel.setText("@" + AccountManager.getLoggedAccount().getUser());
+		userLabel.revalidate();
+		userLabel.repaint();
+		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_11.add(userLabel);
+		
+		
+		JPanel panel_12 = new JPanel();
+		panel_12.setBackground(new Color(255, 255, 255));
+		panel_10.add(panel_12, BorderLayout.CENTER);
+		panel_12.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_15 = new JPanel();
+		panel_15.setBackground(new Color(255, 255, 255));
+		panel_12.add(panel_15, BorderLayout.CENTER);
+		
+		JTextArea bioTextArea = new JTextArea();
+		bioTextArea.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		bioTextArea.setColumns(70);
+		bioTextArea.setTabSize(20);
+		bioTextArea.setRows(2);
+		bioTextArea.setText("Leio de tudo, mas nem tudo me agrada. 📖✨ Se o livro for bom, eu elogio; se for ruim, eu argumento. Expectativas altas, críticas sinceras e um toque de arrogância literária. Vamos discutir? 😏 #LeituraCrítica #OpiniõesFortes");
+		panel_15.add(bioTextArea);
+		bioTextArea.setLineWrap(true);
+		bioTextArea.setWrapStyleWord(true);
 		
 		JPanel livro = new JPanel();
 		frame.getContentPane().add(livro, "name_564775775717100");
@@ -510,6 +548,15 @@ public class Frames {
 			}
 		});
 		//event de clicar na lista e entrar no panel livro
+		
+		voltarPraInicialButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perfil.setVisible(false);
+				telaInicial.setVisible(true);
+			}
+		});
+		//event de clicar no voltar do perfil e voltar p pagina inicial
+
 	}
 	
 	
