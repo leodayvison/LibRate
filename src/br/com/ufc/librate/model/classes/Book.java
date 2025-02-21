@@ -7,12 +7,6 @@ import br.com.ufc.librate.model.interfaces.*;
 
 public class Book implements Likeable {
 
-	private static String ID = "B" + Book.getSize();
-
-	private static int getSize(){
-		return BookData.getBookList().size();
-	}
-
 	// array de comentarios no livro
 	protected String idBook;
 	protected String title;
@@ -28,7 +22,7 @@ public class Book implements Likeable {
 	//Livro com todas as informações.(autor que nao foi adicionado ainda na rede)
 	public Book( String title, int year,String name, String bio, String publisher, BookGenre genre,
 				float rating, float ratingCount, String synopsis) {
-		this.idBook = Book.ID;
+		this.idBook = "B" + BookData.getBookList().size();
 		this.title = title;
 		this.year = year;
         this.author = new Author(name, bio);
@@ -37,13 +31,13 @@ public class Book implements Likeable {
 		this.rating = rating;
 		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = LikeData.getLikeMap().get(Book.ID);
+		this.likes = LikeData.getLikeMap().getOrDefault(this.idBook, 0);
 	}
 
 	//Livro com autores desconhecidos.
 	public Book( String title, int year, String publisher, BookGenre genre,
 				float rating, float ratingCount, String synopsis) {
-		this.idBook = Book.ID;
+		this.idBook = "B" + BookData.getBookList().size();
 		this.title = title;
 		this.year = year;
 		this.publisher = publisher;
@@ -51,7 +45,7 @@ public class Book implements Likeable {
 		this.rating = rating;
 		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = LikeData.getLikeMap().get(Book.ID);
+        this.likes = LikeData.getLikeMap().getOrDefault(this.idBook, 0);
 	}
 
 	public String getTitle() {
@@ -120,14 +114,6 @@ public class Book implements Likeable {
 
 	public void setLikes(int likes) {
 		this.likes = likes;
-	}
-
-	public static String getID() {
-		return ID;
-	}
-
-	public static void setID(String ID) {
-		Book.ID = ID;
 	}
 
 	public String getIdBook() {

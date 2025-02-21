@@ -12,9 +12,10 @@ public class Database {
 
         File[] files = {
                 new File("users.txt"),
-                new File("books.txt"),
+                new File("likes.txt"),
                 new File("authors.txt"),
-                new File("likes.txt")
+                new File("books.txt")
+
         };
 
         for (int i = 0;i < 4;i++){
@@ -108,9 +109,10 @@ public class Database {
 
     public static void readFiles() throws IOException {
         AccountData.readFileAccount();
+        LikeData.readFileLike();
         AuthorData.readFileAuthor();
         BookData.readFileBook();
-        LikeData.readFileLike();
+
     }
 }
 

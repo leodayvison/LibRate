@@ -44,7 +44,14 @@ public class BookData {
                 String name = parts[2];
                 String bio = parts[3];
                 String publisher = parts[4];
-                BookGenre genre = BookGenre.valueOf(parts[5]);
+                BookGenre genre = BookGenre.UNKNOWN;
+                try {
+                    genre = BookGenre.valueOf(parts[5].trim().toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    // Caso o gênero seja inválido, pode-se atribuir um valor padrão ou logar um erro
+                    System.out.println("Erro ao interpretar o gênero: " + parts[5]);
+                    genre = BookGenre.FICTION; // Atribui um valor padrão caso ocorra erro
+                }
                 float rating = Float.parseFloat(parts[6]);
                 float ratingCount = Float.parseFloat(parts[7]);
                 String synopsis = parts[8];
@@ -52,8 +59,10 @@ public class BookData {
                 Book book;
                 if (name.equals(" ")) {
                     book = new Book(title,year,publisher,genre,rating,ratingCount,synopsis);
+                    System.out.println("sem autor");
                 } else {
                     book = new Book(title, year, name, bio, publisher, genre, rating,ratingCount,synopsis );
+                    System.out.println("com autor");
                 }
                 BookData.bookList.add(book);
             }

@@ -10,5 +10,6 @@ public enum BookGenre {
 	ROMANCE,
 	HISTORICAL,
 	ADVENTURE, 
-	HORROR;
+	HORROR,
+	UNKNOWN;
 }
