@@ -1,4 +1,4 @@
-package src.br.com.ufc.librate.gui;
+package br.com.ufc.librate.gui;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -33,10 +33,10 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import src.br.com.ufc.librate.Data.Database;
-import src.br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
-import src.br.com.ufc.librate.exceptions.IncorrectCredentialsException;
-import src.br.com.ufc.librate.tools.AccountManager;
+import br.com.ufc.librate.Data.Database;
+import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
+import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
+import br.com.ufc.librate.tools.AccountManager;
 
 public class Frames {
 
