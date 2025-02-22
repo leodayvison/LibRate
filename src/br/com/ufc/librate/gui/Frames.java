@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +29,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -33,14 +37,11 @@ import javax.swing.table.DefaultTableModel;
 import br.com.ufc.librate.Data.Database;
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
+import br.com.ufc.librate.exceptions.BookAlreadyExistsException;
 import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
 import br.com.ufc.librate.model.classes.Book;
 import br.com.ufc.librate.tools.AccountManager;
-
-import java.awt.FlowLayout;
-import java.io.IOException;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+import br.com.ufc.librate.tools.BookManager;
 
 public class Frames {
 
@@ -51,6 +52,9 @@ public class Frames {
 	private JTextField textFieldCadastro;
 	private JPasswordField passwordFieldCadastro;
 	private JTextField pesquisarTextField;
+	
+//	private String[][] bookData = {{"teste", "teste", "teste"}, {"teste2", "teste2", "teste2"}};
+	private List<List<String>> bookDataAux;
 
 	public static  void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
@@ -284,7 +288,7 @@ public class Frames {
 		panel_3.setLayout(gbl_panel_3);
 
 		JLabel userRealLabel = new JLabel("@");
-		//     EDITAR!!!
+		//    EDITAR!!!
 		GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
 		gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_userRealLabel.gridx = 1;
@@ -336,24 +340,33 @@ public class Frames {
 		JButton pesquisarButton = new JButton("🔎");
 		panel_2.add(pesquisarButton);
 
-//		Book[] livros = { new Book("Jogos Vorazes", 2008, BookGenre.FICTION, 0, "Livros distopia"),
-//						  new Book("Confissões",2017,BookGenre.THRILLER,0,"Livro de suspense")
-//						  };
-
-//Tentamos implementar objetos de Book, não deu certo EDITAR!!!!!
-
-		String[][] data = {
-				{"Jogos Vorazes", "Suzanne Collins", "Ficção"}, {"Confissões", "Kanae Minato", "Suspense"}
-//				{livros[0].getTitle(),livros[0].getAuthor().getName(),livros[0].getGenre().toString()},
-//				{livros[1].getTitle(),livros[1].getAuthor().getName(),livros[1].getGenre().toString()},
-		};
-
+		
+		Book[] livros = { new Book("Jogos Vorazes", 2008, "suzane collins", "AUTORA DO JOGOS VORAZES", "PANINI", BookGenre.FICTION, 0, 0, "bom"),
+						  new Book("Confissões", 2017, "kanae minato", "autora do confissoes", "herbert richards", BookGenre.MYSTERY, 0, 0, "peba")
+						  };
+		
+		
+		
 		String [] columns = {"Título", "Autor", "Gênero"};
-
-		DefaultTableModel model = new DefaultTableModel(data, columns);
-
+		
+		
+		Book livroQualquer = new Book("Jogos Vorazes", 2008, "suzane collins", "AUTORA DO JOGOS VORAZES", "PANINI", BookGenre.FICTION, 0, 0, "bom");
+		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
+		
 		JTable tabelaLivros = new JTable(model);
-
+		
+		/* Teste do metodo addBook. descomente se quiser testar
+		 *  TODO apagar quando tiver finalizada
+		 *  
+		 * try { BookManager.addBook(livroQualquer, tabelaLivros); }
+		 * catch(BookAlreadyExistsException e) { System.out.println(e.getMessage()); }
+		 * 
+		 * 
+		 */
+		 
+		 
+		
+		
 		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
 		telaInicial.add(scrollPane, BorderLayout.CENTER);
 

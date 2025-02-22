@@ -14,7 +14,7 @@ import br.com.ufc.librate.model.classes.NormalAccount;
 public class AccountManager {
 	private static Account loggedAccount;
 
-	private static HashMap<String, Account> accountMap = new HashMap<String, Account>();
+	private static HashMap<String, Account> accountMap = new HashMap<>();
 
     public AccountManager() {
         AccountData.readFileAccount();
