@@ -1,4 +1,4 @@
-package br.com.ufc.librate.gui;
+package src.br.com.ufc.librate.gui;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,21 +28,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.ufc.librate.Data.Database;
-import br.com.ufc.librate.collections.BookGenre;
-import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
-import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
-import br.com.ufc.librate.model.classes.Book;
-import br.com.ufc.librate.tools.AccountManager;
-
-import java.awt.FlowLayout;
-import java.io.IOException;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+import src.br.com.ufc.librate.Data.Database;
+import src.br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
+import src.br.com.ufc.librate.exceptions.IncorrectCredentialsException;
+import src.br.com.ufc.librate.tools.AccountManager;
 
 public class Frames {
 
@@ -187,7 +183,7 @@ public class Frames {
 		cadastro.setLayout(new BorderLayout(0, 0));
 
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-			@Override
+			
 			public void mouseClicked(MouseEvent e) {
 				login.setVisible(false);
 				cadastro.setVisible(true);
