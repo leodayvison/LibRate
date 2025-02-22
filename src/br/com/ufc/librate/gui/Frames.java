@@ -9,6 +9,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ import java.awt.FlowLayout;
 import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
+import java.awt.GridLayout;
 
 public class Frames {
 
@@ -51,6 +53,7 @@ public class Frames {
 	private JTextField textFieldCadastro;
 	private JPasswordField passwordFieldCadastro;
 	private JTextField pesquisarTextField;
+	private JPanel autor;
 
 	public static  void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
@@ -97,7 +100,47 @@ public class Frames {
 		frame.getContentPane().setMaximumSize(new Dimension(900, 600));
 		frame.getContentPane().setBackground(new Color(0, 64, 128));
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
-
+		
+		autor = new JPanel();
+		frame.getContentPane().add(autor, "name_61629018393600");
+		autor.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setBackground(new Color(255, 255, 255));
+		autor.add(panel_13, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel_9 = new JLabel("");
+		panel_13.add(lblNewLabel_9);
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_9.setIcon(snoopi2);
+		
+		JPanel panel_14 = new JPanel();
+		autor.add(panel_14, BorderLayout.CENTER);
+		panel_14.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_16 = new JPanel();
+		panel_16.setBackground(new Color(255, 255, 255));
+		panel_14.add(panel_16, BorderLayout.NORTH);
+		ImageIcon snoopi = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopiescreve.jpg"));
+		Image snoopi1 =snoopi.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon snoopi2 = new ImageIcon(snoopi1);
+		
+		JLabel nomeAutorLabel = new JLabel("nome autor");
+		nomeAutorLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		nomeAutorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_16.add(nomeAutorLabel);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_14.add(scrollPane_1, BorderLayout.CENTER);
+		
+		JPanel panel_17 = new JPanel();
+		scrollPane_1.setColumnHeaderView(panel_17);
+		panel_17.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel descricaoAutor = new JLabel("descrição");
+		panel_17.add(descricaoAutor);
+		autor.setVisible(false);
+		
 		JPanel login = new JPanel();
 		login.setBackground(new Color(0, 64, 128));
 		frame.getContentPane().add(login, "name_335144528078500");
@@ -278,50 +321,72 @@ public class Frames {
 		panel.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{53, 85, 0, 0, 0, 0};
-		gbl_panel_3.rowHeights = new int[]{21, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_3.rowHeights = new int[]{0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopilendotelainicial.jpg")));
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_7.gridx = 1;
+		gbc_lblNewLabel_7.gridy = 0;
+		panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
 
 		JLabel userRealLabel = new JLabel("@");
 		//     EDITAR!!!
 		GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
 		gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_userRealLabel.gridx = 1;
-		gbc_userRealLabel.gridy = 0;
+		gbc_userRealLabel.gridy = 1;
 		panel_3.add(userRealLabel, gbc_userRealLabel);
 
 		JLabel lblNewLabel_8 = new JLabel("Amo livros!");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
 		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_8.gridx = 1;
-		gbc_lblNewLabel_8.gridy = 1;
+		gbc_lblNewLabel_8.gridy = 2;
 		panel_3.add(lblNewLabel_8, gbc_lblNewLabel_8);
-
-		JButton verPerfilButton = new JButton("    Ver perfil    ");
-		verPerfilButton.setBackground(SystemColor.inactiveCaption);
-		GridBagConstraints gbc_verPerfilButton = new GridBagConstraints();
-		gbc_verPerfilButton.insets = new Insets(0, 0, 5, 5);
-		gbc_verPerfilButton.anchor = GridBagConstraints.WEST;
-		gbc_verPerfilButton.gridx = 1;
-		gbc_verPerfilButton.gridy = 2;
-		panel_3.add(verPerfilButton, gbc_verPerfilButton);
-
-		JButton mudarUserButton = new JButton(" Mudar user ");
-		mudarUserButton.setBackground(new Color(192, 192, 192));
-		GridBagConstraints gbc_mudarUserButton = new GridBagConstraints();
-		gbc_mudarUserButton.insets = new Insets(0, 0, 5, 5);
-		gbc_mudarUserButton.gridx = 1;
-		gbc_mudarUserButton.gridy = 4;
-		panel_3.add(mudarUserButton, gbc_mudarUserButton);
-
-		JButton mudarSenhaButton = new JButton("Mudar senha ");
-		mudarSenhaButton.setBackground(new Color(192, 192, 192));
-		GridBagConstraints gbc_mudarSenhaButton = new GridBagConstraints();
-		gbc_mudarSenhaButton.insets = new Insets(0, 0, 5, 5);
-		gbc_mudarSenhaButton.gridx = 1;
-		gbc_mudarSenhaButton.gridy = 6;
-		panel_3.add(mudarSenhaButton, gbc_mudarSenhaButton);
+		
+				JButton verPerfilButton = new JButton("    Ver perfil    ");
+				verPerfilButton.setBackground(new Color(192, 192, 192));
+				GridBagConstraints gbc_verPerfilButton = new GridBagConstraints();
+				gbc_verPerfilButton.insets = new Insets(0, 0, 5, 5);
+				gbc_verPerfilButton.anchor = GridBagConstraints.WEST;
+				gbc_verPerfilButton.gridx = 1;
+				gbc_verPerfilButton.gridy = 3;
+				panel_3.add(verPerfilButton, gbc_verPerfilButton);
+				
+						//botão de login: certificar que os dois texts labels estejam preenchidos,
+						//certificar que existe esse username e a senha atrelada a ele esteja correta
+				
+						verPerfilButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								telaInicial.setVisible(false);
+								perfil.setVisible(true);
+							}
+						});
+		
+				JButton mudarUserButton = new JButton(" Mudar user ");
+				mudarUserButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				mudarUserButton.setBackground(new Color(192, 192, 192));
+				GridBagConstraints gbc_mudarUserButton = new GridBagConstraints();
+				gbc_mudarUserButton.insets = new Insets(0, 0, 5, 5);
+				gbc_mudarUserButton.gridx = 1;
+				gbc_mudarUserButton.gridy = 5;
+				panel_3.add(mudarUserButton, gbc_mudarUserButton);
+		
+				JButton mudarSenhaButton = new JButton("Mudar senha ");
+				mudarSenhaButton.setBackground(new Color(192, 192, 192));
+				GridBagConstraints gbc_mudarSenhaButton = new GridBagConstraints();
+				gbc_mudarSenhaButton.insets = new Insets(0, 0, 5, 5);
+				gbc_mudarSenhaButton.gridx = 1;
+				gbc_mudarSenhaButton.gridy = 7;
+				panel_3.add(mudarSenhaButton, gbc_mudarSenhaButton);
 
 		JScrollBar scrollBar = new JScrollBar();
 		telaInicial.add(scrollBar, BorderLayout.EAST);
@@ -366,8 +431,9 @@ public class Frames {
 		perfil.add(panel_8, BorderLayout.NORTH);
 
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Área de Trabalho\\Captura de tela 2025-02-21 104650.png"));
+		lblNewLabel_6.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopilendo.jpg")));
 		panel_8.add(lblNewLabel_6);
+		
 
 		JPanel panel_9 = new JPanel();
 		panel_9.setBackground(new Color(255, 255, 255));
@@ -489,16 +555,6 @@ public class Frames {
 				} catch (IOException ex) {
 					throw new RuntimeException(ex);
 				}
-			}
-		});
-
-		//botão de login: certificar que os dois texts labels estejam preenchidos,
-		//certificar que existe esse username e a senha atrelada a ele esteja correta
-
-		verPerfilButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				telaInicial.setVisible(false);
-				perfil.setVisible(true);
 			}
 		});
 		//botão para ver perfil
