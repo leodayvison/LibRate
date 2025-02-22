@@ -34,6 +34,7 @@ public class Book implements Likeable {
 		this.likes = LikeData.getLikeMap().getOrDefault(this.idBook, 0);
 	}
 
+	// TODO NAO INICIALIZA AUTHOR E DA NULL POINTER EXCEPTION
 	//Livro com autores desconhecidos.
 	public Book( String title, int year, String publisher, BookGenre genre,
 				float rating, float ratingCount, String synopsis) {
