@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import br.com.ufc.librate.Data.BookData;
 import br.com.ufc.librate.Data.Database;
 import br.com.ufc.librate.collections.BookGenre;
 import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
@@ -64,6 +65,15 @@ public class Frames {
 		}
 		userLabel.revalidate();
 		userLabel.repaint();
+	}
+	public static  void updateBioLabel(JTextArea bioTextArea) {
+		if (AccountManager.getLoggedAccount() != null) {
+			bioTextArea.setText(AccountManager.getLoggedAccount().getBio());
+		} else {
+			bioTextArea.setText("A bio ainda nao foi definida!");
+		}
+		bioTextArea.revalidate();
+		bioTextArea.repaint();
 	}
 
 	/**
@@ -340,33 +350,20 @@ public class Frames {
 		JButton pesquisarButton = new JButton("🔎");
 		panel_2.add(pesquisarButton);
 
-		
-		Book[] livros = { new Book("Jogos Vorazes", 2008, "suzane collins", "AUTORA DO JOGOS VORAZES", "PANINI", BookGenre.FICTION, 0, 0, "bom"),
-						  new Book("Confissões", 2017, "kanae minato", "autora do confissoes", "herbert richards", BookGenre.MYSTERY, 0, 0, "peba")
-						  };
-		
-		
-		
 		String [] columns = {"Título", "Autor", "Gênero"};
 		
-		
-		Book livroQualquer = new Book("Jogos Vorazes", 2008, "suzane collins", "AUTORA DO JOGOS VORAZES", "PANINI", BookGenre.FICTION, 0, 0, "bom");
 		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
 		
 		JTable tabelaLivros = new JTable(model);
-		
-		/* Teste do metodo addBook. descomente se quiser testar
-		 *  TODO apagar quando tiver finalizada
-		 *  
-		 * try { BookManager.addBook(livroQualquer, tabelaLivros); }
-		 * catch(BookAlreadyExistsException e) { System.out.println(e.getMessage()); }
-		 * 
-		 * 
-		 */
-		 
-		 
-		
-		
+
+	for(Book b : BookData.getBookList()) {
+		try {
+			BookManager.addBook(b, tabelaLivros);
+		} catch (BookAlreadyExistsException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
 		telaInicial.add(scrollPane, BorderLayout.CENTER);
 
@@ -495,6 +492,7 @@ public class Frames {
 					AccountManager.login(user, password, frame);
 					Frames.updateUserLabel(userLabel);
 					Frames.updateUserLabel(userRealLabel);
+					Frames.updateBioLabel(bioTextArea);
 					login.setVisible(false);
 					telaInicial.setVisible(true);
 				} catch (IncorrectCredentialsException ex) {
@@ -528,6 +526,7 @@ public class Frames {
 						AccountManager.register(user, password, frame);
 						Frames.updateUserLabel(userLabel);
 						Frames.updateUserLabel(userRealLabel);
+						Frames.updateBioLabel(bioTextArea);
 						JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
 						cadastro.setVisible(false);
 						telaInicial.setVisible(true);

@@ -59,10 +59,8 @@ public class BookData {
                 Book book;
                 if (name.equals(" ")) {
                     book = new Book(title,year,publisher,genre,rating,ratingCount,synopsis);
-                    System.out.println("sem autor");
                 } else {
                     book = new Book(title, year, name, bio, publisher, genre, rating,ratingCount,synopsis );
-                    System.out.println("com autor");
                 }
                 BookData.bookList.add(book);
             }

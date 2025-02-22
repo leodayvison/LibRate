@@ -12,35 +12,32 @@ import br.com.ufc.librate.model.classes.Account;
 import br.com.ufc.librate.model.classes.NormalAccount;
 
 public class AccountManager {
-	private static Account loggedAccount;
+	private static NormalAccount loggedAccount;
 
-	private static HashMap<String, Account> accountMap = new HashMap<>();
+	private static HashMap<String, NormalAccount> accountMap = new HashMap<>();
 
     public AccountManager() {
         AccountData.readFileAccount();
-        for (Account acc : AccountData.accountList) {
+        for (NormalAccount acc : AccountData.accountList) {
             if (!(AccountManager.accountMap.containsKey(acc.getUser()))) {
                 AccountManager.accountMap.put(acc.getUser(), acc);
 
             }
         }
     }
-    public static Account getLoggedAccount() {
+    public static NormalAccount getLoggedAccount() {
 		return loggedAccount;
 	}
 
-	public static void setLoggedAccount(Account loggedAccount) {
+	public static void setLoggedAccount(NormalAccount loggedAccount) {
 		AccountManager.loggedAccount = loggedAccount;
 	}
 
-	public static HashMap<String, Account> getAccountMap() {
+	public static HashMap<String, NormalAccount> getAccountMap() {
 		return accountMap;
 	}
 
-	public static void setAccountMap(HashMap<String, Account> accountMap) {
-		AccountManager.accountMap = accountMap;
-	}
-    public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException, IOException {
+	public static void login(String user, String password, JFrame frame) throws IncorrectCredentialsException, IOException {
         if(!(AccountManager.accountMap.containsKey(user) && AccountManager.accountMap.get(user).getPassword().equals(password))){
             throw new IncorrectCredentialsException();
         } else {
@@ -57,7 +54,7 @@ public class AccountManager {
     	if (AccountManager.accountMap.containsKey(user)) {
     		throw new AccountAlreadyExistsException();
     	} else {
-    		Account newAcc = new NormalAccount(user, password);
+			NormalAccount newAcc = new NormalAccount(user, password);
 			AccountManager.setLoggedAccount(newAcc);
             AccountData.writeFileAccount(user, password);
             AccountData.readFileAccount();

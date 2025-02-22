@@ -1,0 +1,12 @@
+Dom Casmurro:1899:Machado de Assis:Autor brasileiro, um dos maiores nomes da literatura nacional.:Editora XYZ:ROMANCE:4.5:25000:Um romance psicológico que explora o tema da dúvida.
+1984:1949:George Orwell:Escritor britânico, famoso por suas obras distópicas.:Editora ABC:FICTION:4.8:30000:Uma crítica à opressão totalitária e ao controle social.
+O Senhor dos Anéis:1954:J.R.R. Tolkien:Escritor britânico, criador de mundos fantásticos.:Editora Mundo:FANTASY:4.9:50000:Uma saga épica sobre a luta contra o mal em um mundo mágico.
+O Grande Gatsby:1925:F. Scott Fitzgerald:Escritor norte-americano, conhecido por sua crítica à sociedade americana da década de 1920.:Editora LivroPerfeito:FICTION:4.4:15000:Um retrato da busca incessante pelo sonho americano.
+Harry Potter e a Pedra Filosofal:1997:J.K. Rowling:Escritora britânica, famosa pela criação do universo de Harry Potter.:Editora Rocco:FANTASY:4.9:75000:O início da jornada de Harry Potter no mundo mágico.
+Cem Anos de Solidão:1967:Gabriel García Márquez:Escritor colombiano, mestre do realismo mágico.:Editora Ática:ROMANCE:4.7:60000:Uma história épica que mistura realidade e fantasia na cidade fictícia de Macondo.
+A Revolução dos Bichos:1945: : :Editora Plenitude:FICTION:4.3:12000:Uma fábula política que critica as revoluções e regimes totalitários.
+O Pequeno Príncipe:1943: : :Editora Martins Fontes:FANTASY:4.8:90000:Um conto filosófico sobre um pequeno príncipe que viaja por planetas, aprendendo lições de vida.
+Frankenstein:1818:Mary Shelley:Escritora britânica, pioneira da ficção científica.:Editora DarkSide:HORROR:4.6:18000:Uma história sobre um cientista que dá vida a uma criatura com consequências terríveis.
+Sherlock Holmes:1887:Arthur Conan Doyle:Autor escocês, famoso por suas histórias de detetive.:Editora Mistério&Mente:MYSTERY:4.7:22000:As aventuras do detetive mais famoso do mundo e sua lógica dedutiva.
+O Código Da Vinci:2003:Dan Brown:Escritor norte-americano, conhecido por seus thrillers históricos.:Editora Sextante:THRILLER:4.2:27000:Um suspense envolvente que mistura arte, religião e conspirações.
+Viagem ao Centro da Terra:1864:Júlio Verne:Pioneiro da ficção científica e aventuras extraordinárias.:Editora Clássicos:ADVENTURE:4.5:14000:Uma expedição emocionante ao núcleo do planeta.

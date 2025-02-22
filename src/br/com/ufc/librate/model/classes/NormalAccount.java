@@ -15,12 +15,9 @@ public class NormalAccount extends Account implements CanLike, Likeable{
 
 	public NormalAccount(String login, String password) {
 		super(login, password);
-		this.bio = "Amo livros!☝️🤓";
+		this.bio = "Amo comer o cu de quem ta lendo!!";
         this.likeds = new ArrayList<>();
     }
-	
-
-
 
 	public String getBio() {
 		return bio;

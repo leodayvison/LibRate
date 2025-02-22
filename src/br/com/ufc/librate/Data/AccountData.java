@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountData {
-    public static List<Account> accountList = new ArrayList<>();
+    public static List<NormalAccount> accountList = new ArrayList<>();
 
-    public static List<Account> getAccountList() {
+    public static List<NormalAccount> getAccountList() {
         return accountList;
     }
 
