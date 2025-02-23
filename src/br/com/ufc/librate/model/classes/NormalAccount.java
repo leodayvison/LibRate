@@ -8,8 +8,7 @@ import java.util.List;
 public class NormalAccount extends Account implements CanLike, Likeable {
 	private String bio;
 	private int likes;
-	private List<Book> readBooks;
-	private List<Book> wishListBooks;
+	private List<Book> toReadBooks;
 	private  List<Book> likedBooks;
 	private List<Likeable> likeds;
 	
@@ -18,6 +17,8 @@ public class NormalAccount extends Account implements CanLike, Likeable {
 		super(login, password);
 		this.bio = "Eu amo livros☝️🤓";
         this.likeds = new ArrayList<>();
+		this.toReadBooks = new ArrayList<>();
+		this.likedBooks = new ArrayList<>();
     }
 
 	public String getBio() {
@@ -28,20 +29,12 @@ public class NormalAccount extends Account implements CanLike, Likeable {
 		this.bio = bio;
 	}
 
-	public List<Book> getReadBooks() {
-		return readBooks;
+	public List<Book> getToReadBooks() {
+		return toReadBooks;
 	}
 
-	public void setReadBooks(List<Book> readBooks) {
-		this.readBooks = readBooks;
-	}
-
-	public List<Book> getWishListBooks() {
-		return wishListBooks;
-	}
-
-	public void setWishListBooks(List<Book> wishListBooks) {
-		this.wishListBooks = wishListBooks;
+	public void setToReadBooks(List<Book> readBooks) {
+		this.toReadBooks = readBooks;
 	}
 
 	public List<Book> getLikedBooks() {

@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,7 +56,7 @@ public class Frames {
 	private JTextField pesquisarTextField;
 	private Book livroSelecionado = null;
 
-	public static  void updateUserLabel(JLabel userLabel) {
+	public static void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
 			userLabel.setText("@" + AccountManager.getLoggedAccount().getUser());
 		} else {
@@ -63,7 +65,8 @@ public class Frames {
 		userLabel.revalidate();
 		userLabel.repaint();
 	}
-	public static  void updateBioLabel(JTextArea bioTextArea) {
+
+	public static void updateBioLabel(JTextArea bioTextArea) {
 		if (AccountManager.getLoggedAccount() != null) {
 			bioTextArea.setText(AccountManager.getLoggedAccount().getBio());
 		} else {
@@ -347,19 +350,64 @@ public class Frames {
 		JButton pesquisarButton = new JButton("🔎");
 		panel_2.add(pesquisarButton);
 
-		String [] columns = {"Título", "Autor", "Gênero"};
+		String[] columns = {"Título", "Autor", "Gênero"};
 
 		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
 
 		JTable tabelaLivros = new JTable(model);
 
-	for(Book b : BookData.getBookList()) {
-		try {
-			BookManager.addBook(b, tabelaLivros);
-		} catch (BookAlreadyExistsException e) {
-			System.out.println(e.getMessage());
+		for (Book b : BookData.getBookList()) {
+			try {
+				BookManager.addBook(b, tabelaLivros);
+			} catch (BookAlreadyExistsException e) {
+				System.out.println(e.getMessage());
+			}
 		}
-	}
+
+		pesquisarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String pesquisa = pesquisarTextField.getText().toLowerCase();
+
+				if(pesquisa.equals("")){
+					for (Book b : BookData.getBookList()) {
+					try {
+						BookManager.addBook(b, tabelaLivros);
+					} catch (BookAlreadyExistsException baee) {
+						System.out.println(baee.getMessage());
+					}
+				}
+
+				}
+
+				DefaultTableModel model = (DefaultTableModel) tabelaLivros.getModel();
+				model.setRowCount(0);
+
+				List<Book> livrosEncontrados = new ArrayList<>();
+
+				for (Book livro : BookData.getBookList()) {
+					if (livro.getTitle().toLowerCase().contains(pesquisa) ||
+							(livro.getAuthor() != null && livro.getAuthor().getName().toLowerCase().contains(pesquisa))) {
+						livrosEncontrados.add(livro);
+					}
+				}
+
+				if (livrosEncontrados.isEmpty()) {
+					System.out.println("Nenhum livro encontrado.");  //faz um pop up aqui
+				} else {
+					System.out.println("Livros encontrados:");
+					for (Book livro : livrosEncontrados) {
+						Object[] row = new Object[]{
+								livro.getTitle(),
+								livro.getAuthor() != null ? livro.getAuthor().getName() : "Autor Desconhecido",
+								livro.getGenre().getGenreString()
+						};
+						model.addRow(row);
+					}
+				}
+			}
+		});
+
 
 		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
 		telaInicial.add(scrollPane, BorderLayout.CENTER);
@@ -625,6 +673,7 @@ public class Frames {
 		});
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
 		//certificar que não tem o username existentes
+
 		JLabel nomeLivroLabel = new JLabel();
 		nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
 
@@ -654,17 +703,16 @@ public class Frames {
 					}
 				}
 
-                assert livroSelecionado != null;
+				assert livroSelecionado != null;
 				nomeLivroLabel.setText(livroSelecionado.getTitle());
 				panel_5.add(nomeLivroLabel);
 
-                if(livroSelecionado.getAuthor() == null){
+				if (livroSelecionado.getAuthor() == null) {
 					lblNewLabel_14.setText("Autor Desconhecido" + " - " + livroSelecionado.getGenre().getGenreString());
-					panel_13.add(lblNewLabel_14);
-				}else{
+				} else {
 					lblNewLabel_14.setText(livroSelecionado.getAuthor().getName() + " - " + livroSelecionado.getGenre().getGenreString());
-					panel_13.add(lblNewLabel_14);
 				}
+				panel_13.add(lblNewLabel_14);
 
 				txtrNaAberturaDos.setText(livroSelecionado.getSynopsis());
 				txtrNaAberturaDos.setEditable(false);
@@ -672,6 +720,19 @@ public class Frames {
 				txtrNaAberturaDos.setWrapStyleWord(true);
 				panel_7.add(txtrNaAberturaDos, BorderLayout.CENTER);
 
+				if (lblNewLabel_9_2.getMouseListeners().length == 0) {
+					lblNewLabel_9_2.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if (!(AccountManager.getLoggedAccount().getToReadBooks().contains(livroSelecionado))) {
+								AccountManager.getLoggedAccount().getToReadBooks().add(livroSelecionado);
+								System.out.println(livroSelecionado.getTitle() + " adicionado");
+							} else {
+								System.out.println("Livro já adicionado!");
+							}
+						}
+					});
+				}
 
 				voltarInicialButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -686,7 +747,6 @@ public class Frames {
 
 			}
 		});
-		//event de clicar na lista e entrar no panel livro
 
 		voltarPraInicialButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -694,9 +754,5 @@ public class Frames {
 				telaInicial.setVisible(true);
 			}
 		});
-		//event de clicar no voltar do perfil e voltar p pagina inicial
-
 	}
-
-
 }
