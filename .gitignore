@@ -1,5 +1,3 @@
 "bin/" 
 "*.class" 
-".settings/" 
-".classspath" 
-".project" 
+".settings/"
