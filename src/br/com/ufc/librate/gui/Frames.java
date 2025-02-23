@@ -39,13 +39,11 @@ import br.com.ufc.librate.Data.Database;
 import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
 import br.com.ufc.librate.exceptions.BookAlreadyExistsException;
 import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
-import br.com.ufc.librate.model.classes.Book;
 import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.tools.BookManager;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
-
 public class Frames {
 
 	private JFrame frame;
@@ -203,7 +201,7 @@ public class Frames {
 		cadastro.setLayout(new BorderLayout(0, 0));
 
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-			@Override
+			
 			public void mouseClicked(MouseEvent e) {
 				login.setVisible(false);
 				cadastro.setVisible(true);
