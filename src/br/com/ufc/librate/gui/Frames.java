@@ -43,6 +43,11 @@ import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.GridLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
+import javax.swing.BoxLayout;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Frames {
 
@@ -54,6 +59,7 @@ public class Frames {
 	private JPasswordField passwordFieldCadastro;
 	private JTextField pesquisarTextField;
 	private JPanel autor;
+	private JTextField textField_1;
 
 	public static  void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
@@ -96,7 +102,7 @@ public class Frames {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("LibRate");
 		frame.getContentPane().setMaximumSize(new Dimension(900, 600));
 		frame.getContentPane().setBackground(new Color(0, 64, 128));
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
@@ -108,11 +114,30 @@ public class Frames {
 		JPanel panel_13 = new JPanel();
 		panel_13.setBackground(new Color(255, 255, 255));
 		autor.add(panel_13, BorderLayout.NORTH);
+		panel_13.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		panel_13.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_9 = new JLabel("");
-		panel_13.add(lblNewLabel_9);
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_9.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
+		panel_13.add(lblNewLabel_9, BorderLayout.CENTER);
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		ImageIcon snoopi = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopiescreve.jpg"));
+		Image snoopi1 =snoopi.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon snoopi2 = new ImageIcon(snoopi1);
 		lblNewLabel_9.setIcon(snoopi2);
+		
+		JPanel panel_18 = new JPanel();
+		panel_18.setBackground(new Color(255, 255, 255));
+		panel_13.add(panel_18, BorderLayout.NORTH);
+		panel_18.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		JButton botaoVoltar = new JButton("<");
+		botaoVoltar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botaoVoltar.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_18.add(botaoVoltar);
+		
 		
 		JPanel panel_14 = new JPanel();
 		autor.add(panel_14, BorderLayout.CENTER);
@@ -121,9 +146,9 @@ public class Frames {
 		JPanel panel_16 = new JPanel();
 		panel_16.setBackground(new Color(255, 255, 255));
 		panel_14.add(panel_16, BorderLayout.NORTH);
-		ImageIcon snoopi = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopiescreve.jpg"));
-		Image snoopi1 =snoopi.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		ImageIcon snoopi2 = new ImageIcon(snoopi1);
+		ImageIcon coracaoVazio = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoVazio (1).png"));
+		
+		
 		
 		JLabel nomeAutorLabel = new JLabel("nome autor");
 		nomeAutorLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -131,14 +156,72 @@ public class Frames {
 		panel_16.add(nomeAutorLabel);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		panel_14.add(scrollPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_17 = new JPanel();
+		panel_17.setBackground(new Color(255, 255, 255));
 		scrollPane_1.setColumnHeaderView(panel_17);
-		panel_17.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_17.setLayout(new GridLayout(1, 2, 10, 10));
 		
-		JLabel descricaoAutor = new JLabel("descrição");
-		panel_17.add(descricaoAutor);
+		JPanel panel_20 = new JPanel();
+		panel_20.setBackground(new Color(255, 255, 255));
+		panel_17.add(panel_20);
+		panel_20.setLayout(new BorderLayout(0, 0));
+		
+		JToggleButton botaoCurtida = new JToggleButton(" Curtidas: número");
+		botaoCurtida.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_20.add(botaoCurtida);
+		botaoCurtida.setSelectedIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
+		botaoCurtida.setBackground(new Color(255, 255, 255));
+		botaoCurtida.setIcon(coracaoVazio);
+		
+		JLabel avaliação = new JLabel("Nota: ");
+		avaliação.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/star.png")));
+		avaliação.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		avaliação.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_17.add(avaliação);
+		
+		JPanel panel_19 = new JPanel();
+		panel_17.add(panel_19);
+		panel_19.setLayout(new BorderLayout(0, 0));
+		
+		JButton listaDeLivros = new JButton("Livros ");
+		listaDeLivros.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/images (1).png")));
+		listaDeLivros.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_19.add(listaDeLivros);
+		
+		JPanel panel_22 = new JPanel();
+		panel_22.setBackground(new Color(255, 255, 255));
+		scrollPane_1.setViewportView(panel_22);
+		panel_22.setLayout(new GridLayout(2, 1, 0, 0));
+		
+		JPanel panel_23 = new JPanel();
+		panel_23.setBackground(new Color(255, 255, 255));
+		panel_22.add(panel_23);
+		GridBagLayout gbl_panel_23 = new GridBagLayout();
+		gbl_panel_23.columnWidths = new int[] {30, 0, 0, 30};
+		gbl_panel_23.rowHeights = new int[] {30, 0, 0, 0, 0, 30};
+		gbl_panel_23.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_23.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_23.setLayout(gbl_panel_23);
+		
+		JLabel lblNewLabel_12 = new JLabel("New label");
+		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
+		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_12.gridx = 1;
+		gbc_lblNewLabel_12.gridy = 1;
+		panel_23.add(lblNewLabel_12, gbc_lblNewLabel_12);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.gridheight = 3;
+		gbc_textField_1.gridwidth = 5;
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 1;
+		gbc_textField_1.gridy = 2;
+		panel_23.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
 		autor.setVisible(false);
 		
 		JPanel login = new JPanel();
@@ -149,11 +232,10 @@ public class Frames {
 		JPanel cima = new JPanel();
 		cima.setBackground(new Color(0, 64, 128));
 		login.add(cima, BorderLayout.NORTH);
-
-		JLabel LibRate = new JLabel("LibRate");
-		LibRate.setForeground(new Color(255, 255, 255));
-		LibRate.setFont(new Font("Bell MT", Font.BOLD, 65));
-		cima.add(LibRate);
+		
+		JLabel lblNewLabel_13 = new JLabel("");
+		lblNewLabel_13.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/Cabeçalho-removebg-preview.png")));
+		cima.add(lblNewLabel_13);
 
 		JPanel baixo = new JPanel();
 		baixo.setBackground(new Color(0, 64, 128));
@@ -429,16 +511,30 @@ public class Frames {
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(new Color(255, 255, 255));
 		perfil.add(panel_8, BorderLayout.NORTH);
+		panel_8.setLayout(new BorderLayout(0, 0));
 
 		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_6.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopilendo.jpg")));
 		panel_8.add(lblNewLabel_6);
+		
+		JPanel panel_21 = new JPanel();
+		panel_21.setBackground(new Color(255, 255, 255));
+		panel_8.add(panel_21, BorderLayout.NORTH);
+		panel_21.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		JButton botaoVoltar_1 = new JButton("<");
+		botaoVoltar_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_21.add(botaoVoltar_1);
 		
 
 		JPanel panel_9 = new JPanel();
 		panel_9.setBackground(new Color(255, 255, 255));
 		perfil.add(panel_9, BorderLayout.SOUTH);
 		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel_11 = new JLabel("New label");
+		panel_9.add(lblNewLabel_11);
 
 		JButton voltarPraInicialButton = new JButton("<");
 		voltarPraInicialButton.setForeground(new Color(0, 0, 128));
