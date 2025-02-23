@@ -17,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,11 +38,11 @@ import br.com.ufc.librate.Data.Database;
 import br.com.ufc.librate.exceptions.AccountAlreadyExistsException;
 import br.com.ufc.librate.exceptions.BookAlreadyExistsException;
 import br.com.ufc.librate.exceptions.IncorrectCredentialsException;
+import br.com.ufc.librate.model.classes.Book;
 import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.tools.BookManager;
 import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import javax.swing.JRadioButton;
+
 public class Frames {
 
 	private JFrame frame;
@@ -53,9 +52,7 @@ public class Frames {
 	private JTextField textFieldCadastro;
 	private JPasswordField passwordFieldCadastro;
 	private JTextField pesquisarTextField;
-	
-//	private String[][] bookData = {{"teste", "teste", "teste"}, {"teste2", "teste2", "teste2"}};
-	private List<List<String>> bookDataAux;
+	private Book livroSelecionado = null;
 
 	public static  void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
@@ -201,7 +198,7 @@ public class Frames {
 		cadastro.setLayout(new BorderLayout(0, 0));
 
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-			
+
 			public void mouseClicked(MouseEvent e) {
 				login.setVisible(false);
 				cadastro.setVisible(true);
@@ -298,7 +295,7 @@ public class Frames {
 		panel_3.setLayout(gbl_panel_3);
 
 		JLabel userRealLabel = new JLabel("@");
-		//    EDITAR!!!
+		//     EDITAR!!!
 		GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
 		gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_userRealLabel.gridx = 1;
@@ -351,9 +348,9 @@ public class Frames {
 		panel_2.add(pesquisarButton);
 
 		String [] columns = {"Título", "Autor", "Gênero"};
-		
+
 		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
-		
+
 		JTable tabelaLivros = new JTable(model);
 
 	for(Book b : BookData.getBookList()) {
@@ -430,6 +427,9 @@ public class Frames {
 		bioTextArea.setLineWrap(true);
 		bioTextArea.setWrapStyleWord(true);
 
+		frame.setBounds(100, 100, 900, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JPanel livro = new JPanel();
 		frame.getContentPane().add(livro, "name_564775775717100");
 		livro.setLayout(new BorderLayout(0, 0));
@@ -453,134 +453,116 @@ public class Frames {
 		gbl_panel_4.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
-								
-										JButton voltarInicialButton = new JButton("<");
-										
-												GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
-												gbc_voltarInicialButton.anchor = GridBagConstraints.WEST;
-												gbc_voltarInicialButton.insets = new Insets(0, 0, 5, 0);
-												gbc_voltarInicialButton.gridx = 0;
-												gbc_voltarInicialButton.gridy = 0;
-												panel_4.add(voltarInicialButton, gbc_voltarInicialButton);
-										
-												JLabel lblNewLabel_10 = new JLabel("");
-												GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
-												gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
-												gbc_lblNewLabel_10.gridx = 0;
-												gbc_lblNewLabel_10.gridy = 1;
-												panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
-												lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\Capturas de tela\\Captura de tela 2025-02-22 173258.png"));
-										
-										JLabel lblNewLabel_12 = new JLabel("Dê uma nota:");
-										lblNewLabel_12.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
-										gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_12.gridx = 0;
-										gbc_lblNewLabel_12.gridy = 3;
-										panel_4.add(lblNewLabel_12, gbc_lblNewLabel_12);
-										
-										JLabel lblNewLabel_13 = new JLabel("");
-										lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\estrela.png"));
-										GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
-										gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_13.gridx = 0;
-										gbc_lblNewLabel_13.gridy = 4;
-										panel_4.add(lblNewLabel_13, gbc_lblNewLabel_13);
-										
-										JLabel lblNewLabel_12_1 = new JLabel("Curta:");
-										lblNewLabel_12_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_12_1 = new GridBagConstraints();
-										gbc_lblNewLabel_12_1.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_12_1.gridx = 0;
-										gbc_lblNewLabel_12_1.gridy = 5;
-										panel_4.add(lblNewLabel_12_1, gbc_lblNewLabel_12_1);
-										
-										JLabel lblNewLabel_15 = new JLabel("");
-										lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\coracao.png"));
-										GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
-										gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_15.gridx = 0;
-										gbc_lblNewLabel_15.gridy = 6;
-										panel_4.add(lblNewLabel_15, gbc_lblNewLabel_15);
-										
-										JLabel lblNewLabel_9_2 = new JLabel("<html><div style='text-align: center;'><u>Adicionar a</u><br><u>ToBeRead</u></div></html>\r\n");
-										lblNewLabel_9_2.setHorizontalTextPosition(SwingConstants.CENTER);
-										lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
-										lblNewLabel_9_2.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_9_2 = new GridBagConstraints();
-										gbc_lblNewLabel_9_2.gridx = 0;
-										gbc_lblNewLabel_9_2.gridy = 7;
-										panel_4.add(lblNewLabel_9_2, gbc_lblNewLabel_9_2);
-										
-										JPanel panel_6 = new JPanel();
-										panel_6.setPreferredSize(new Dimension(189, 10));
-										panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-										panel_6.setBackground(new Color(255, 255, 255));
-										livro.add(panel_6, BorderLayout.EAST);
-										GridBagLayout gbl_panel_6 = new GridBagLayout();
-										gbl_panel_6.columnWidths = new int[]{112, 0};
-										gbl_panel_6.rowHeights = new int[]{36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-										gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-										gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-										panel_6.setLayout(gbl_panel_6);
-										
-										JLabel lblNewLabel_9_1 = new JLabel("<html><div style='text-align: center;'>Média de<br>avaliações:</div></html>\r\n");
-										lblNewLabel_9_1.setHorizontalTextPosition(SwingConstants.CENTER);
-										lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
-										lblNewLabel_9_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_9_1 = new GridBagConstraints();
-										gbc_lblNewLabel_9_1.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_9_1.anchor = GridBagConstraints.NORTH;
-										gbc_lblNewLabel_9_1.gridx = 0;
-										gbc_lblNewLabel_9_1.gridy = 1;
-										panel_6.add(lblNewLabel_9_1, gbc_lblNewLabel_9_1);
-										
-										JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
-										lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
-										lblNewLabel_9_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-										lblNewLabel_9_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_9_1_1 = new GridBagConstraints();
-										gbc_lblNewLabel_9_1_1.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_9_1_1.gridx = 0;
-										gbc_lblNewLabel_9_1_1.gridy = 7;
-										panel_6.add(lblNewLabel_9_1_1, gbc_lblNewLabel_9_1_1);
-										
-										JLabel lblNewLabel_9_1_1_1 = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
-										lblNewLabel_9_1_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
-										lblNewLabel_9_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-										lblNewLabel_9_1_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										GridBagConstraints gbc_lblNewLabel_9_1_1_1 = new GridBagConstraints();
-										gbc_lblNewLabel_9_1_1_1.anchor = GridBagConstraints.SOUTH;
-										gbc_lblNewLabel_9_1_1_1.insets = new Insets(0, 0, 5, 0);
-										gbc_lblNewLabel_9_1_1_1.gridx = 0;
-										gbc_lblNewLabel_9_1_1_1.gridy = 12;
-										panel_6.add(lblNewLabel_9_1_1_1, gbc_lblNewLabel_9_1_1_1);
-										
-										JPanel panel_7 = new JPanel();
-										panel_7.setBackground(new Color(128, 128, 128));
-										livro.add(panel_7, BorderLayout.CENTER);
-										panel_7.setLayout(new BorderLayout(0, 0));
-										
-										JPanel panel_13 = new JPanel();
-										panel_7.add(panel_13, BorderLayout.NORTH);
-										
-										JLabel lblNewLabel_11 = new JLabel("Nome do autor ");
-										lblNewLabel_11.setFont(new Font("Monospaced", Font.PLAIN, 20));
-										panel_13.add(lblNewLabel_11);
-										
-										JLabel lblNewLabel_14 = new JLabel("- gênero");
-										lblNewLabel_14.setFont(new Font("Monospaced", Font.PLAIN, 20));
-										panel_13.add(lblNewLabel_14);
-										
-										JTextArea txtrNaAberturaDos = new JTextArea();
-										txtrNaAberturaDos.setFont(new Font("Monospaced", Font.PLAIN, 17));
-										txtrNaAberturaDos.setText("Na abertura dos Jogos Vorazes, a organização não recolhe os corpos dos combatentes caídos e dá tiros de canhão até o final. Cada tiro, um morto. Onze tiros no primeiro dia. Treze jovens restaram, entre eles, Katniss. Para quem os tiros de canhão serão no dia seguinte?...\r\n\r\nApós o fim da América do Norte, uma nova nação chamada Panem surge. Formada por doze distritos, é comandada com mão de ferro pela Capital. Uma das formas com que demonstra seu poder sobre o resto do carente país é com Jogos Vorazes, uma competição anual transmitida ao vivo pela televisão, em que um garoto e uma garota de doze a dezoito anos de cada distrito são selecionados e obrigados a lutar até a morte!");
-										txtrNaAberturaDos.setEditable(false);
-										txtrNaAberturaDos.setLineWrap(true);
-										txtrNaAberturaDos.setWrapStyleWord(true);
-										panel_7.add(txtrNaAberturaDos, BorderLayout.CENTER);
-		frame.setBounds(100, 100, 900, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JButton voltarInicialButton = new JButton("<");
+
+		GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
+		gbc_voltarInicialButton.anchor = GridBagConstraints.WEST;
+		gbc_voltarInicialButton.insets = new Insets(0, 0, 5, 0);
+		gbc_voltarInicialButton.gridx = 0;
+		gbc_voltarInicialButton.gridy = 0;
+		panel_4.add(voltarInicialButton, gbc_voltarInicialButton);
+
+		JLabel lblNewLabel_10 = new JLabel("");
+		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_10.gridx = 0;
+		gbc_lblNewLabel_10.gridy = 1;
+		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
+		lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\Capturas de tela\\Captura de tela 2025-02-22 173258.png"));
+
+		JLabel lblNewLabel_12 = new JLabel("Dê uma nota:");
+		lblNewLabel_12.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
+		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_12.gridx = 0;
+		gbc_lblNewLabel_12.gridy = 3;
+		panel_4.add(lblNewLabel_12, gbc_lblNewLabel_12);
+
+		JLabel lblNewLabel_13 = new JLabel("");
+		lblNewLabel_13.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\estrela.png"));
+		GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
+		gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_13.gridx = 0;
+		gbc_lblNewLabel_13.gridy = 4;
+		panel_4.add(lblNewLabel_13, gbc_lblNewLabel_13);
+
+		JLabel lblNewLabel_12_1 = new JLabel("Curta:");
+		lblNewLabel_12_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_12_1 = new GridBagConstraints();
+		gbc_lblNewLabel_12_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_12_1.gridx = 0;
+		gbc_lblNewLabel_12_1.gridy = 5;
+		panel_4.add(lblNewLabel_12_1, gbc_lblNewLabel_12_1);
+
+		JLabel lblNewLabel_15 = new JLabel("");
+		lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\coracao.png"));
+		GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
+		gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_15.gridx = 0;
+		gbc_lblNewLabel_15.gridy = 6;
+		panel_4.add(lblNewLabel_15, gbc_lblNewLabel_15);
+
+		JLabel lblNewLabel_9_2 = new JLabel("<html><div style='text-align: center;'><u>Adicionar a</u><br><u>ToBeRead</u></div></html>\r\n");
+		lblNewLabel_9_2.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9_2.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_9_2 = new GridBagConstraints();
+		gbc_lblNewLabel_9_2.gridx = 0;
+		gbc_lblNewLabel_9_2.gridy = 7;
+		panel_4.add(lblNewLabel_9_2, gbc_lblNewLabel_9_2);
+
+		JPanel panel_6 = new JPanel();
+		panel_6.setPreferredSize(new Dimension(189, 10));
+		panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_6.setBackground(new Color(255, 255, 255));
+		livro.add(panel_6, BorderLayout.EAST);
+		GridBagLayout gbl_panel_6 = new GridBagLayout();
+		gbl_panel_6.columnWidths = new int[]{112, 0};
+		gbl_panel_6.rowHeights = new int[]{36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		panel_6.setLayout(gbl_panel_6);
+
+		JLabel lblNewLabel_9_1 = new JLabel("<html><div style='text-align: center;'>Média de<br>avaliações:</div></html>\r\n");
+		lblNewLabel_9_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_9_1 = new GridBagConstraints();
+		gbc_lblNewLabel_9_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_9_1.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel_9_1.gridx = 0;
+		gbc_lblNewLabel_9_1.gridy = 1;
+		panel_6.add(lblNewLabel_9_1, gbc_lblNewLabel_9_1);
+
+		JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
+		lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_9_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_9_1_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_9_1_1.gridx = 0;
+		gbc_lblNewLabel_9_1_1.gridy = 7;
+		panel_6.add(lblNewLabel_9_1_1, gbc_lblNewLabel_9_1_1);
+
+		JLabel lblNewLabel_9_1_1_1 = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
+		lblNewLabel_9_1_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9_1_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_9_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_9_1_1_1.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_9_1_1_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_9_1_1_1.gridx = 0;
+		gbc_lblNewLabel_9_1_1_1.gridy = 12;
+		panel_6.add(lblNewLabel_9_1_1_1, gbc_lblNewLabel_9_1_1_1);
+
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(128, 128, 128));
+		livro.add(panel_7, BorderLayout.CENTER);
+		panel_7.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_13 = new JPanel();
+		panel_7.add(panel_13, BorderLayout.NORTH);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -643,16 +625,53 @@ public class Frames {
 		});
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
 		//certificar que não tem o username existentes
+		JLabel nomeLivroLabel = new JLabel();
+		nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
+
+		JLabel lblNewLabel_11 = new JLabel();
+		lblNewLabel_11.setFont(new Font("Monospaced", Font.PLAIN, 20));
+
+		JLabel lblNewLabel_14 = new JLabel();
+		lblNewLabel_14.setFont(new Font("Monospaced", Font.PLAIN, 20));
+
+		JTextArea txtrNaAberturaDos = new JTextArea();
+		txtrNaAberturaDos.setFont(new Font("Monospaced", Font.PLAIN, 17));
 
 		tabelaLivros.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				panel_13.removeAll();
+				panel_13.revalidate();
+				panel_13.repaint();
+
 				int linha = tabelaLivros.getSelectedRow();
 				String tituloLivro = tabelaLivros.getValueAt(linha, 0).toString();
+				for (Book b : BookData.getBookList()) {
+					if (tituloLivro.equals(b.getTitle())) {
+						livroSelecionado = b;
+						break;
+					}
+				}
 
-				JLabel nomeLivroLabel = new JLabel(tituloLivro);
-				nomeLivroLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
+                assert livroSelecionado != null;
+				nomeLivroLabel.setText(livroSelecionado.getTitle());
 				panel_5.add(nomeLivroLabel);
+
+                if(livroSelecionado.getAuthor() == null){
+					lblNewLabel_14.setText("Autor Desconhecido" + " - " + livroSelecionado.getGenre().getGenreString());
+					panel_13.add(lblNewLabel_14);
+				}else{
+					lblNewLabel_14.setText(livroSelecionado.getAuthor().getName() + " - " + livroSelecionado.getGenre().getGenreString());
+					panel_13.add(lblNewLabel_14);
+				}
+
+				txtrNaAberturaDos.setText(livroSelecionado.getSynopsis());
+				txtrNaAberturaDos.setEditable(false);
+				txtrNaAberturaDos.setLineWrap(true);
+				txtrNaAberturaDos.setWrapStyleWord(true);
+				panel_7.add(txtrNaAberturaDos, BorderLayout.CENTER);
+
 
 				voltarInicialButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

@@ -1,12 +1,13 @@
 package br.com.ufc.librate.model.classes;
 
+import br.com.ufc.librate.model.interfaces.*;
+import br.com.ufc.librate.model.classes.Account;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.ufc.librate.model.interfaces.*;
 
-public class NormalAccount extends Account implements CanLike, Likeable{
-	protected String bio;
-	protected int likes;
+public class NormalAccount extends Account implements CanLike, Likeable {
+	private String bio;
+	private int likes;
 	private List<Book> readBooks;
 	private List<Book> wishListBooks;
 	private  List<Book> likedBooks;
@@ -15,7 +16,7 @@ public class NormalAccount extends Account implements CanLike, Likeable{
 
 	public NormalAccount(String login, String password) {
 		super(login, password);
-		this.bio = "Amo comer o cu de quem ta lendo!!";
+		this.bio = "Eu amo livros☝️🤓";
         this.likeds = new ArrayList<>();
     }
 
