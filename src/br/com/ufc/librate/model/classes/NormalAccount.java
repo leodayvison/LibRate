@@ -9,17 +9,20 @@ public class NormalAccount extends Account implements CanLike, Likeable {
 	
 	
 
-	public NormalAccount(String login, String password) {
+	public NormalAccount(String login, String password,String bio) {
 		super(login, password);
-		this.bio = "como o cu de quem esta lendo";
+		this.bio = bio;
         this.likeds = new ArrayList<>();
 		this.toReadBooks = new ArrayList<>();
 		this.likedBooks = new ArrayList<>();
     }
-
-	
-
-	
+	public NormalAccount(String login, String password) {
+		super(login, password);
+		this.bio = "Eu amo livros!!";
+		this.likeds = new ArrayList<>();
+		this.toReadBooks = new ArrayList<>();
+		this.likedBooks = new ArrayList<>();
+	}
 
 	@Override
 	public void like(Likeable likeable) {
