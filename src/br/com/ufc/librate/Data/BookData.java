@@ -1,6 +1,7 @@
 package br.com.ufc.librate.Data;
 
 import br.com.ufc.librate.collections.BookGenre;
+import br.com.ufc.librate.model.classes.Author;
 import br.com.ufc.librate.model.classes.Book;
 
 import java.io.*;
@@ -31,9 +32,10 @@ public class BookData {
         }
     }
 
-    public static void readFileBook() throws FileNotFoundException {
+    public static void readFileBook()  {
         try (BufferedReader reader = new BufferedReader(new FileReader("books.txt"))) {
             String line;
+
             BookData.bookList.clear();
 
             while ((line = reader.readLine()) != null) {
@@ -48,9 +50,8 @@ public class BookData {
                 try {
                     genre = BookGenre.valueOf(parts[5].trim().toUpperCase());
                 } catch (IllegalArgumentException e) {
-                    // Caso o gênero seja inválido, pode-se atribuir um valor padrão ou logar um erro
                     System.out.println("Erro ao interpretar o gênero: " + parts[5]);
-                    genre = BookGenre.FICTION; // Atribui um valor padrão caso ocorra erro
+                    genre = BookGenre.FICTION;
                 }
                 float rating = Float.parseFloat(parts[6]);
                 float ratingCount = Float.parseFloat(parts[7]);
@@ -61,6 +62,15 @@ public class BookData {
                     book = new Book(title,year,publisher,genre,rating,ratingCount,synopsis);
                 } else {
                     book = new Book(title, year, name, bio, publisher, genre, rating,ratingCount,synopsis );
+                    Author bookAuthor = new Author(name,bio);
+                    if(!(AuthorData.authorExists(name,bio))){
+                        AuthorData.getAuthorList().add(bookAuthor);
+                        bookAuthor.getPublishedBooks().add(book);
+                    }else{
+                        if(!(bookAuthor.getPublishedBooks().contains(book))){
+                            bookAuthor.getPublishedBooks().add(book);
+                        }
+                    }
                 }
                 BookData.bookList.add(book);
             }

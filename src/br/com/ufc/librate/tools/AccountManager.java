@@ -55,9 +55,9 @@ public class AccountManager {
     	if (AccountManager.accountMap.containsKey(user)) {
     		throw new AccountAlreadyExistsException();
     	} else {
-			Account newAcc = new NormalAccount(user, password);
+			NormalAccount newAcc = new NormalAccount(user, password);
 			AccountManager.setLoggedAccount(newAcc);
-            AccountData.writeFileAccount(user, password);
+            AccountData.writeFileAccount(newAcc);
             AccountData.readFileAccount();
     		AccountManager.accountMap.put(user, newAcc);
     		JOptionPane.showMessageDialog(frame, "Usuário cadastrado!");

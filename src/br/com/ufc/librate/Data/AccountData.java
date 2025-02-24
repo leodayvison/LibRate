@@ -1,7 +1,9 @@
 package br.com.ufc.librate.Data;
 
 import br.com.ufc.librate.model.classes.Account;
+import br.com.ufc.librate.model.classes.AdminAccount;
 import br.com.ufc.librate.model.classes.NormalAccount;
+import br.com.ufc.librate.tools.AccountManager;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,8 +16,8 @@ public class AccountData {
         return accountList;
     }
 
-    public static void writeFileAccount(String user, String password) throws IOException {
-        String dataAccount = user + ":" + password;
+    public static void writeFileAccount(NormalAccount account) throws IOException {
+        String dataAccount = account.getUser() + ":" + account.getPassword() + ":" + account.getBio();
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
             writer.write(dataAccount);
             writer.newLine();
@@ -33,9 +35,16 @@ public class AccountData {
                 if(parts.length == 2){
                     String user = parts[0];
                     String password = parts[1];
+                    if(user.equals("admin")){
+                        AdminAccount adm = new AdminAccount();
+                        AccountManager.getAccountMap().put("admin",adm);
+                    }
                     AccountData.accountList.add(new NormalAccount(user,password));
-                }else{
-                    System.out.println("Formato invalido:" + line);
+                }else if(parts.length == 3){
+                    String user = parts[0];
+                    String password = parts[1];
+                    String bio = parts[2];
+                    AccountData.accountList.add(new NormalAccount(user,password,bio));
                 }
             }
         } catch (IOException e) {

@@ -3,6 +3,8 @@ package br.com.ufc.librate.model.classes;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import br.com.ufc.librate.model.interfaces.*;
 
 
@@ -46,6 +48,19 @@ public class Author implements Likeable{
 
 	public void setPublishedBooks(List<Book> publishedBooks) {
 		this.publishedBooks = publishedBooks;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
+		Author author = (Author) obj;
+		return name.equals(author.name) && bio.equals(author.bio);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, bio);
 	}
 
 	@Override

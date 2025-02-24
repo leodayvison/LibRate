@@ -5,11 +5,19 @@ import br.com.ufc.librate.model.classes.Author;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AuthorData {
     public static boolean authorExists(String name, String bio) {
-        Author newAuthor = new Author(name, bio);
-        return authorList.contains(newAuthor);
+        boolean exists = false;
+        Author newAuthor = new Author(name,bio);
+        for (Author author : authorList) {
+            if (author.equals(newAuthor)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
 
     public static List<Author> authorList = new ArrayList<>();
@@ -17,6 +25,7 @@ public class AuthorData {
     public static List<Author> getAuthorList() {
         return authorList;
     }
+
 
     public static void writeFileAuthor(String name,String bio) throws IOException {
         Author author = new Author(name,bio);
@@ -32,13 +41,15 @@ public class AuthorData {
     public static void readFileAuthor(){
         try(BufferedReader reader = new BufferedReader(new FileReader("authors.txt"))){
             String line;
-            AccountData.accountList.clear();
+            AuthorData.authorList.clear();
             while((line = reader.readLine()) != null){
                 String[] parts = line.split(":");
                 if(parts.length == 2){
                     String name = parts[0];
                     String bio = parts[1];
-                    AuthorData.authorList.add(new Author(name,bio));
+                    if(!(AuthorData.authorExists(name,bio))){
+                            AuthorData.authorList.add(new Author(name, bio));
+                        }
                 }else{
                     System.out.println("Formato invalido:" + line);
                 }
