@@ -583,7 +583,7 @@ public class Frames {
 		gbc_lblNewLabel_10.gridx = 0;
 		gbc_lblNewLabel_10.gridy = 1;
 		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
-		lblNewLabel_10.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\Capturas de tela\\Captura de tela 2025-02-22 173258.png"));
+		lblNewLabel_10.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyCoffee.png")));
 
 		JLabel deUmaNota = new JLabel("Dê uma nota:");
 		deUmaNota.setFont(new Font("Monospaced", Font.PLAIN, 17));
@@ -594,7 +594,7 @@ public class Frames {
 		panel_4.add(deUmaNota, gbc_deUmaNota);
 
 		JLabel imagemEstrela = new JLabel("");
-		imagemEstrela.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\estrela.png"));
+		imagemEstrela.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/estrelaVaziaPoo.png")));
 		GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
 		gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_13.gridx = 0;
@@ -610,7 +610,7 @@ public class Frames {
 		panel_4.add(lblNewLabel_12_1, gbc_lblNewLabel_12_1);
 
 		JLabel lblNewLabel_15 = new JLabel("");
-		lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\maria\\OneDrive\\Imagens\\coracao.png"));
+		lblNewLabel_15.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracao.png")));
 		GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
 		gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_15.gridx = 0;
