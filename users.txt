@@ -3,3 +3,4 @@ entrar:1111
 Savinn:2701
 thais:15629
 lodis:1234
+lores:9876

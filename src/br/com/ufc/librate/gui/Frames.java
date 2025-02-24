@@ -54,11 +54,11 @@ public class Frames {
 
 	private JFrame frame;
 	private JPanel panel_1;
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JTextField textFieldCadastro;
-	private JPasswordField passwordFieldCadastro;
-	private JTextField pesquisarTextField;
+	private JTextField usuarioTextField;
+	private JPasswordField passwordTextField;
+	private JTextField signUpTextField;
+	private JPasswordField passwordSignUpTextField;
+	private JTextField searchTextField;
 	private Book livroSelecionado = null;
 	private JPanel autor;
 
@@ -128,23 +128,23 @@ public class Frames {
 		cima.setBackground(new Color(0, 64, 128));
 		login.add(cima, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel_13 = new JLabel("");
-		lblNewLabel_13.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/Cabeçalho-removebg-preview.png")));
-		cima.add(lblNewLabel_13);
+		JLabel LibRateLabel = new JLabel("");
+		LibRateLabel.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/Cabeçalho-removebg-preview.png")));
+		cima.add(LibRateLabel);
 
 		JPanel baixo = new JPanel();
 		baixo.setBackground(new Color(0, 64, 128));
 		login.add(baixo, BorderLayout.SOUTH);
 
-		JLabel lblNewLabel_1 = new JLabel("Não tem cadastro?");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-		baixo.add(lblNewLabel_1);
+		JLabel noSignUpLabel = new JLabel("Não tem cadastro?");
+		noSignUpLabel.setForeground(new Color(255, 255, 255));
+		noSignUpLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+		baixo.add(noSignUpLabel);
 
-		JLabel lblNewLabel_2 = new JLabel("<html><u>Clique Aqui</u></html>");
-		lblNewLabel_2.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		baixo.add(lblNewLabel_2);
+		JLabel clickHereLabel = new JLabel("<html><u>Clique Aqui</u></html>");
+		clickHereLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+		clickHereLabel.setForeground(new Color(255, 255, 255));
+		baixo.add(clickHereLabel);
 
 		JPanel meio = new JPanel();
 		meio.setBackground(new Color(0, 64, 128));
@@ -156,57 +156,57 @@ public class Frames {
 		gbl_meio.rowWeights = new double[]{0.0, 0.0, 0.0, 4.0, 4.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		meio.setLayout(gbl_meio);
 
-		JLabel lblNewLabel = new JLabel("         Usuário:");
-		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 3;
-		gbc_lblNewLabel.gridy = 3;
-		meio.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel userLoginLabel = new JLabel("         Usuário:");
+		userLoginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		userLoginLabel.setForeground(new Color(255, 255, 255));
+		userLoginLabel.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
+		GridBagConstraints gbc_userLoginLabel = new GridBagConstraints();
+		gbc_userLoginLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_userLoginLabel.gridx = 3;
+		gbc_userLoginLabel.gridy = 3;
+		meio.add(userLoginLabel, gbc_userLoginLabel);
 
-		textField = new JTextField();
-		textField.setColumns(50);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 4;
-		gbc_textField.gridy = 3;
-		meio.add(textField, gbc_textField);
+		usuarioTextField = new JTextField();
+		usuarioTextField.setColumns(50);
+		GridBagConstraints gbc_usuarioTextField = new GridBagConstraints();
+		gbc_usuarioTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_usuarioTextField.gridx = 4;
+		gbc_usuarioTextField.gridy = 3;
+		meio.add(usuarioTextField, gbc_usuarioTextField);
 
 
-		JLabel lblNewLabel_4 = new JLabel("      Senha:");
-		lblNewLabel_4.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridx = 3;
-		gbc_lblNewLabel_4.gridy = 4;
-		meio.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		JLabel passwordLabel = new JLabel("      Senha:");
+		passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		passwordLabel.setForeground(new Color(255, 255, 255));
+		passwordLabel.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
+		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
+		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLabel.gridx = 3;
+		gbc_passwordLabel.gridy = 4;
+		meio.add(passwordLabel, gbc_passwordLabel);
 
-		passwordField = new JPasswordField();
-		passwordField.setColumns(50);
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.gridx = 4;
-		gbc_passwordField.gridy = 4;
-		meio.add(passwordField, gbc_passwordField);
+		passwordTextField = new JPasswordField();
+		passwordTextField.setColumns(50);
+		GridBagConstraints gbc_passwordTextField = new GridBagConstraints();
+		gbc_passwordTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_passwordTextField.gridx = 4;
+		gbc_passwordTextField.gridy = 4;
+		meio.add(passwordTextField, gbc_passwordTextField);
 
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 7;
-		meio.add(btnNewButton, gbc_btnNewButton);
+		JButton loginButton = new JButton("Entrar");
+		loginButton.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		GridBagConstraints gbc_loginButton = new GridBagConstraints();
+		gbc_loginButton.insets = new Insets(0, 0, 5, 0);
+		gbc_loginButton.gridx = 4;
+		gbc_loginButton.gridy = 7;
+		meio.add(loginButton, gbc_loginButton);
 
 		JPanel cadastro = new JPanel();
 		cadastro.setBackground(new Color(0, 64, 128));
 		frame.getContentPane().add(cadastro, "name_335147810155900");
 		cadastro.setLayout(new BorderLayout(0, 0));
 
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		clickHereLabel.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
 				login.setVisible(false);
@@ -219,10 +219,10 @@ public class Frames {
 		panel_1.setBackground(new Color(0, 64, 128));
 		cadastro.add(panel_1, BorderLayout.NORTH);
 
-		JLabel lblNewLabel_3 = new JLabel("Área de cadastro:");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Bell MT", Font.BOLD, 50));
-		panel_1.add(lblNewLabel_3);
+		JLabel signUpAreaLabel = new JLabel("Área de cadastro:");
+		signUpAreaLabel.setForeground(new Color(255, 255, 255));
+		signUpAreaLabel.setFont(new Font("Bell MT", Font.BOLD, 50));
+		panel_1.add(signUpAreaLabel);
 
 		JPanel meio_1 = new JPanel();
 		meio_1.setBackground(new Color(0, 64, 128));
@@ -234,49 +234,49 @@ public class Frames {
 		gbl_meio_1.rowWeights = new double[]{0.0, 0.0, 0.0, 4.0, 4.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		meio_1.setLayout(gbl_meio_1);
 
-		JLabel lblNewLabel_5 = new JLabel("Usuário:");
-		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		lblNewLabel_5.setAlignmentX(0.5f);
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 3;
-		gbc_lblNewLabel_5.gridy = 3;
-		meio_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
+		JLabel userSignUpLabel = new JLabel("Usuário:");
+		userSignUpLabel.setForeground(Color.WHITE);
+		userSignUpLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		userSignUpLabel.setAlignmentX(0.5f);
+		GridBagConstraints gbc_userSignUpLabel = new GridBagConstraints();
+		gbc_userSignUpLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_userSignUpLabel.gridx = 3;
+		gbc_userSignUpLabel.gridy = 3;
+		meio_1.add(userSignUpLabel, gbc_userSignUpLabel);
 
-		textFieldCadastro = new JTextField();
-		textFieldCadastro.setColumns(50);
-		GridBagConstraints gbc_textFieldCadastro = new GridBagConstraints();
-		gbc_textFieldCadastro.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldCadastro.gridx = 4;
-		gbc_textFieldCadastro.gridy = 3;
-		meio_1.add(textFieldCadastro, gbc_textFieldCadastro);
+		signUpTextField = new JTextField();
+		signUpTextField.setColumns(50);
+		GridBagConstraints gbc_signUpTextField = new GridBagConstraints();
+		gbc_signUpTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_signUpTextField.gridx = 4;
+		gbc_signUpTextField.gridy = 3;
+		meio_1.add(signUpTextField, gbc_signUpTextField);
 
-		JLabel lblNewLabel_4_1 = new JLabel("Senha:");
-		lblNewLabel_4_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		lblNewLabel_4_1.setAlignmentX(0.5f);
-		GridBagConstraints gbc_lblNewLabel_4_1 = new GridBagConstraints();
-		gbc_lblNewLabel_4_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4_1.gridx = 3;
-		gbc_lblNewLabel_4_1.gridy = 4;
-		meio_1.add(lblNewLabel_4_1, gbc_lblNewLabel_4_1);
+		JLabel passwordSignUpLabel = new JLabel("Senha:");
+		passwordSignUpLabel.setForeground(Color.WHITE);
+		passwordSignUpLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		passwordSignUpLabel.setAlignmentX(0.5f);
+		GridBagConstraints gbc_passwordSignUpLabel = new GridBagConstraints();
+		gbc_passwordSignUpLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordSignUpLabel.gridx = 3;
+		gbc_passwordSignUpLabel.gridy = 4;
+		meio_1.add(passwordSignUpLabel, gbc_passwordSignUpLabel);
 
-		passwordFieldCadastro = new JPasswordField();
-		passwordFieldCadastro.setColumns(50);
-		GridBagConstraints gbc_passwordFieldCadastro = new GridBagConstraints();
-		gbc_passwordFieldCadastro.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordFieldCadastro.gridx = 4;
-		gbc_passwordFieldCadastro.gridy = 4;
-		meio_1.add(passwordFieldCadastro, gbc_passwordFieldCadastro);
+		passwordSignUpTextField = new JPasswordField();
+		passwordSignUpTextField.setColumns(50);
+		GridBagConstraints gbc_passwordSignUpTextField = new GridBagConstraints();
+		gbc_passwordSignUpTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_passwordSignUpTextField.gridx = 4;
+		gbc_passwordSignUpTextField.gridy = 4;
+		meio_1.add(passwordSignUpTextField, gbc_passwordSignUpTextField);
 
-		JButton cadastrar = new JButton("Cadastrar");
-		cadastrar.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		GridBagConstraints gbc_cadastrar = new GridBagConstraints();
-		gbc_cadastrar.insets = new Insets(0, 0, 5, 0);
-		gbc_cadastrar.gridx = 4;
-		gbc_cadastrar.gridy = 7;
-		meio_1.add(cadastrar, gbc_cadastrar);
+		JButton signUpButton = new JButton("Cadastrar");
+		signUpButton.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		GridBagConstraints gbc_signUpButton = new GridBagConstraints();
+		gbc_signUpButton.insets = new Insets(0, 0, 5, 0);
+		gbc_signUpButton.gridx = 4;
+		gbc_signUpButton.gridy = 7;
+		meio_1.add(signUpButton, gbc_signUpButton);
 
 		JPanel telaInicial = new JPanel();
 		telaInicial.setBackground(new Color(255, 255, 255));
@@ -299,81 +299,81 @@ public class Frames {
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 						
-								JButton mudarUserButton = new JButton(" Mudar user ");
-								mudarUserButton.addActionListener(new ActionListener() {
+								JButton changeUserButton = new JButton(" Mudar user ");
+								changeUserButton.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
 										String user = JOptionPane.showInputDialog(null, "Digite seu novo user:", "Mudar user", JOptionPane.QUESTION_MESSAGE);
 										AccountManager.getLoggedAccount().changeLogin(user);
 									}
 								});
 														
-														JLabel lblNewLabel_7 = new JLabel("");
-														lblNewLabel_7.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyLendoTelaInnicial.png")));
-														GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-														gbc_lblNewLabel_7.anchor = GridBagConstraints.WEST;
-														gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-														gbc_lblNewLabel_7.gridx = 1;
-														gbc_lblNewLabel_7.gridy = 1;
-														panel_3.add(lblNewLabel_7, gbc_lblNewLabel_7);
+														JLabel snoopyInitialPage = new JLabel("");
+														snoopyInitialPage.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyLendoTelaInnicial.png")));
+														GridBagConstraints gbc_snoopyInitialPage = new GridBagConstraints();
+														gbc_snoopyInitialPage.anchor = GridBagConstraints.WEST;
+														gbc_snoopyInitialPage.insets = new Insets(0, 0, 5, 5);
+														gbc_snoopyInitialPage.gridx = 1;
+														gbc_snoopyInitialPage.gridy = 1;
+														panel_3.add(snoopyInitialPage, gbc_snoopyInitialPage);
 												
-														JLabel userRealLabel = new JLabel("@");
+														JLabel dynamicUserLabel = new JLabel("@");
 														//     EDITAR!!!
-														GridBagConstraints gbc_userRealLabel = new GridBagConstraints();
-														gbc_userRealLabel.insets = new Insets(0, 0, 5, 5);
-														gbc_userRealLabel.gridx = 1;
-														gbc_userRealLabel.gridy = 2;
-														panel_3.add(userRealLabel, gbc_userRealLabel);
+														GridBagConstraints gbc_dynamicUserLabel = new GridBagConstraints();
+														gbc_dynamicUserLabel.insets = new Insets(0, 0, 5, 5);
+														gbc_dynamicUserLabel.gridx = 1;
+														gbc_dynamicUserLabel.gridy = 2;
+														panel_3.add(dynamicUserLabel, gbc_dynamicUserLabel);
 										
-												JLabel lblNewLabel_8 = new JLabel("Amo livros!");
-												GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
-												gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
-												gbc_lblNewLabel_8.gridx = 1;
-												gbc_lblNewLabel_8.gridy = 3;
-												panel_3.add(lblNewLabel_8, gbc_lblNewLabel_8);
+												JLabel bioLabel = new JLabel("Amo livros!");
+												GridBagConstraints gbc_bioLabel = new GridBagConstraints();
+												gbc_bioLabel.insets = new Insets(0, 0, 5, 5);
+												gbc_bioLabel.gridx = 1;
+												gbc_bioLabel.gridy = 3;
+												panel_3.add(bioLabel, gbc_bioLabel);
 								
-										JButton verPerfilButton = new JButton("    Ver perfil    ");
-										verPerfilButton.setBackground(new Color(255, 255, 255));
-										GridBagConstraints gbc_verPerfilButton = new GridBagConstraints();
-										gbc_verPerfilButton.insets = new Insets(0, 0, 5, 5);
-										gbc_verPerfilButton.gridx = 1;
-										gbc_verPerfilButton.gridy = 4;
-										panel_3.add(verPerfilButton, gbc_verPerfilButton);
+										JButton viewProfileButton = new JButton("    Ver perfil    ");
+										viewProfileButton.setBackground(new Color(255, 255, 255));
+										GridBagConstraints gbc_viewProfileButton = new GridBagConstraints();
+										gbc_viewProfileButton.insets = new Insets(0, 0, 5, 5);
+										gbc_viewProfileButton.gridx = 1;
+										gbc_viewProfileButton.gridy = 4;
+										panel_3.add(viewProfileButton, gbc_viewProfileButton);
 										//botão de login: certificar que os dois texts labels estejam preenchidos,
 										//certificar que existe esse username e a senha atrelada a ele esteja correta
 
-								mudarUserButton.setBackground(new Color(255, 255, 255));
-								GridBagConstraints gbc_mudarUserButton = new GridBagConstraints();
-								gbc_mudarUserButton.insets = new Insets(0, 0, 5, 5);
-								gbc_mudarUserButton.gridx = 1;
-								gbc_mudarUserButton.gridy = 6;
-								panel_3.add(mudarUserButton, gbc_mudarUserButton);
+								changeUserButton.setBackground(new Color(255, 255, 255));
+								GridBagConstraints gbc_changeUserButton = new GridBagConstraints();
+								gbc_changeUserButton.insets = new Insets(0, 0, 5, 5);
+								gbc_changeUserButton.gridx = 1;
+								gbc_changeUserButton.gridy = 6;
+								panel_3.add(changeUserButton, gbc_changeUserButton);
 				
-						JButton mudarSenhaButton = new JButton("Mudar senha ");
-						mudarSenhaButton.addActionListener(new ActionListener() {
+						JButton changePasswordButton = new JButton("Mudar senha ");
+						changePasswordButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								String senha = JOptionPane.showInputDialog(null, "Digite sua senha:", "Mudar senha", JOptionPane.QUESTION_MESSAGE);
 								AccountManager.getLoggedAccount().changePassword(senha);
 							}
 						});
-						mudarSenhaButton.setBackground(new Color(255, 255, 255));
-						GridBagConstraints gbc_mudarSenhaButton = new GridBagConstraints();
-						gbc_mudarSenhaButton.insets = new Insets(0, 0, 5, 5);
-						gbc_mudarSenhaButton.gridx = 1;
-						gbc_mudarSenhaButton.gridy = 8;
-						panel_3.add(mudarSenhaButton, gbc_mudarSenhaButton);
+						changePasswordButton.setBackground(new Color(255, 255, 255));
+						GridBagConstraints gbc_changePasswordButton = new GridBagConstraints();
+						gbc_changePasswordButton.insets = new Insets(0, 0, 5, 5);
+						gbc_changePasswordButton.gridx = 1;
+						gbc_changePasswordButton.gridy = 8;
+						panel_3.add(changePasswordButton, gbc_changePasswordButton);
 						
-						JButton btnNewButton_1 = new JButton("Logout\r\n");
-						btnNewButton_1.addActionListener(new ActionListener() {
+						JButton logoutButton = new JButton("Logout\r\n");
+						logoutButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								telaInicial.setVisible(false);
 								login.setVisible(true);
 							}
 						});
-						GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-						gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-						gbc_btnNewButton_1.gridx = 1;
-						gbc_btnNewButton_1.gridy = 10;
-						panel_3.add(btnNewButton_1, gbc_btnNewButton_1);
+						GridBagConstraints gbc_logoutButton = new GridBagConstraints();
+						gbc_logoutButton.insets = new Insets(0, 0, 5, 5);
+						gbc_logoutButton.gridx = 1;
+						gbc_logoutButton.gridy = 10;
+						panel_3.add(logoutButton, gbc_logoutButton);
 
 		JScrollBar scrollBar = new JScrollBar();
 		telaInicial.add(scrollBar, BorderLayout.EAST);
@@ -381,36 +381,36 @@ public class Frames {
 		JPanel panel_2 = new JPanel();
 		telaInicial.add(panel_2, BorderLayout.NORTH);
 
-		pesquisarTextField = new JTextField();
-		panel_2.add(pesquisarTextField);
-		pesquisarTextField.setColumns(30);
+		searchTextField = new JTextField();
+		panel_2.add(searchTextField);
+		searchTextField.setColumns(30);
 
-		JButton pesquisarButton = new JButton("🔎");
-		panel_2.add(pesquisarButton);
+		JButton searchButton = new JButton("🔎");
+		panel_2.add(searchButton);
 
 		String[] columns = {"Título", "Autor", "Gênero"};
 
 		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
 
-		JTable tabelaLivros = new JTable(model);
+		JTable bookChart = new JTable(model);
 
 		for (Book b : BookData.getBookList()) {
 			try {
-				BookManager.addBook(b, tabelaLivros);
+				BookManager.addBook(b, bookChart);
 			} catch (BookAlreadyExistsException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 
-		pesquisarButton.addActionListener(new ActionListener() {
+		searchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String pesquisa = pesquisarTextField.getText().toLowerCase();
+				String pesquisa = searchTextField.getText().toLowerCase();
 
 				if(pesquisa.equals("")){
 					for (Book b : BookData.getBookList()) {
 					try {
-						BookManager.addBook(b, tabelaLivros);
+						BookManager.addBook(b, bookChart);
 					} catch (BookAlreadyExistsException baee) {
 						System.out.println(baee.getMessage());
 					}
@@ -418,7 +418,7 @@ public class Frames {
 
 				}
 
-				DefaultTableModel model = (DefaultTableModel) tabelaLivros.getModel();
+				DefaultTableModel model = (DefaultTableModel) bookChart.getModel();
 				model.setRowCount(0);
 
 				List<Book> livrosEncontrados = new ArrayList<>();
@@ -447,8 +447,8 @@ public class Frames {
 		});
 
 
-		JScrollPane scrollPane = new JScrollPane(tabelaLivros);
-		telaInicial.add(scrollPane, BorderLayout.CENTER);
+		JScrollPane booklistScrollPane = new JScrollPane(bookChart);
+		telaInicial.add(booklistScrollPane, BorderLayout.CENTER);
 
 		JPanel perfil = new JPanel();
 		frame.getContentPane().add(perfil, "name_399382685377000");
@@ -459,26 +459,26 @@ public class Frames {
 		perfil.add(panel_8, BorderLayout.NORTH);
 		panel_8.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopilendo.jpg")));
-		panel_8.add(lblNewLabel_6);
+		JLabel snoopyProfile = new JLabel("");
+		snoopyProfile.setHorizontalAlignment(SwingConstants.CENTER);
+		snoopyProfile.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopilendo.jpg")));
+		panel_8.add(snoopyProfile);
 		
 		JPanel panel_21 = new JPanel();
 		panel_21.setBackground(new Color(255, 255, 255));
 		panel_8.add(panel_21, BorderLayout.NORTH);
 		panel_21.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
-		JButton botaoVoltar_1 = new JButton("<");
-		botaoVoltar_1.setBackground(new Color(255, 255, 255));
-		botaoVoltar_1.addActionListener(new ActionListener() {
+		JButton returnButton = new JButton("<");
+		returnButton.setBackground(new Color(255, 255, 255));
+		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				perfil.setVisible(false);
 				telaInicial.setVisible(true);
 			}
 		});
-		botaoVoltar_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_21.add(botaoVoltar_1);
+		returnButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_21.add(returnButton);
 		
 
 		JPanel panel_9 = new JPanel();
@@ -486,29 +486,29 @@ public class Frames {
 		perfil.add(panel_9, BorderLayout.SOUTH);
 		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton mudarBioButton_1 = new JButton("Mudar bio");
-		mudarBioButton_1.addActionListener(new ActionListener() {
+		JButton changeBioButton = new JButton("Mudar bio");
+		changeBioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog(null, "Digite sua bio:", "Mudar bio", JOptionPane.QUESTION_MESSAGE);
 				AccountManager.getLoggedAccount().setBio(input);
 			}
 		});
-		mudarBioButton_1.setForeground(new Color(0, 0, 128));
-		mudarBioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		mudarBioButton_1.setBackground(Color.WHITE);
-		panel_9.add(mudarBioButton_1);
+		changeBioButton.setForeground(new Color(0, 0, 128));
+		changeBioButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		changeBioButton.setBackground(Color.WHITE);
+		panel_9.add(changeBioButton);
 
-		JButton livrosCurtidosButton = new JButton("Livros curtidos");
-		livrosCurtidosButton.setForeground(new Color(0, 0, 128));
-		livrosCurtidosButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		livrosCurtidosButton.setBackground(new Color(255, 255, 255));
-		panel_9.add(livrosCurtidosButton);
+		JButton likedBooksButton = new JButton("Livros curtidos");
+		likedBooksButton.setForeground(new Color(0, 0, 128));
+		likedBooksButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		likedBooksButton.setBackground(new Color(255, 255, 255));
+		panel_9.add(likedBooksButton);
 
-		JButton listaToReadButton = new JButton("Lista ToRead");
-		listaToReadButton.setBackground(new Color(255, 255, 255));
-		listaToReadButton.setForeground(new Color(0, 0, 128));
-		listaToReadButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		panel_9.add(listaToReadButton);
+		JButton toReadBooksButton = new JButton("Lista ToRead");
+		toReadBooksButton.setBackground(new Color(255, 255, 255));
+		toReadBooksButton.setForeground(new Color(0, 0, 128));
+		toReadBooksButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		panel_9.add(toReadBooksButton);
 
 		JPanel panel_10 = new JPanel();
 		panel_10.setBorder(new LineBorder(new Color(0, 0, 128)));
@@ -551,11 +551,11 @@ public class Frames {
 		panel_5.setBackground(new Color(255, 255, 255));
 		livro.add(panel_5, BorderLayout.NORTH);
 
-		JLabel userLabel = new JLabel("@");
-		userLabel.revalidate();
-		userLabel.repaint();
-		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		panel_11.add(userLabel);
+		JLabel dynamicUserLabel2 = new JLabel("@");
+		dynamicUserLabel2.revalidate();
+		dynamicUserLabel2.repaint();
+		dynamicUserLabel2.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_11.add(dynamicUserLabel2);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -568,63 +568,63 @@ public class Frames {
 		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 
-		JButton voltarInicialButton = new JButton("<");
+		JButton returnButton2 = new JButton("<");
 
-		GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
-		gbc_voltarInicialButton.anchor = GridBagConstraints.WEST;
-		gbc_voltarInicialButton.insets = new Insets(0, 0, 5, 0);
-		gbc_voltarInicialButton.gridx = 0;
-		gbc_voltarInicialButton.gridy = 0;
-		panel_4.add(voltarInicialButton, gbc_voltarInicialButton);
+		GridBagConstraints gbc_returnButton2 = new GridBagConstraints();
+		gbc_returnButton2.anchor = GridBagConstraints.WEST;
+		gbc_returnButton2.insets = new Insets(0, 0, 5, 0);
+		gbc_returnButton2.gridx = 0;
+		gbc_returnButton2.gridy = 0;
+		panel_4.add(returnButton2, gbc_returnButton2);
 
-		JLabel lblNewLabel_10 = new JLabel("");
-		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
-		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_10.gridx = 0;
-		gbc_lblNewLabel_10.gridy = 1;
-		panel_4.add(lblNewLabel_10, gbc_lblNewLabel_10);
-		lblNewLabel_10.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyCoffee.png")));
+		JLabel snoopyBook = new JLabel("");
+		GridBagConstraints gbc_snoopyBook = new GridBagConstraints();
+		gbc_snoopyBook.insets = new Insets(0, 0, 5, 0);
+		gbc_snoopyBook.gridx = 0;
+		gbc_snoopyBook.gridy = 1;
+		panel_4.add(snoopyBook, gbc_snoopyBook);
+		snoopyBook.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyCoffee.png")));
 
-		JLabel deUmaNota = new JLabel("Dê uma nota:");
-		deUmaNota.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_deUmaNota = new GridBagConstraints();
-		gbc_deUmaNota.insets = new Insets(0, 0, 5, 0);
-		gbc_deUmaNota.gridx = 0;
-		gbc_deUmaNota.gridy = 3;
-		panel_4.add(deUmaNota, gbc_deUmaNota);
+		JLabel rateLabel = new JLabel("Dê uma nota:");
+		rateLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_rateLabel = new GridBagConstraints();
+		gbc_rateLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_rateLabel.gridx = 0;
+		gbc_rateLabel.gridy = 3;
+		panel_4.add(rateLabel, gbc_rateLabel);
 
-		JLabel imagemEstrela = new JLabel("");
-		imagemEstrela.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/estrelaVaziaPoo.png")));
-		GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
-		gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_13.gridx = 0;
-		gbc_lblNewLabel_13.gridy = 4;
-		panel_4.add(imagemEstrela, gbc_lblNewLabel_13);
+		JLabel starImage = new JLabel("");
+		starImage.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/estrelaVaziaPoo.png")));
+		GridBagConstraints gbc_starImage = new GridBagConstraints();
+		gbc_starImage.insets = new Insets(0, 0, 5, 0);
+		gbc_starImage.gridx = 0;
+		gbc_starImage.gridy = 4;
+		panel_4.add(starImage, gbc_starImage);
 
-		JLabel lblNewLabel_12_1 = new JLabel("Curta:");
-		lblNewLabel_12_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblNewLabel_12_1 = new GridBagConstraints();
-		gbc_lblNewLabel_12_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_12_1.gridx = 0;
-		gbc_lblNewLabel_12_1.gridy = 5;
-		panel_4.add(lblNewLabel_12_1, gbc_lblNewLabel_12_1);
+		JLabel likeLabel = new JLabel("Curta:");
+		likeLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_likeLabel = new GridBagConstraints();
+		gbc_likeLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_likeLabel.gridx = 0;
+		gbc_likeLabel.gridy = 5;
+		panel_4.add(likeLabel, gbc_likeLabel);
 
-		JLabel lblNewLabel_15 = new JLabel("");
-		lblNewLabel_15.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracao.png")));
-		GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
-		gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_15.gridx = 0;
-		gbc_lblNewLabel_15.gridy = 6;
-		panel_4.add(lblNewLabel_15, gbc_lblNewLabel_15);
+		JLabel emptyHeartImage = new JLabel("");
+		emptyHeartImage.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracao.png")));
+		GridBagConstraints gbc_emptyHeartImage = new GridBagConstraints();
+		gbc_emptyHeartImage.insets = new Insets(0, 0, 5, 0);
+		gbc_emptyHeartImage.gridx = 0;
+		gbc_emptyHeartImage.gridy = 6;
+		panel_4.add(emptyHeartImage, gbc_emptyHeartImage);
 
-		JLabel lblNewLabel_9_2 = new JLabel("<html><div style='text-align: center;'><u>Adicionar a</u><br><u>ToBeRead</u></div></html>\r\n");
-		lblNewLabel_9_2.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_2.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblNewLabel_9_2 = new GridBagConstraints();
-		gbc_lblNewLabel_9_2.gridx = 0;
-		gbc_lblNewLabel_9_2.gridy = 7;
-		panel_4.add(lblNewLabel_9_2, gbc_lblNewLabel_9_2);
+		JLabel addToBeReadLabel = new JLabel("<html><div style='text-align: center;'><u>Adicionar a</u><br><u>ToBeRead</u></div></html>\r\n");
+		addToBeReadLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		addToBeReadLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		addToBeReadLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_addToBeReadLabel = new GridBagConstraints();
+		gbc_addToBeReadLabel.gridx = 0;
+		gbc_addToBeReadLabel.gridy = 7;
+		panel_4.add(addToBeReadLabel, gbc_addToBeReadLabel);
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setPreferredSize(new Dimension(189, 10));
@@ -638,37 +638,37 @@ public class Frames {
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
 
-		JLabel lblNewLabel_9_1 = new JLabel("<html><div style='text-align: center;'>Média de<br>avaliações:</div></html>\r\n");
-		lblNewLabel_9_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblNewLabel_9_1 = new GridBagConstraints();
-		gbc_lblNewLabel_9_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_9_1.anchor = GridBagConstraints.NORTH;
-		gbc_lblNewLabel_9_1.gridx = 0;
-		gbc_lblNewLabel_9_1.gridy = 1;
-		panel_6.add(lblNewLabel_9_1, gbc_lblNewLabel_9_1);
+		JLabel ratingsLabel = new JLabel("<html><div style='text-align: center;'>Média de<br>avaliações:</div></html>\r\n");
+		ratingsLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		ratingsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		ratingsLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_ratingsLabel = new GridBagConstraints();
+		gbc_ratingsLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_ratingsLabel.anchor = GridBagConstraints.NORTH;
+		gbc_ratingsLabel.gridx = 0;
+		gbc_ratingsLabel.gridy = 1;
+		panel_6.add(ratingsLabel, gbc_ratingsLabel);
 
-		JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
-		lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_9_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblNewLabel_9_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_9_1_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_9_1_1.gridx = 0;
-		gbc_lblNewLabel_9_1_1.gridy = 7;
-		panel_6.add(lblNewLabel_9_1_1, gbc_lblNewLabel_9_1_1);
+		JLabel numLikesLabel = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
+		numLikesLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		numLikesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		numLikesLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_numLikesLabel = new GridBagConstraints();
+		gbc_numLikesLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_numLikesLabel.gridx = 0;
+		gbc_numLikesLabel.gridy = 7;
+		panel_6.add(numLikesLabel, gbc_numLikesLabel);
 
-		JLabel lblNewLabel_9_1_1_1 = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
-		lblNewLabel_9_1_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_9_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_1_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		GridBagConstraints gbc_lblNewLabel_9_1_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_9_1_1_1.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_9_1_1_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_9_1_1_1.gridx = 0;
-		gbc_lblNewLabel_9_1_1_1.gridy = 12;
-		panel_6.add(lblNewLabel_9_1_1_1, gbc_lblNewLabel_9_1_1_1);
+		JLabel moreAboutAuthorLabel = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
+		moreAboutAuthorLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		moreAboutAuthorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		moreAboutAuthorLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		GridBagConstraints gbc_moreAboutAuthorLabel = new GridBagConstraints();
+		gbc_moreAboutAuthorLabel.anchor = GridBagConstraints.SOUTH;
+		gbc_moreAboutAuthorLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_moreAboutAuthorLabel.gridx = 0;
+		gbc_moreAboutAuthorLabel.gridy = 12;
+		panel_6.add(moreAboutAuthorLabel, gbc_moreAboutAuthorLabel);
 
 		JPanel panel_7 = new JPanel();
 		panel_7.setBackground(new Color(128, 128, 128));
@@ -689,33 +689,33 @@ public class Frames {
 		autor.add(panel_13, BorderLayout.NORTH);
 		panel_13.setLayout(new BorderLayout(0, 0));
 		
-		JButton botaothais = new JButton("New button");
-		panel_13.add(botaothais);
+		JButton likeButton2 = new JButton("New button");
+		panel_13.add(likeButton2);
 		
-		JLabel snooopy = new JLabel("");
-		snooopy.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
-		panel_13.add(snooopy, BorderLayout.CENTER);
-		snooopy.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel snoopyAuthor = new JLabel("");
+		snoopyAuthor.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
+		panel_13.add(snoopyAuthor, BorderLayout.CENTER);
+		snoopyAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon snoopi = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopiescreve.jpg"));
 		Image snoopi1 =snoopi.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon snoopi2 = new ImageIcon(snoopi1);
-		snooopy.setIcon(snoopi2);
+		snoopyAuthor.setIcon(snoopi2);
 		
 		JPanel panel_18 = new JPanel();
 		panel_18.setBackground(new Color(255, 255, 255));
 		panel_13.add(panel_18, BorderLayout.NORTH);
 		panel_18.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
-		JButton botaoVoltar = new JButton("<");
-		botaoVoltar.addActionListener(new ActionListener() {
+		JButton returnButton3 = new JButton("<");
+		returnButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				autor.setVisible(false);
 				telaInicial.setVisible(true);
 			}
 		});
-		botaoVoltar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		botaoVoltar.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel_18.add(botaoVoltar);
+		returnButton3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		returnButton3.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_18.add(returnButton3);
 		
 		
 		JPanel panel_14 = new JPanel();
@@ -729,10 +729,10 @@ public class Frames {
 		
 		
 		
-		JLabel nomeAutorLabel = new JLabel("nome autor");
-		nomeAutorLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		nomeAutorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		panel_16.add(nomeAutorLabel);
+		JLabel dynamicAuthorLabel = new JLabel("nome autor");
+		dynamicAuthorLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		dynamicAuthorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_16.add(dynamicAuthorLabel);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -748,34 +748,34 @@ public class Frames {
 		panel_17.add(panel_20);
 		panel_20.setLayout(new BorderLayout(0, 0));
 		
-		JToggleButton botaoCurtida = new JToggleButton(" Curtir");
-		botaoCurtida.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_20.add(botaoCurtida);
-		botaoCurtida.setSelectedIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
-		botaoCurtida.setBackground(new Color(255, 255, 255));
-		botaoCurtida.setIcon(coracaoVazio);
+		JToggleButton likeButton = new JToggleButton(" Curtir");
+		likeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_20.add(likeButton);
+		likeButton.setSelectedIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
+		likeButton.setBackground(new Color(255, 255, 255));
+		likeButton.setIcon(coracaoVazio);
 		
-		JLabel avaliação = new JLabel("n°");
-		avaliação.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/star.png")));
-		avaliação.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		avaliação.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_17.add(avaliação);
+		JLabel ratingsLabel2 = new JLabel("n°");
+		ratingsLabel2.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/star.png")));
+		ratingsLabel2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		ratingsLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_17.add(ratingsLabel2);
 		
-		JLabel lblNewLabel_11 = new JLabel("  n°");
-		lblNewLabel_11.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
-		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_17.add(lblNewLabel_11);
+		JLabel likesLabel = new JLabel("  n°");
+		likesLabel.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
+		likesLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		likesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_17.add(likesLabel);
 		
 		JPanel panel_19 = new JPanel();
 		panel_17.add(panel_19);
 		panel_19.setLayout(new BorderLayout(0, 0));
 		
-		JButton listaDeLivros = new JButton(" Livros do autor");
-		listaDeLivros.setBackground(new Color(255, 255, 255));
-		listaDeLivros.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/images (1).png")));
-		listaDeLivros.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_19.add(listaDeLivros);
+		JButton booksFromAuthorButton = new JButton(" Livros do autor");
+		booksFromAuthorButton.setBackground(new Color(255, 255, 255));
+		booksFromAuthorButton.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/images (1).png")));
+		booksFromAuthorButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_19.add(booksFromAuthorButton);
 		
 		JPanel panel_22 = new JPanel();
 		panel_22.setBackground(new Color(255, 255, 255));
@@ -819,7 +819,7 @@ public class Frames {
 		gbl_panel_3admin.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_3admin.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel_3admin.setLayout(gbl_panel_3admin);
-								mudarUserButton.addActionListener(new ActionListener() {
+								changeUserButton.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
 										
 									}
@@ -841,54 +841,54 @@ public class Frames {
 												gbc_lblNewLabel_8admin.gridy = 3;
 												panel_3.add(lblNewLabel_8admin, gbc_lblNewLabel_8admin);
 										
-										JLabel lblNewLabel_9 = new JLabel("Administrador");
-										lblNewLabel_9.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
-										GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
-										gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
-										gbc_lblNewLabel_9.gridx = 1;
-										gbc_lblNewLabel_9.gridy = 2;
-										panel_3admin.add(lblNewLabel_9, gbc_lblNewLabel_9);
+										JLabel adminLabel = new JLabel("Administrador");
+										adminLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
+										GridBagConstraints gbc_adminLabel = new GridBagConstraints();
+										gbc_adminLabel.insets = new Insets(0, 0, 5, 5);
+										gbc_adminLabel.gridx = 1;
+										gbc_adminLabel.gridy = 2;
+										panel_3admin.add(adminLabel, gbc_adminLabel);
 								
-										JButton verPerfilButtonadmin = new JButton("Adicionar livro");
-										verPerfilButtonadmin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-										verPerfilButtonadmin.setBackground(new Color(255, 255, 255));
-										GridBagConstraints gbc_verPerfilButtonadmin = new GridBagConstraints();
-										gbc_verPerfilButtonadmin.insets = new Insets(0, 0, 5, 5);
-										gbc_verPerfilButtonadmin.gridx = 1;
-										gbc_verPerfilButtonadmin.gridy = 4;
-										panel_3admin.add(verPerfilButtonadmin, gbc_verPerfilButtonadmin);
-						mudarSenhaButton.addActionListener(new ActionListener() {
+										JButton addBookButton = new JButton("Adicionar livro");
+										addBookButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+										addBookButton.setBackground(new Color(255, 255, 255));
+										GridBagConstraints gbc_addBookButton = new GridBagConstraints();
+										gbc_addBookButton.insets = new Insets(0, 0, 5, 5);
+										gbc_addBookButton.gridx = 1;
+										gbc_addBookButton.gridy = 4;
+										panel_3admin.add(addBookButton, gbc_addBookButton);
+						changePasswordButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								
 							}
 						});
 						
-						JButton btnNewButton_1admin = new JButton("Logout\r\n");
-						btnNewButton_1admin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-						btnNewButton_1admin.addActionListener(new ActionListener() {
+						JButton logoutButton2 = new JButton("Logout\r\n");
+						logoutButton2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+						logoutButton2.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								adminTelaInicial.setVisible(false);
 								login.setVisible(true);
 							}
 						});
 						
-								JButton mudarUserButtonadmin = new JButton("Remover livro");
-								mudarUserButtonadmin.setFont(new Font("Tahoma", Font.PLAIN, 16));
+								JButton removeBookButton = new JButton("Remover livro");
+								removeBookButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 								//botão de login: certificar que os dois texts labels estejam preenchidos,
 								//certificar que existe esse username e a senha atrelada a ele esteja correta
 
-								mudarUserButtonadmin.setBackground(new Color(255, 255, 255));
-								GridBagConstraints gbc_mudarUserButtonadmin = new GridBagConstraints();
-								gbc_mudarUserButtonadmin.insets = new Insets(0, 0, 5, 5);
-								gbc_mudarUserButtonadmin.gridx = 1;
-								gbc_mudarUserButtonadmin.gridy = 7;
-								panel_3admin.add(mudarUserButtonadmin, gbc_mudarUserButtonadmin);
+								removeBookButton.setBackground(new Color(255, 255, 255));
+								GridBagConstraints gbc_removeBookButton = new GridBagConstraints();
+								gbc_removeBookButton.insets = new Insets(0, 0, 5, 5);
+								gbc_removeBookButton.gridx = 1;
+								gbc_removeBookButton.gridy = 7;
+								panel_3admin.add(removeBookButton, gbc_removeBookButton);
 						
-						GridBagConstraints gbc_btnNewButton_1admin = new GridBagConstraints();
-						gbc_btnNewButton_1admin.insets = new Insets(0, 0, 5, 5);
-						gbc_btnNewButton_1admin.gridx = 1;
-						gbc_btnNewButton_1admin.gridy = 10;
-						panel_3admin.add(btnNewButton_1admin, gbc_btnNewButton_1admin);
+						GridBagConstraints gbc_logoutButton2 = new GridBagConstraints();
+						gbc_logoutButton2.insets = new Insets(0, 0, 5, 5);
+						gbc_logoutButton2.gridx = 1;
+						gbc_logoutButton2.gridy = 10;
+						panel_3admin.add(logoutButton2, gbc_logoutButton2);
 
 		JScrollBar scrollBarAdmin = new JScrollBar();
 		adminTelaInicial.add(scrollBarAdmin, BorderLayout.EAST);
@@ -897,36 +897,36 @@ public class Frames {
 		adminTelaInicial.add(panel_2admin, BorderLayout.NORTH);
 
 		///??????
-		JTextField pesquisarTextFieldadmin = new JTextField();
-		panel_2admin.add(pesquisarTextFieldadmin);
-		pesquisarTextFieldadmin.setColumns(30);
+		JTextField searchTextField2 = new JTextField();
+		panel_2admin.add(searchTextField2);
+		searchTextField2.setColumns(30);
 
-		JButton pesquisarButtonadmin = new JButton("🔎");
-		panel_2admin.add(pesquisarButtonadmin);
+		JButton searchButton2 = new JButton("🔎");
+		panel_2admin.add(searchButton2);
 
 		String[] columns1 = {"Título", "Autor", "Gênero"};
 
 		DefaultTableModel model1 = new DefaultTableModel(BookManager.getBookData(), columns);
 
-		JTable tabelaLivros1 = new JTable(model);
+		JTable bookChart2 = new JTable(model);
 
 		for (Book b : BookData.getBookList()) {
 			try {
-				BookManager.addBook(b, tabelaLivros1);
+				BookManager.addBook(b, bookChart2);
 			} catch (BookAlreadyExistsException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 
-		pesquisarButtonadmin.addActionListener(new ActionListener() {
+		searchButton2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String pesquisa = pesquisarTextField.getText().toLowerCase();
+				String pesquisa = searchTextField.getText().toLowerCase();
 
 				if(pesquisa.equals("")){
 					for (Book b : BookData.getBookList()) {
 					try {
-						BookManager.addBook(b, tabelaLivros1);
+						BookManager.addBook(b, bookChart2);
 					} catch (BookAlreadyExistsException baee) {
 						System.out.println(baee.getMessage());
 					}
@@ -934,7 +934,7 @@ public class Frames {
 
 				}
 
-				DefaultTableModel model = (DefaultTableModel) tabelaLivros1.getModel();
+				DefaultTableModel model = (DefaultTableModel) bookChart2.getModel();
 				model1.setRowCount(0);
 
 				List<Book> livrosEncontrados = new ArrayList<>();
@@ -963,9 +963,9 @@ public class Frames {
 		});
 
 
-		JScrollPane scrollPaneadmin = new JScrollPane(tabelaLivros1
+		JScrollPane booklistScrollPane2 = new JScrollPane(bookChart2
 				);
-		adminTelaInicial.add(scrollPaneadmin, BorderLayout.CENTER);
+		adminTelaInicial.add(booklistScrollPane2, BorderLayout.CENTER);
 
 		
 		
@@ -978,10 +978,10 @@ public class Frames {
 		
 		
 
-		btnNewButton.addActionListener(new ActionListener() {
+		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String user = textField.getText();
-				String password = new String(passwordField.getPassword());
+				String user = usuarioTextField.getText();
+				String password = new String(passwordTextField.getPassword());
 
 				if (user.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(frame, "Campo do usuário ou senha vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -991,21 +991,21 @@ public class Frames {
 					
 					
 					AccountManager.login(user, password, frame);
-					Frames.updateUserLabel(userLabel);
-					Frames.updateUserLabel(userRealLabel);
+					Frames.updateUserLabel(dynamicUserLabel2);
+					Frames.updateUserLabel(dynamicUserLabel);
 					Frames.updateBioLabel(bioTextArea);
 					login.setVisible(false);
 					
 					// TODO desfazer cagada
 					if (AccountManager.getLoggedAccount() instanceof AdminAccount) {
 						adminTelaInicial.setVisible(true);	
-						textField.setText("");
-						passwordField.setText("");
+						usuarioTextField.setText("");
+						passwordTextField.setText("");
 						
 					} else if (AccountManager.getLoggedAccount() instanceof NormalAccount){
 						telaInicial.setVisible(true);
-						textField.setText("");
-						passwordField.setText("");
+						usuarioTextField.setText("");
+						passwordTextField.setText("");
 					}
 					
 					
@@ -1019,7 +1019,7 @@ public class Frames {
 			}
 		});
 
-		verPerfilButton.addActionListener(new ActionListener() {
+		viewProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaInicial.setVisible(false);
 				perfil.setVisible(true);
@@ -1027,24 +1027,24 @@ public class Frames {
 		});
 		//botão para ver perfil
 
-		cadastrar.addActionListener(new ActionListener() {
+		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String user = textFieldCadastro.getText();
-				String password = new String(passwordFieldCadastro.getPassword());
+				String user = signUpTextField.getText();
+				String password = new String(passwordSignUpTextField.getPassword());
 
 				if (user.equals("") || password.equals("")) {
 					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
 				} else {
 					try {
 						AccountManager.register(user, password, frame);
-						Frames.updateUserLabel(userLabel);
-						Frames.updateUserLabel(userRealLabel);
+						Frames.updateUserLabel(dynamicUserLabel2);
+						Frames.updateUserLabel(dynamicUserLabel);
 						Frames.updateBioLabel(bioTextArea);
 						JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
 						cadastro.setVisible(false);
 						telaInicial.setVisible(true);
-						textFieldCadastro.setText("");
-						passwordFieldCadastro.setText("");
+						signUpTextField.setText("");
+						passwordSignUpTextField.setText("");
 					} catch (AccountAlreadyExistsException ex) {
 						JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
 					} catch (IOException ex) {
@@ -1068,7 +1068,7 @@ public class Frames {
 		JTextArea txtrNaAberturaDos = new JTextArea();
 		txtrNaAberturaDos.setFont(new Font("Monospaced", Font.PLAIN, 17));
 
-		tabelaLivros.addMouseListener(new MouseAdapter() {
+		bookChart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
@@ -1076,8 +1076,8 @@ public class Frames {
 				panelf30.revalidate();
 				panelf30.repaint();
 
-				int linha = tabelaLivros.getSelectedRow();
-				String tituloLivro = tabelaLivros.getValueAt(linha, 0).toString();
+				int linha = bookChart.getSelectedRow();
+				String tituloLivro = bookChart.getValueAt(linha, 0).toString();
 				for (Book b : BookData.getBookList()) {
 					if (tituloLivro.equals(b.getTitle())) {
 						livroSelecionado = b;
@@ -1102,8 +1102,8 @@ public class Frames {
 				txtrNaAberturaDos.setWrapStyleWord(true);
 				panel_7.add(txtrNaAberturaDos, BorderLayout.CENTER);
 
-				if (lblNewLabel_9_2.getMouseListeners().length == 0) {
-					lblNewLabel_9_2.addMouseListener(new MouseAdapter() {
+				if (addToBeReadLabel.getMouseListeners().length == 0) {
+					addToBeReadLabel.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
 							if (!(AccountManager.getLoggedAccount().getToReadBooks().contains(livroSelecionado))) {
@@ -1116,7 +1116,7 @@ public class Frames {
 					});
 				}
 
-				voltarInicialButton.addActionListener(new ActionListener() {
+				returnButton2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						panel_5.remove(nomeLivroLabel);
 						livro.setVisible(false);
@@ -1129,7 +1129,7 @@ public class Frames {
 
 			}
 		});
-		lblNewLabel_9_1_1_1.addMouseListener(new MouseAdapter() {
+		moreAboutAuthorLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			livro.setVisible(false);
