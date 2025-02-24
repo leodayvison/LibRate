@@ -12,28 +12,29 @@ import br.com.ufc.librate.model.classes.Account;
 import br.com.ufc.librate.model.classes.NormalAccount;
 
 public class AccountManager {
-	private static NormalAccount loggedAccount;
+	private static Account loggedAccount;
 
-	private static HashMap<String, NormalAccount> accountMap = new HashMap<>();
+	private static HashMap<String, Account> accountMap = new HashMap<>();
 
     public AccountManager() {
         AccountData.readFileAccount();
         for (NormalAccount acc : AccountData.accountList) {
             if (!(AccountManager.accountMap.containsKey(acc.getUser()))) {
-                AccountManager.accountMap.put(acc.getUser(), acc);
-
+            
+            	AccountManager.accountMap.put(acc.getUser(), acc);
+            	
             }
         }
     }
-    public static NormalAccount getLoggedAccount() {
+    public static Account getLoggedAccount() {
 		return loggedAccount;
 	}
 
-	public static void setLoggedAccount(NormalAccount loggedAccount) {
+	public static void setLoggedAccount(Account loggedAccount) {
 		AccountManager.loggedAccount = loggedAccount;
 	}
 
-	public static HashMap<String, NormalAccount> getAccountMap() {
+	public static HashMap<String, Account> getAccountMap() {
 		return accountMap;
 	}
 
@@ -54,7 +55,7 @@ public class AccountManager {
     	if (AccountManager.accountMap.containsKey(user)) {
     		throw new AccountAlreadyExistsException();
     	} else {
-			NormalAccount newAcc = new NormalAccount(user, password);
+			Account newAcc = new NormalAccount(user, password);
 			AccountManager.setLoggedAccount(newAcc);
             AccountData.writeFileAccount(user, password);
             AccountData.readFileAccount();

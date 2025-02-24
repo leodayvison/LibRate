@@ -1,3 +1,5 @@
-adm:9090
+admin:9090
 entrar:1111
 Savinn:2701
+thais:15629
+lodis:1234

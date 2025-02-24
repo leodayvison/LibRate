@@ -6,56 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalAccount extends Account implements CanLike, Likeable {
-	private String bio;
-	private int likes;
-	private List<Book> toReadBooks;
-	private  List<Book> likedBooks;
-	private List<Likeable> likeds;
+	
 	
 
 	public NormalAccount(String login, String password) {
 		super(login, password);
-		this.bio = "Eu amo livros☝️🤓";
+		this.bio = "como o cu de quem esta lendo";
         this.likeds = new ArrayList<>();
 		this.toReadBooks = new ArrayList<>();
 		this.likedBooks = new ArrayList<>();
     }
 
-	public String getBio() {
-		return bio;
-	}
+	
 
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	public List<Book> getToReadBooks() {
-		return toReadBooks;
-	}
-
-	public void setToReadBooks(List<Book> readBooks) {
-		this.toReadBooks = readBooks;
-	}
-
-	public List<Book> getLikedBooks() {
-		return likedBooks;
-	}
-
-	public void setLikedBooks(List<Book> likedBooks) {
-		this.likedBooks = likedBooks;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-
-	public List<Likeable> getLikeds() {
-		return likeds;
-	}
-
-	public void setLikeds(List<Likeable> likeds) {
-		this.likeds = likeds;
-	}
+	
 
 	@Override
 	public void like(Likeable likeable) {
