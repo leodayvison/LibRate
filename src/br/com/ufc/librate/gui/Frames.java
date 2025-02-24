@@ -999,10 +999,13 @@ public class Frames {
 					// TODO desfazer cagada
 					if (AccountManager.getLoggedAccount() instanceof AdminAccount) {
 						adminTelaInicial.setVisible(true);	
+						textField.setText("");
+						passwordField.setText("");
 						
 					} else if (AccountManager.getLoggedAccount() instanceof NormalAccount){
 						telaInicial.setVisible(true);
-						
+						textField.setText("");
+						passwordField.setText("");
 					}
 					
 					
@@ -1040,6 +1043,8 @@ public class Frames {
 						JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
 						cadastro.setVisible(false);
 						telaInicial.setVisible(true);
+						textFieldCadastro.setText("");
+						passwordFieldCadastro.setText("");
 					} catch (AccountAlreadyExistsException ex) {
 						JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
 					} catch (IOException ex) {
