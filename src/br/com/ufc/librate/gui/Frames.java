@@ -676,6 +676,16 @@ public class Frames {
         gbc_lblNewLabel_9_1.gridx = 0;
         gbc_lblNewLabel_9_1.gridy = 1;
         panel_6.add(lblNewLabel_9_1, gbc_lblNewLabel_9_1);
+        
+        
+        if (livroSelecionado != null) {
+	        JLabel lblMediaAv = new JLabel(Float.toString(livroSelecionado.getRating()));
+	        GridBagConstraints gbc_lblMediaAv = new GridBagConstraints();
+	        gbc_lblMediaAv.insets = new Insets(0, 0, 5, 0);
+	        gbc_lblMediaAv.gridx = 0;
+	        gbc_lblMediaAv.gridy = 2;
+	        panel_6.add(lblMediaAv, gbc_lblMediaAv);
+        }
 
         JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
         lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -1165,42 +1175,53 @@ public class Frames {
         });
         
         btnNewButton_2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JRadioButton oneStar = new JRadioButton("☆");
-        		JRadioButton twoStars = new JRadioButton("☆☆");
-        		JRadioButton threeStars = new JRadioButton("☆☆☆");
-        		JRadioButton fourStars = new JRadioButton("☆☆☆☆");
-        		JRadioButton fiveStars = new JRadioButton("☆☆☆☆☆");
+            public void actionPerformed(ActionEvent e) {
+                // Criação dos JRadioButton para as estrelas
+                JRadioButton oneStar = new JRadioButton("☆");
+                JRadioButton twoStars = new JRadioButton("☆☆");
+                JRadioButton threeStars = new JRadioButton("☆☆☆");
+                JRadioButton fourStars = new JRadioButton("☆☆☆☆");
+                JRadioButton fiveStars = new JRadioButton("☆☆☆☆☆");
 
-    	        ButtonGroup group = new ButtonGroup();
-    	        group.add(oneStar);
-    	        group.add(twoStars);
-    	        group.add(threeStars);
-    	        group.add(fourStars);
-    	        group.add(fiveStars);
-    	        
-    	        JPanel panelRate = new JPanel();
-    	        int optionRate = JOptionPane.showConfirmDialog(
-    	                null, panelRate, "Escolha uma opção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                // Adicionando os botões ao ButtonGroup para garantir que apenas um seja selecionado
+                ButtonGroup group = new ButtonGroup();
+                group.add(oneStar);
+                group.add(twoStars);
+                group.add(threeStars);
+                group.add(fourStars);
+                group.add(fiveStars);
 
-    	        if (optionRate == JOptionPane.OK_OPTION) {
-    	            if (oneStar.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
-    	            } else if (twoStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
-    	            } else if (threeStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
-    	            } else if (fourStars.isSelected()) {
-		                JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
-		            } else if (fiveStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
-    	            } else {
-    	                JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
-    	            }
-    	        } else {
-    	            JOptionPane.showMessageDialog(null, "Operação cancelada.");
-    	        }
-        	}
+                // Criando o painel e adicionando os JRadioButton nele
+                JPanel panelRate = new JPanel();
+                panelRate.add(oneStar);
+                panelRate.add(twoStars);
+                panelRate.add(threeStars);
+                panelRate.add(fourStars);
+                panelRate.add(fiveStars);
+
+                // Exibindo a caixa de diálogo com as opções
+                int optionRate = JOptionPane.showConfirmDialog(
+                    null, panelRate, "Escolha uma opção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                // Verificando a seleção e exibindo a mensagem apropriada
+                if (optionRate == JOptionPane.OK_OPTION) {
+                    if (oneStar.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
+                    } else if (twoStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
+                    } else if (threeStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
+                    } else if (fourStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
+                    } else if (fiveStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada.");
+                }
+            }
         });
         
         btnNewButton_3.addActionListener(new ActionListener() {
