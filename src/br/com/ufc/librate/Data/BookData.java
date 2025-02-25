@@ -46,7 +46,7 @@ public class BookData {
                 String name = parts[2];
                 String bio = parts[3];
                 String publisher = parts[4];
-                BookGenre genre = BookGenre.UNKNOWN;
+                BookGenre genre;
                 try {
                     genre = BookGenre.valueOf(parts[5].trim().toUpperCase());
                 } catch (IllegalArgumentException e) {
@@ -72,7 +72,9 @@ public class BookData {
                         }
                     }
                 }
+                book.setIdBook("B" + (BookData.getBookList().size()));
                 BookData.bookList.add(book);
+                System.out.println(book.getIdBook());
             }
         } catch (IOException e) {
             e.printStackTrace();
