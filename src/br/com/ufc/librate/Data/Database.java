@@ -39,6 +39,13 @@ public class Database {
         }
     }
 
+    public static void readFiles() throws IOException {
+        AccountData.readFileAccount();
+        LikeData.readFileLike();
+        AuthorData.readFileAuthor();
+        BookData.readFileBook();
+    }
+
     public static void updateFiles() throws IOException {
 
         StringBuilder data = new StringBuilder();
@@ -67,9 +74,6 @@ public class Database {
         } catch (IOException ioe) {
             ioe.getMessage();
         }
-
-
-
 
         data.setLength(0);
 
@@ -105,9 +109,9 @@ public class Database {
 
         data.setLength(0);
 
-        for(String id : likeMap.keySet()){
-            data.append(id).append(":").append(System.lineSeparator())
-                    .append(likeMap.get(id));
+        for(Book b : BookData.getBookList()){
+            data.append(b.getIdBook()).append(":").append(b.getLikes()).
+                    append(System.lineSeparator());
         }try(BufferedWriter bf = new BufferedWriter(new FileWriter("likes.txt",false))){
             bf.write(data.toString());
         }catch (IOException ioe){
@@ -115,16 +119,7 @@ public class Database {
         }
 
         System.out.println("arquivos atualizados!");
-
-
     }
 
-
-    public static void readFiles() throws IOException {
-        AccountData.readFileAccount();
-        LikeData.readFileLike();
-        AuthorData.readFileAuthor();
-        BookData.readFileBook();
-    }
 }
 

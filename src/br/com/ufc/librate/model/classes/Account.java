@@ -1,8 +1,8 @@
 package br.com.ufc.librate.model.classes;
 
-import java.util.List;
-
 import br.com.ufc.librate.model.interfaces.Likeable;
+
+import java.util.List;
 
 public abstract class Account {
 	protected String user;
@@ -11,7 +11,15 @@ public abstract class Account {
 	protected int likes;
 	protected List<Book> toReadBooks;
 	protected  List<Book> likedBooks;
-	protected List<Likeable> likeds;
+	protected List<Author> likedAuthors;
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public List<Author> getLikedAuthors() {
+		return likedAuthors;
+	}
 
 	public Account(String user, String password) {
 		this.user = user;
@@ -34,7 +42,6 @@ public abstract class Account {
 		this.password = password;
 	}
 	
-	
 	public String getBio() {
 		return bio;
 	}
@@ -42,7 +49,6 @@ public abstract class Account {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
-	
 	
 	public List<Book> getToReadBooks() {
 		return toReadBooks;
@@ -62,14 +68,6 @@ public abstract class Account {
 
 	public void setLikes(int likes) {
 		this.likes = likes;
-	}
-
-	public List<Likeable> getLikeds() {
-		return likeds;
-	}
-
-	public void setLikeds(List<Likeable> likeds) {
-		this.likeds = likeds;
 	}
 
 }

@@ -2,6 +2,7 @@ package br.com.ufc.librate.tools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +24,7 @@ public class BookManager {
 
 	private static boolean isBookAdded(Book newBook) {
 		for(Book book : BookData.getBookList()) {
-			if (newBook.getTitle() == book.getTitle()) {
+			if (Objects.equals(newBook.getTitle(), book.getTitle())) {
 				return true;
 			}
 		}

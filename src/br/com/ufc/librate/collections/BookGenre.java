@@ -13,7 +13,7 @@ public enum BookGenre {
 	HORROR("Terror"),
 	UNKNOWN("Desconhecido");
 	
-	private String genero;
+	private final String genero;
 	
 	BookGenre(String genero){
 		this.genero = genero;

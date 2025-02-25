@@ -19,10 +19,9 @@ public class Book implements Likeable {
 	protected String synopsis;
 	protected int likes;
 
-	//Livro com todas as informações.(autor que nao foi adicionado ainda na rede)
+	//Livro com todas as informações.
 	public Book(String title, int year, String name, String bio, String publisher, BookGenre genre,
 				float rating, float ratingCount, String synopsis) {
-		this.idBook = "B" + BookData.getBookList().size();
 		this.title = title;
 		this.year = year;
 		this.author = new Author(name, bio);
@@ -31,14 +30,18 @@ public class Book implements Likeable {
 		this.rating = rating;
 		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = LikeData.getLikeMap().getOrDefault(this.idBook, 0);
+		if (LikeData.getLikeMap().containsKey(this.getIdBook())) {
+			this.setLikes(LikeData.getLikeMap().get(this.getIdBook()));
+		} else {
+			LikeData.getLikeMap().put(this.getIdBook(),0);
+			this.setLikes(0);
+		}
 	}
 
-	// TODO NAO INICIALIZA AUTHOR E DA NULL POINTER EXCEPTION
+	// TODO NAO INICIALIZA AUTHOR E DA NULL POINTER EXCEPTION*
 	//Livro com autores desconhecidos.
 	public Book(String title, int year, String publisher, BookGenre genre,
 				float rating, float ratingCount, String synopsis) {
-		this.idBook = "B" + BookData.getBookList().size();
 		this.title = title;
 		this.year = year;
 		this.publisher = publisher;
@@ -46,7 +49,12 @@ public class Book implements Likeable {
 		this.rating = rating;
 		this.ratingCount = ratingCount;
 		this.synopsis = synopsis;
-		this.likes = LikeData.getLikeMap().getOrDefault(this.idBook, 0);
+		if (LikeData.getLikeMap().containsKey(this.getIdBook())) {
+			this.setLikes(LikeData.getLikeMap().get(this.getIdBook()));
+		} else {
+			LikeData.getLikeMap().put(this.getIdBook(),0);
+			this.setLikes(0);
+		}
 	}
 
 	public String getTitle() {
@@ -142,6 +150,6 @@ public class Book implements Likeable {
 
 	@Override
 	public boolean isLiked(NormalAccount user) {
-		return false;
+		return user.getLikedAuthors().contains(this);
 	}
 }

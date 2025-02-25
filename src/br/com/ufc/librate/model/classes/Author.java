@@ -1,6 +1,5 @@
 package br.com.ufc.librate.model.classes;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -50,6 +49,14 @@ public class Author implements Likeable{
 		this.publishedBooks = publishedBooks;
 	}
 
+	public float getRating() {
+		float rating = 0;
+		for(Book b : this.publishedBooks){
+			rating += b.getRating();
+		}
+		return rating/this.publishedBooks.size();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -75,7 +82,7 @@ public class Author implements Likeable{
 
 	@Override
 	public boolean isLiked(NormalAccount user) {
-		return user.getLikeds().contains(this);
+		return user.getLikedAuthors().contains(this);
 	}
 
 	@Override
