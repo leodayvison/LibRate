@@ -49,6 +49,9 @@ import br.com.ufc.librate.model.classes.Book;
 import br.com.ufc.librate.model.classes.NormalAccount;
 import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.tools.BookManager;
+import javax.swing.table.TableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.JSplitPane;
 
 public class Frames {
 
@@ -61,6 +64,7 @@ public class Frames {
 	private JTextField pesquisarTextField;
 	private Book livroSelecionado = null;
 	private JPanel autor;
+	private JTable tabelaAutor;
 
 	public static void updateUserLabel(JLabel userLabel) {
 		if (AccountManager.getLoggedAccount() != null) {
@@ -136,16 +140,6 @@ public class Frames {
 		baixo.setBackground(new Color(0, 64, 128));
 		login.add(baixo, BorderLayout.SOUTH);
 
-		JLabel lblNewLabel_1 = new JLabel("Não tem cadastro?");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-		baixo.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("<html><u>Clique Aqui</u></html>");
-		lblNewLabel_2.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		baixo.add(lblNewLabel_2);
-
 		JPanel meio = new JPanel();
 		meio.setBackground(new Color(0, 64, 128));
 		login.add(meio, BorderLayout.CENTER);
@@ -159,7 +153,7 @@ public class Frames {
 		JLabel lblNewLabel = new JLabel("         Usuário:");
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 23));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 3;
@@ -178,7 +172,7 @@ public class Frames {
 		JLabel lblNewLabel_4 = new JLabel("      Senha:");
 		lblNewLabel_4.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setFont(new Font("MS UI Gothic", Font.PLAIN, 23));
+		lblNewLabel_4.setFont(new Font("Cambria", Font.BOLD, 23));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 3;
@@ -194,35 +188,53 @@ public class Frames {
 		meio.add(passwordField, gbc_passwordField);
 
 		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 4;
 		gbc_btnNewButton.gridy = 7;
 		meio.add(btnNewButton, gbc_btnNewButton);
+				
+						JLabel lblNewLabel_1 = new JLabel("Não tem cadastro?");
+						GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+						gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+						gbc_lblNewLabel_1.gridx = 4;
+						gbc_lblNewLabel_1.gridy = 9;
+						meio.add(lblNewLabel_1, gbc_lblNewLabel_1);
+						lblNewLabel_1.setForeground(new Color(255, 255, 255));
+						lblNewLabel_1.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+						
+								JLabel lblNewLabel_2 = new JLabel("<html><u>Clique Aqui</u></html>");
+								GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+								gbc_lblNewLabel_2.gridx = 4;
+								gbc_lblNewLabel_2.gridy = 10;
+								meio.add(lblNewLabel_2, gbc_lblNewLabel_2);
+								lblNewLabel_2.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+								lblNewLabel_2.setForeground(new Color(255, 255, 255));
+								
+										lblNewLabel_2.addMouseListener(new MouseAdapter() {
+								
+											public void mouseClicked(MouseEvent e) {
+												login.setVisible(false);
+												cadastro.setVisible(true);
+											}
+										});
 
 		JPanel cadastro = new JPanel();
 		cadastro.setBackground(new Color(0, 64, 128));
 		frame.getContentPane().add(cadastro, "name_335147810155900");
 		cadastro.setLayout(new BorderLayout(0, 0));
-
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				login.setVisible(false);
-				cadastro.setVisible(true);
-			}
-		});
 		//botão que leva a tela de cadastro
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 64, 128));
 		cadastro.add(panel_1, BorderLayout.NORTH);
-
-		JLabel lblNewLabel_3 = new JLabel("Área de cadastro:");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Bell MT", Font.BOLD, 50));
-		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_13_1 = new JLabel("");
+		lblNewLabel_13_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_13_1);
+		lblNewLabel_13_1.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/Cabeçalho-removebg-preview.png")));
 
 		JPanel meio_1 = new JPanel();
 		meio_1.setBackground(new Color(0, 64, 128));
@@ -231,12 +243,21 @@ public class Frames {
 		gbl_meio_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_meio_1.rowHeights = new int[]{0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 1, 0};
 		gbl_meio_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_meio_1.rowWeights = new double[]{0.0, 0.0, 0.0, 4.0, 4.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_meio_1.rowWeights = new double[]{0.0, 0.0, 0.0, 4.0, 4.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		meio_1.setLayout(gbl_meio_1);
+		
+				JLabel lblNewLabel_3 = new JLabel("Cadastre-se:");
+				GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+				gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
+				gbc_lblNewLabel_3.gridx = 4;
+				gbc_lblNewLabel_3.gridy = 2;
+				meio_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
+				lblNewLabel_3.setForeground(new Color(255, 255, 255));
+				lblNewLabel_3.setFont(new Font("Cambria", Font.BOLD, 30));
 
 		JLabel lblNewLabel_5 = new JLabel("Usuário:");
 		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		lblNewLabel_5.setFont(new Font("Cambria", Font.BOLD, 30));
 		lblNewLabel_5.setAlignmentX(0.5f);
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
@@ -254,7 +275,7 @@ public class Frames {
 
 		JLabel lblNewLabel_4_1 = new JLabel("Senha:");
 		lblNewLabel_4_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+		lblNewLabel_4_1.setFont(new Font("Cambria", Font.BOLD, 30));
 		lblNewLabel_4_1.setAlignmentX(0.5f);
 		GridBagConstraints gbc_lblNewLabel_4_1 = new GridBagConstraints();
 		gbc_lblNewLabel_4_1.insets = new Insets(0, 0, 5, 5);
@@ -269,14 +290,53 @@ public class Frames {
 		gbc_passwordFieldCadastro.gridx = 4;
 		gbc_passwordFieldCadastro.gridy = 4;
 		meio_1.add(passwordFieldCadastro, gbc_passwordFieldCadastro);
+				
+						JButton cadastrar = new JButton("Cadastrar");
+						cadastrar.setBackground(new Color(255, 255, 255));
+						cadastrar.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
+						GridBagConstraints gbc_cadastrar = new GridBagConstraints();
+						gbc_cadastrar.insets = new Insets(0, 0, 5, 0);
+						gbc_cadastrar.gridx = 4;
+						gbc_cadastrar.gridy = 5;
+						meio_1.add(cadastrar, gbc_cadastrar);
+						//botão para ver perfil
 
-		JButton cadastrar = new JButton("Cadastrar");
-		cadastrar.setFont(new Font("Lucida Sans", Font.PLAIN, 23));
-		GridBagConstraints gbc_cadastrar = new GridBagConstraints();
-		gbc_cadastrar.insets = new Insets(0, 0, 5, 0);
-		gbc_cadastrar.gridx = 4;
-		gbc_cadastrar.gridy = 7;
-		meio_1.add(cadastrar, gbc_cadastrar);
+						cadastrar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								String user = textFieldCadastro.getText();
+								String password = new String(passwordFieldCadastro.getPassword());
+
+								if (user.equals("") || password.equals("")) {
+									JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
+								} else {
+									try {
+										AccountManager.register(user, password, frame);
+										Frames.updateUserLabel(userLabel);
+										Frames.updateUserLabel(userRealLabel);
+										Frames.updateBioLabel(bioTextArea);
+										JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
+										cadastro.setVisible(false);
+										telaInicial.setVisible(true);
+										textFieldCadastro.setText("");
+										passwordFieldCadastro.setText("");
+									} catch (AccountAlreadyExistsException ex) {
+										JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
+									} catch (IOException ex) {
+										throw new RuntimeException(ex);
+									}
+								}
+							}
+						});
+				
+				JButton irParaLogin = new JButton("Já tem uma conta? Faça o Login.");
+				irParaLogin.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+				irParaLogin.setForeground(new Color(255, 255, 255));
+				irParaLogin.setBackground(new Color(0, 64, 128));
+				irParaLogin.setContentAreaFilled(false);
+				GridBagConstraints gbc_irParaLogin = new GridBagConstraints();
+				gbc_irParaLogin.gridx = 4;
+				gbc_irParaLogin.gridy = 10;
+				meio_1.add(irParaLogin, gbc_irParaLogin);
 
 		JPanel telaInicial = new JPanel();
 		telaInicial.setBackground(new Color(255, 255, 255));
@@ -392,7 +452,13 @@ public class Frames {
 
 		DefaultTableModel model = new DefaultTableModel(BookManager.getBookData(), columns);
 
-		JTable tabelaLivros = new JTable(model);
+		JTable tabelaLivros = new JTable(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"T\u00EDtulo", "Autor", "G\u00EAnero"
+			}
+		));
 
 		for (Book b : BookData.getBookList()) {
 			try {
@@ -688,18 +754,9 @@ public class Frames {
 		panel_13.setBackground(new Color(255, 255, 255));
 		autor.add(panel_13, BorderLayout.NORTH);
 		panel_13.setLayout(new BorderLayout(0, 0));
-		
-		JButton botaothais = new JButton("New button");
-		panel_13.add(botaothais);
-		
-		JLabel snooopy = new JLabel("");
-		snooopy.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
-		panel_13.add(snooopy, BorderLayout.CENTER);
-		snooopy.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon snoopi = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/snoopiescreve.jpg"));
 		Image snoopi1 =snoopi.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon snoopi2 = new ImageIcon(snoopi1);
-		snooopy.setIcon(snoopi2);
 		
 		JPanel panel_18 = new JPanel();
 		panel_18.setBackground(new Color(255, 255, 255));
@@ -717,6 +774,38 @@ public class Frames {
 		botaoVoltar.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_18.add(botaoVoltar);
 		
+		JPanel panel_19 = new JPanel();
+		panel_13.add(panel_19, BorderLayout.SOUTH);
+		panel_19.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		JPanel panel_20 = new JPanel();
+		panel_20.setBackground(new Color(255, 255, 255));
+		panel_19.add(panel_20);
+		
+		JLabel snooopy = new JLabel("");
+		panel_20.add(snooopy);
+		snooopy.setBackground(new Color(255, 255, 255));
+		snooopy.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
+		snooopy.setHorizontalAlignment(SwingConstants.RIGHT);
+		snooopy.setIcon(snoopi2);
+		
+		JPanel panel_22 = new JPanel();
+		panel_22.setBackground(new Color(255, 255, 255));
+		panel_19.add(panel_22);
+		panel_22.setLayout(new BorderLayout(0, 0));
+		
+		JLabel descrição = new JLabel("Descrição:");
+		descrição.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_22.add(descrição, BorderLayout.NORTH);
+		
+		JTextArea txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = new JTextArea();
+		txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.setRows(5);
+		txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.setWrapStyleWord(true);
+		txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.setLineWrap(true);
+		txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.setEditable(false);
+		panel_22.add(txtrAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, BorderLayout.CENTER);
+		
 		
 		JPanel panel_14 = new JPanel();
 		autor.add(panel_14, BorderLayout.CENTER);
@@ -726,71 +815,66 @@ public class Frames {
 		panel_16.setBackground(new Color(255, 255, 255));
 		panel_14.add(panel_16, BorderLayout.NORTH);
 		ImageIcon coracaoVazio = new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoVazio (1).png"));
+		panel_16.setLayout(new BorderLayout(0, 0));
 		
+		JPanel panel_17_1 = new JPanel();
+		panel_17_1.setBackground(Color.WHITE);
+		panel_16.add(panel_17_1, BorderLayout.SOUTH);
+		panel_17_1.setLayout(new GridLayout(1, 2, 10, 10));
 		
-		
-		JLabel nomeAutorLabel = new JLabel("nome autor");
-		nomeAutorLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		nomeAutorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		panel_16.add(nomeAutorLabel);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		panel_14.add(scrollPane_1, BorderLayout.CENTER);
-		
-		JPanel panel_17 = new JPanel();
-		panel_17.setBackground(new Color(255, 255, 255));
-		scrollPane_1.setColumnHeaderView(panel_17);
-		panel_17.setLayout(new GridLayout(1, 2, 10, 10));
-		
-		JPanel panel_20 = new JPanel();
-		panel_20.setBackground(new Color(255, 255, 255));
-		panel_17.add(panel_20);
-		panel_20.setLayout(new BorderLayout(0, 0));
+		JPanel panel_20_1 = new JPanel();
+		panel_20_1.setBackground(Color.WHITE);
+		panel_17_1.add(panel_20_1);
+		panel_20_1.setLayout(new BorderLayout(0, 0));
 		
 		JToggleButton botaoCurtida = new JToggleButton(" Curtir");
+		panel_20_1.add(botaoCurtida, BorderLayout.CENTER);
 		botaoCurtida.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_20.add(botaoCurtida);
 		botaoCurtida.setSelectedIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
 		botaoCurtida.setBackground(new Color(255, 255, 255));
 		botaoCurtida.setIcon(coracaoVazio);
 		
-		JLabel avaliação = new JLabel("n°");
-		avaliação.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/star.png")));
-		avaliação.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		avaliação.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_17.add(avaliação);
+		JLabel avaliação_1 = new JLabel("n°");
+		avaliação_1.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/star.png")));
+		avaliação_1.setHorizontalAlignment(SwingConstants.CENTER);
+		avaliação_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_17_1.add(avaliação_1);
 		
-		JLabel lblNewLabel_11 = new JLabel("  n°");
-		lblNewLabel_11.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
-		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_17.add(lblNewLabel_11);
+		JLabel lblNewLabel_11_1 = new JLabel("  n°");
+		lblNewLabel_11_1.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png")));
+		lblNewLabel_11_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_11_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_17_1.add(lblNewLabel_11_1);
 		
-		JPanel panel_19 = new JPanel();
-		panel_17.add(panel_19);
-		panel_19.setLayout(new BorderLayout(0, 0));
+		JPanel panel_17 = new JPanel();
+		panel_17.setBackground(new Color(255, 255, 255));
+		panel_16.add(panel_17, BorderLayout.NORTH);
+		panel_17.setLayout(new GridLayout(1, 2, 0, 0));
 		
-		JButton listaDeLivros = new JButton(" Livros do autor");
-		listaDeLivros.setBackground(new Color(255, 255, 255));
-		listaDeLivros.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/images (1).png")));
-		listaDeLivros.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_19.add(listaDeLivros);
-		
-		JPanel panel_22 = new JPanel();
-		panel_22.setBackground(new Color(255, 255, 255));
-		scrollPane_1.setViewportView(panel_22);
-		panel_22.setLayout(new GridLayout(2, 1, 0, 0));
+		JLabel nomeAutorLabel = new JLabel("nome autor");
+		nomeAutorLabel.setBackground(new Color(255, 255, 255));
+		nomeAutorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nomeAutorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		panel_17.add(nomeAutorLabel);
 		
 		JPanel panel_23 = new JPanel();
 		panel_23.setBackground(new Color(255, 255, 255));
-		panel_22.add(panel_23);
-		GridBagLayout gbl_panel_23 = new GridBagLayout();
-		gbl_panel_23.columnWidths = new int[] {30, 0, 0, 30};
-		gbl_panel_23.rowHeights = new int[] {30, 0, 0, 0, 0, 30};
-		gbl_panel_23.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_23.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_23.setLayout(gbl_panel_23);
+		panel_17.add(panel_23);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(tabelaAutor);
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_14.add(scrollPane_1, BorderLayout.CENTER);
+		
+		tabelaAutor = new JTable();
+		tabelaAutor.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Título", "Gênero"
+			}
+		));
+		scrollPane_1.setViewportView(tabelaAutor);
 		
 		JLabel lblNewLabel_12;
 		GridBagConstraints gbc_lblNewLabel_12;
@@ -966,6 +1050,25 @@ public class Frames {
 		JScrollPane scrollPaneadmin = new JScrollPane(tabelaLivros1
 				);
 		adminTelaInicial.add(scrollPaneadmin, BorderLayout.CENTER);
+		
+		JPanel adicionarLivro = new JPanel();
+		adicionarLivro.setBackground(new Color(255, 255, 255));
+		frame.getContentPane().add(adicionarLivro, "name_78778782162400");
+		adicionarLivro.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel_24 = new JPanel();
+		panel_24.setBackground(new Color(255, 255, 255));
+		adicionarLivro.add(panel_24);
+		panel_24.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_25 = new JPanel();
+		panel_24.add(panel_25, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel_11 = new JLabel("New label");
+		panel_25.add(lblNewLabel_11);
+		
+		JPanel panel_26 = new JPanel();
+		panel_24.add(panel_26, BorderLayout.CENTER);
 
 		
 		
@@ -1023,34 +1126,6 @@ public class Frames {
 			public void actionPerformed(ActionEvent e) {
 				telaInicial.setVisible(false);
 				perfil.setVisible(true);
-			}
-		});
-		//botão para ver perfil
-
-		cadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String user = textFieldCadastro.getText();
-				String password = new String(passwordFieldCadastro.getPassword());
-
-				if (user.equals("") || password.equals("")) {
-					JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
-				} else {
-					try {
-						AccountManager.register(user, password, frame);
-						Frames.updateUserLabel(userLabel);
-						Frames.updateUserLabel(userRealLabel);
-						Frames.updateBioLabel(bioTextArea);
-						JOptionPane.showMessageDialog(null, "Conta criada com sucesso! Seja bem vindo(a)!");
-						cadastro.setVisible(false);
-						telaInicial.setVisible(true);
-						textFieldCadastro.setText("");
-						passwordFieldCadastro.setText("");
-					} catch (AccountAlreadyExistsException ex) {
-						JOptionPane.showMessageDialog(null, "Nome de usuário já existe!");
-					} catch (IOException ex) {
-						throw new RuntimeException(ex);
-					}
-				}
 			}
 		});
 		//botão de cadastro: certificar que os dois texts labels estejam preenchidos,
