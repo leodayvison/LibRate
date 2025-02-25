@@ -81,7 +81,6 @@ public class Frames {
 		bioTextArea.revalidate();
 		bioTextArea.repaint();
 	}
-
 	/**
 	 * Launch the application.
 	 */
