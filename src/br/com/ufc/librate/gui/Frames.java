@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -537,8 +539,14 @@ public class Frames {
         mudarBioButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = JOptionPane.showInputDialog(null, "Digite sua bio:", "Mudar bio", JOptionPane.QUESTION_MESSAGE);
+                
+                if(input.length() > 450) {
+                	JOptionPane.showMessageDialog(frame, "Limite de 450 caracteres excedido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }else {
                 AccountManager.getLoggedAccount().setBio(input);
 				updateBioLabel(bioTextArea);
+                }
             }
         });
         mudarBioButton_1.setForeground(new Color(0, 0, 128));
@@ -587,6 +595,7 @@ public class Frames {
         panel_4.setLayout(gbl_panel_4);
 
         JButton voltarInicialButton = new JButton("<");
+        voltarInicialButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         GridBagConstraints gbc_voltarInicialButton = new GridBagConstraints();
         gbc_voltarInicialButton.anchor = GridBagConstraints.WEST;
@@ -604,41 +613,42 @@ public class Frames {
         lblNewLabel_10.setIcon(new ImageIcon(Objects.requireNonNull(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/SnoopyCoffee.png"))));
 
         JLabel deUmaNota = new JLabel("Dê uma nota:");
-        deUmaNota.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        deUmaNota.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_deUmaNota = new GridBagConstraints();
         gbc_deUmaNota.insets = new Insets(0, 0, 5, 0);
         gbc_deUmaNota.gridx = 0;
         gbc_deUmaNota.gridy = 3;
         panel_4.add(deUmaNota, gbc_deUmaNota);
-
-        JLabel imagemEstrela = new JLabel("");
-        imagemEstrela.setIcon(new ImageIcon(Objects.requireNonNull(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/estrelaVaziaPoo.png"))));
-        GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
-        gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel_13.gridx = 0;
-        gbc_lblNewLabel_13.gridy = 4;
-        panel_4.add(imagemEstrela, gbc_lblNewLabel_13);
+        
+        JButton btnNewButton_2 = new JButton("");
+        btnNewButton_2.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/estrelaVaziaPoo.png")));
+        GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+        gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
+        gbc_btnNewButton_2.gridx = 0;
+        gbc_btnNewButton_2.gridy = 4;
+        panel_4.add(btnNewButton_2, gbc_btnNewButton_2);
 
         JLabel lblNewLabel_12_1 = new JLabel("Curta:");
-        lblNewLabel_12_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        lblNewLabel_12_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblNewLabel_12_1 = new GridBagConstraints();
         gbc_lblNewLabel_12_1.insets = new Insets(0, 0, 5, 0);
         gbc_lblNewLabel_12_1.gridx = 0;
         gbc_lblNewLabel_12_1.gridy = 5;
         panel_4.add(lblNewLabel_12_1, gbc_lblNewLabel_12_1);
-
-        JLabel lblNewLabel_15 = new JLabel("");
-        lblNewLabel_15.setIcon(new ImageIcon(Objects.requireNonNull(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracao.png"))));
-        GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
-        gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel_15.gridx = 0;
-        gbc_lblNewLabel_15.gridy = 6;
-        panel_4.add(lblNewLabel_15, gbc_lblNewLabel_15);
+        
+        JButton btnNewButton_3 = new JButton("");
+  
+        btnNewButton_3.setIcon(new ImageIcon(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracao.png")));
+        GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+        gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 0);
+        gbc_btnNewButton_3.gridx = 0;
+        gbc_btnNewButton_3.gridy = 6;
+        panel_4.add(btnNewButton_3, gbc_btnNewButton_3);
 
         JLabel lblNewLabel_9_2 = new JLabel("<html><div style='text-align: center;'><u>Adicionar a</u><br><u>ToBeRead</u></div></html>\r\n");
         lblNewLabel_9_2.setHorizontalTextPosition(SwingConstants.CENTER);
         lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_9_2.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        lblNewLabel_9_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblNewLabel_9_2 = new GridBagConstraints();
         gbc_lblNewLabel_9_2.gridx = 0;
         gbc_lblNewLabel_9_2.gridy = 7;
@@ -659,7 +669,7 @@ public class Frames {
         JLabel lblNewLabel_9_1 = new JLabel("<html><div style='text-align: center;'>Média de<br>avaliações:</div></html>\r\n");
         lblNewLabel_9_1.setHorizontalTextPosition(SwingConstants.CENTER);
         lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_9_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        lblNewLabel_9_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblNewLabel_9_1 = new GridBagConstraints();
         gbc_lblNewLabel_9_1.insets = new Insets(0, 0, 5, 0);
         gbc_lblNewLabel_9_1.anchor = GridBagConstraints.NORTH;
@@ -670,7 +680,7 @@ public class Frames {
         JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
         lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
         lblNewLabel_9_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_9_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        lblNewLabel_9_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblNewLabel_9_1_1 = new GridBagConstraints();
         gbc_lblNewLabel_9_1_1.insets = new Insets(0, 0, 5, 0);
         gbc_lblNewLabel_9_1_1.gridx = 0;
@@ -680,7 +690,7 @@ public class Frames {
         JLabel lblNewLabel_9_1_1_1 = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
         lblNewLabel_9_1_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
         lblNewLabel_9_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_9_1_1_1.setFont(new Font("Monospaced", Font.PLAIN, 17));
+        lblNewLabel_9_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblNewLabel_9_1_1_1 = new GridBagConstraints();
         gbc_lblNewLabel_9_1_1_1.anchor = GridBagConstraints.SOUTH;
         gbc_lblNewLabel_9_1_1_1.insets = new Insets(0, 0, 5, 0);
@@ -990,7 +1000,7 @@ public class Frames {
             public void actionPerformed(ActionEvent e) {
                 String user = textField.getText();
                 String password = new String(passwordField.getPassword());
-
+                
                 if (user.isEmpty() || password.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "Campo do usuário ou senha vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -1036,7 +1046,15 @@ public class Frames {
             public void actionPerformed(ActionEvent e) {
                 String user = textFieldCadastro.getText();
                 String password = new String(passwordFieldCadastro.getPassword());
-
+                
+                if(user.length() > 20) {
+                	JOptionPane.showMessageDialog(frame, "Limite de 20 caracteres excedido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if(user.matches("[a-z0-9]+") == false) {
+                	JOptionPane.showMessageDialog(frame, "Nome de usuário deve conter apenas números e letras minúsculas!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (user.isEmpty() || password.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Campo do usuário ou senha vazio!");
                 } else {
@@ -1134,16 +1152,63 @@ public class Frames {
 
             }
         });
+        
         lblNewLabel_9_1_1_1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-				if(livroSelecionado.getAuthor() !=null){
+				if(livroSelecionado.getAuthor() != null){
 					livro.setVisible(false);
 					updateAuthorNameLabel(nomeAutorLabel,livroSelecionado);
 					autor.setVisible(true);
 				}
             }
         });
+        
+        btnNewButton_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		JRadioButton oneStar = new JRadioButton("☆");
+        		JRadioButton twoStars = new JRadioButton("☆☆");
+        		JRadioButton threeStars = new JRadioButton("☆☆☆");
+        		JRadioButton fourStars = new JRadioButton("☆☆☆☆");
+        		JRadioButton fiveStars = new JRadioButton("☆☆☆☆☆");
+
+    	        ButtonGroup group = new ButtonGroup();
+    	        group.add(oneStar);
+    	        group.add(twoStars);
+    	        group.add(threeStars);
+    	        group.add(fourStars);
+    	        group.add(fiveStars);
+    	        
+    	        JPanel panelRate = new JPanel();
+    	        int optionRate = JOptionPane.showConfirmDialog(
+    	                null, panelRate, "Escolha uma opção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    	        if (optionRate == JOptionPane.OK_OPTION) {
+    	            if (oneStar.isSelected()) {
+    	                JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
+    	            } else if (twoStars.isSelected()) {
+    	                JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
+    	            } else if (threeStars.isSelected()) {
+    	                JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
+    	            } else if (fourStars.isSelected()) {
+		                JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
+		            } else if (fiveStars.isSelected()) {
+    	                JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
+    	            } else {
+    	                JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
+    	            }
+    	        } else {
+    	            JOptionPane.showMessageDialog(null, "Operação cancelada.");
+    	        }
+        	}
+        });
+        
+        btnNewButton_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//TODO: event do botao de curtida dos livros
+        	}
+        });
+        
     }
 
 }
