@@ -51,6 +51,7 @@ import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.tools.BookManager;
 
 public class Frames {
+	////savlio chato
 
 	private JFrame frame;
 	private JPanel panel_1;
@@ -576,6 +577,7 @@ public class Frames {
 		gbc_returnButton2.gridx = 0;
 		gbc_returnButton2.gridy = 0;
 		panel_4.add(returnButton2, gbc_returnButton2);
+		
 
 		JLabel snoopyBook = new JLabel("");
 		GridBagConstraints gbc_snoopyBook = new GridBagConstraints();
