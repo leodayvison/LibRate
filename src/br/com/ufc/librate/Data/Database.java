@@ -24,7 +24,10 @@ public class Database {
                     files[i].createNewFile();
                     if(i==0){
                         AdminAccount adm = new AdminAccount();
-                        AccountData.writeFileAccount(adm.getUser(), adm.getPassword());
+                        String dataAdm = adm.getUser() + ":" + adm.getPassword();
+                        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
+                        writer.write(dataAdm);
+                        writer.close();
                     }
                     System.out.println(files[i].getName() + " arquivo criado.");
                 } catch (IOException e) {
@@ -36,12 +39,24 @@ public class Database {
         }
     }
 
+    public static void readFiles() throws IOException {
+        AccountData.readFileAccount();
+        LikeData.readFileLike();
+        AuthorData.readFileAuthor();
+        BookData.readFileBook();
+    }
+
     public static void updateFiles() throws IOException {
 
         StringBuilder data = new StringBuilder();
 
         for(Account a : AccountData.accountList){
-            data.append(a.getUser()).append(":").append(a.getPassword()).append(System.lineSeparator());
+            if(a.getBio().equals("Eu amo livros!!")) {
+                data.append(a.getUser()).append(":").append(a.getPassword()).append(System.lineSeparator());
+            }else{
+                data.append(a.getUser()).append(":").append(a.getPassword()).append(":").
+                        append(a.getBio()).append(System.lineSeparator());
+            }
         }
         try(BufferedWriter bf = new BufferedWriter(new FileWriter("users.txt",false))){
             bf.write(data.toString());
@@ -51,12 +66,12 @@ public class Database {
 
         data.setLength(0);
 
-        for (Author a : AuthorData.authorList){
-            data.append(a.getName()).append(":").append(a.getBio());
+        for (Author a : AuthorData.authorList) {
+            data.append(a.getName()).append(":").append(a.getBio()).append(System.lineSeparator());
         }
-        try(BufferedWriter bf = new BufferedWriter(new FileWriter("authors.txt",false))){
+        try(BufferedWriter bf = new BufferedWriter(new FileWriter("authors.txt", false))) {
             bf.write(data.toString());
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.getMessage();
         }
 
@@ -94,9 +109,9 @@ public class Database {
 
         data.setLength(0);
 
-        for(String id : likeMap.keySet()){
-            data.append(id).append(":")
-                    .append(likeMap.get(id));
+        for(Book b : BookData.getBookList()){
+            data.append(b.getIdBook()).append(":").append(b.getLikes()).
+                    append(System.lineSeparator());
         }try(BufferedWriter bf = new BufferedWriter(new FileWriter("likes.txt",false))){
             bf.write(data.toString());
         }catch (IOException ioe){
@@ -106,13 +121,5 @@ public class Database {
         System.out.println("arquivos atualizados!");
     }
 
-
-    public static void readFiles() throws IOException {
-        AccountData.readFileAccount();
-        LikeData.readFileLike();
-        AuthorData.readFileAuthor();
-        BookData.readFileBook();
-
-    }
 }
 

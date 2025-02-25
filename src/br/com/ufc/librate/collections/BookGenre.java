@@ -1,15 +1,25 @@
 package br.com.ufc.librate.collections;
 
 public enum BookGenre {
-	FICTION,
-	NONFICTION,
-	FANTASY,
-	SCIENCE,
-	MYSTERY,
-	THRILLER,
-	ROMANCE,
-	HISTORICAL,
-	ADVENTURE, 
-	HORROR,
-	UNKNOWN;
+	FICTION("Ficção"),
+	NONFICTION("Não ficção"),
+	FANTASY("Fantasia"),
+	SCIENCE("Sci-Fi"),
+	MYSTERY("Suspense"),
+	THRILLER("Thriller"),
+	ROMANCE("Romance"),
+	HISTORICAL("Histórico"),
+	ADVENTURE("Aventura"), 
+	HORROR("Terror"),
+	UNKNOWN("Desconhecido");
+	
+	private final String genero;
+	
+	BookGenre(String genero){
+		this.genero = genero;
+	}
+	
+	public String getGenreString() {
+		return this.genero;
+	}
 }

@@ -5,26 +5,19 @@ import java.io.*;
 import java.util.HashMap;
 
 public class LikeData {
-    static HashMap<String, Integer> likeMap = new HashMap<String, Integer>();
+    static HashMap<String, Integer> likeMap = new HashMap<>();
 
     public static HashMap<String, Integer> getLikeMap() {
         return LikeData.likeMap;
     }
 
-    public static void loadMap() {
+    public static void loadLikes() {
         for (Book b : BookData.getBookList()) {
-            likeMap.put(b.getIdBook(), b.getLikes());
-        }
-    }
-
-    public static void writeLikeMapToFile(String fileName) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("likes.txt"))) {
-            for (String id : likeMap.keySet()) {
-                writer.write(id + ":" + likeMap.get(id));
-                writer.newLine();
+            if (LikeData.likeMap.containsKey(b.getIdBook())) {
+                b.setLikes(likeMap.get(b.getIdBook()));
+            } else {
+                likeMap.put(b.getIdBook(), b.getLikes());
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
