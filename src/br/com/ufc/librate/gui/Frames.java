@@ -72,6 +72,7 @@ public class Frames {
         }
         userLabel.revalidate();
         userLabel.repaint();
+        
     }
 
     public static void updateBioLabel(JTextArea bioTextArea) {
@@ -89,6 +90,23 @@ public class Frames {
 		authorTextArea.revalidate();
 		authorTextArea.repaint();
 	}
+	
+	public static void updateRatings(JLabel bookRatesLabel, Book livroSelecionado) {
+        	bookRatesLabel.setText(Float.toString(livroSelecionado.getLikes()));     
+        
+        bookRatesLabel.revalidate();
+        bookRatesLabel.repaint();
+        
+    }
+	
+	public static void updateLikes(JLabel bookLikesLabel, Book livroSelecionado) {
+    	bookLikesLabel.setText(Integer.toString(livroSelecionado.getLikes()));     
+    
+    bookLikesLabel.revalidate();
+    bookLikesLabel.repaint();    
+}
+	
+	
 
     /**
      * Launch the application.
@@ -676,6 +694,17 @@ public class Frames {
         gbc_lblNewLabel_9_1.gridx = 0;
         gbc_lblNewLabel_9_1.gridy = 1;
         panel_6.add(lblNewLabel_9_1, gbc_lblNewLabel_9_1);
+        
+        JLabel bookRatesLabel = new JLabel();
+
+        //// bookRatesLabel.setText(Float.toString(livroSelecionado.getLikes()));
+
+        GridBagConstraints gbc_bookRatesLabel = new GridBagConstraints();
+        gbc_bookRatesLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_bookRatesLabel.gridx = 0;
+        gbc_bookRatesLabel.gridy = 3;
+        panel_6.add(bookRatesLabel, gbc_bookRatesLabel);
+        
 
         JLabel lblNewLabel_9_1_1 = new JLabel("<html><div style='text-align: center;'>Quantidade<br>de curtidas:</div></html>\r\n");
         lblNewLabel_9_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -686,6 +715,13 @@ public class Frames {
         gbc_lblNewLabel_9_1_1.gridx = 0;
         gbc_lblNewLabel_9_1_1.gridy = 7;
         panel_6.add(lblNewLabel_9_1_1, gbc_lblNewLabel_9_1_1);
+        
+        JLabel bookLikesLabel = new JLabel();
+        GridBagConstraints gbc_bookLikesLabel = new GridBagConstraints();
+        gbc_bookLikesLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_bookLikesLabel.gridx = 0;
+        gbc_bookLikesLabel.gridy = 9;
+        panel_6.add(bookLikesLabel, gbc_bookLikesLabel);
 
         JLabel lblNewLabel_9_1_1_1 = new JLabel("<html><div style='text-align: center;'><u>Saiba mais</u><br><u>sobre o autor!</u></div></html>\r\n");
         lblNewLabel_9_1_1_1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -1149,6 +1185,9 @@ public class Frames {
 
                 telaInicial.setVisible(false);
                 livro.setVisible(true);
+                Frames.updateRatings(bookRatesLabel, livroSelecionado);
+                Frames.updateLikes(bookLikesLabel, livroSelecionado);
+
 
             }
         });
@@ -1193,25 +1232,38 @@ public class Frames {
                     if (oneStar.isSelected()) {
                         JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
                         AccountManager.getLoggedAccount().makeRate(livroSelecionado,1);
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     } else if (twoStars.isSelected()) {
                         JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
                         AccountManager.getLoggedAccount().makeRate(livroSelecionado,2);
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     } else if (threeStars.isSelected()) {
                         JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
                         AccountManager.getLoggedAccount().makeRate(livroSelecionado,3);
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     } else if (fourStars.isSelected()) {
                         JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
                         AccountManager.getLoggedAccount().makeRate(livroSelecionado,4);
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     } else if (fiveStars.isSelected()) {
                         JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
                         AccountManager.getLoggedAccount().makeRate(livroSelecionado,5);
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
+                        Frames.updateRatings(bookRatesLabel, livroSelecionado);
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Operação cancelada.");
                 }
                 System.out.println(livroSelecionado.getRating());
+                Frames.updateRatings(bookRatesLabel, livroSelecionado);
             }
         });
 
@@ -1220,6 +1272,8 @@ public class Frames {
         	public void actionPerformed(ActionEvent e) {
                 if(!(AccountManager.getLoggedAccount().getLikedBooks().contains(livroSelecionado))) {
                     AccountManager.getLoggedAccount().like(livroSelecionado);
+                    Frames.updateLikes(bookLikesLabel, livroSelecionado);
+
                 }else{
                     System.out.println("livro ja foi curtido!");
                 }
@@ -1231,6 +1285,7 @@ public class Frames {
             public void actionPerformed(ActionEvent e) {
                 if(!(AccountManager.getLoggedAccount().getLikedAuthors().contains(livroSelecionado.getAuthor()))) {
                     AccountManager.getLoggedAccount().like(livroSelecionado.getAuthor());
+
                 }else{
                     System.out.println("autor ja foi curtido!");
                 }
