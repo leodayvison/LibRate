@@ -52,6 +52,7 @@ import br.com.ufc.librate.model.classes.Book;
 import br.com.ufc.librate.model.classes.NormalAccount;
 import br.com.ufc.librate.tools.AccountManager;
 import br.com.ufc.librate.tools.BookManager;
+import javax.swing.BoxLayout;
 
 public class Frames {
 
@@ -63,6 +64,8 @@ public class Frames {
     private JTextField pesquisarTextField;
     private Book livroSelecionado = null;
     private JPanel autor;
+    private JTextField textField_1;
+    private JTextField textField_2;
 
     public static void updateUserLabel(JLabel userLabel) {
         if (AccountManager.getLoggedAccount() != null) {
@@ -393,9 +396,6 @@ public class Frames {
         gbc_btnNewButton_1.gridx = 1;
         gbc_btnNewButton_1.gridy = 10;
         panel_3.add(btnNewButton_1, gbc_btnNewButton_1);
-
-        JScrollBar scrollBar = new JScrollBar();
-        telaInicial.add(scrollBar, BorderLayout.EAST);
 
         JPanel panel_2 = new JPanel();
         telaInicial.add(panel_2, BorderLayout.NORTH);
@@ -995,6 +995,88 @@ public class Frames {
 		nomeAutorLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		nomeAutorLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		panel_16.add(nomeAutorLabel);
+		
+		JPanel panelAddLivro = new JPanel();
+		frame.getContentPane().add(panelAddLivro, "name_134276258941000");
+		panelAddLivro.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_25 = new JPanel();
+		panelAddLivro.add(panel_25, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel_15 = new JLabel("ADICIONAR LIVRO:");
+		lblNewLabel_15.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		panel_25.add(lblNewLabel_15);
+		
+		JPanel panel_26 = new JPanel();
+		panelAddLivro.add(panel_26, BorderLayout.WEST);
+		GridBagLayout gbl_panel_26 = new GridBagLayout();
+		gbl_panel_26.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_26.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel_26.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_26.rowWeights = new double[]{0.0, 0.0, 0.0, 7.0, 1.0, Double.MIN_VALUE};
+		panel_26.setLayout(gbl_panel_26);
+		
+		JLabel lblNewLabel_16 = new JLabel("Nome:");
+		lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_16 = new GridBagConstraints();
+		gbc_lblNewLabel_16.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_16.gridx = 6;
+		gbc_lblNewLabel_16.gridy = 1;
+		panel_26.add(lblNewLabel_16, gbc_lblNewLabel_16);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(70);
+		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_2.gridx = 7;
+		gbc_textField_2.gridy = 1;
+		panel_26.add(textField_2, gbc_textField_2);
+		
+		JLabel lblNewLabel_18 = new JLabel("Autor:");
+		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_18 = new GridBagConstraints();
+		gbc_lblNewLabel_18.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_18.gridx = 6;
+		gbc_lblNewLabel_18.gridy = 2;
+		panel_26.add(lblNewLabel_18, gbc_lblNewLabel_18);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 7;
+		gbc_textField_1.gridy = 2;
+		panel_26.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(50);
+		
+		JLabel lblNewLabel_17 = new JLabel("Sinopse:");
+		lblNewLabel_17.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		GridBagConstraints gbc_lblNewLabel_17 = new GridBagConstraints();
+		gbc_lblNewLabel_17.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_17.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_17.gridx = 6;
+		gbc_lblNewLabel_17.gridy = 3;
+		panel_26.add(lblNewLabel_17, gbc_lblNewLabel_17);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setSize(new Dimension(100, 50));
+		textArea.setLineWrap(true);
+		textArea.setRows(2);
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 7;
+		gbc_textArea.gridy = 3;
+		panel_26.add(textArea, gbc_textArea);
+		
+		JButton btnNewButton_4 = new JButton("Enviar");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+		gbc_btnNewButton_4.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_4.gridx = 7;
+		gbc_btnNewButton_4.gridy = 4;
+		panel_26.add(btnNewButton_4, gbc_btnNewButton_4);
 
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -1206,6 +1288,12 @@ public class Frames {
         btnNewButton_3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//TODO: event do botao de curtida dos livros
+        	}
+        });
+        verPerfilButtonadmin.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		adminTelaInicial.setVisible(false);
+        		panelAddLivro.setVisible(true);
         	}
         });
         
