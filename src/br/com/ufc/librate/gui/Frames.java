@@ -64,8 +64,8 @@ public class Frames {
     private JTextField pesquisarTextField;
     private Book livroSelecionado = null;
     private JPanel autor;
-    private JTextField textField_1;
-    private JTextField textField_2;
+    private JTextField textFieldAutor;
+    private JTextField textFieldNomeLivro;
 
     public static void updateUserLabel(JLabel userLabel) {
         if (AccountManager.getLoggedAccount() != null) {
@@ -1024,14 +1024,14 @@ public class Frames {
 		gbc_lblNewLabel_16.gridy = 1;
 		panel_26.add(lblNewLabel_16, gbc_lblNewLabel_16);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(70);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 7;
-		gbc_textField_2.gridy = 1;
-		panel_26.add(textField_2, gbc_textField_2);
+		textFieldNomeLivro = new JTextField();
+		textFieldNomeLivro.setColumns(70);
+		GridBagConstraints gbc_textFieldNomeLivro = new GridBagConstraints();
+		gbc_textFieldNomeLivro.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNomeLivro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNomeLivro.gridx = 7;
+		gbc_textFieldNomeLivro.gridy = 1;
+		panel_26.add(textFieldNomeLivro, gbc_textFieldNomeLivro);
 		
 		JLabel lblNewLabel_18 = new JLabel("Autor:");
 		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -1041,14 +1041,14 @@ public class Frames {
 		gbc_lblNewLabel_18.gridy = 2;
 		panel_26.add(lblNewLabel_18, gbc_lblNewLabel_18);
 		
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 7;
-		gbc_textField_1.gridy = 2;
-		panel_26.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(50);
+		textFieldAutor = new JTextField();
+		GridBagConstraints gbc_textFieldAutor = new GridBagConstraints();
+		gbc_textFieldAutor.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAutor.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldAutor.gridx = 7;
+		gbc_textFieldAutor.gridy = 2;
+		panel_26.add(textFieldAutor, gbc_textFieldAutor);
+		textFieldAutor.setColumns(50);
 		
 		JLabel lblNewLabel_17 = new JLabel("Sinopse:");
 		lblNewLabel_17.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -1059,16 +1059,16 @@ public class Frames {
 		gbc_lblNewLabel_17.gridy = 3;
 		panel_26.add(lblNewLabel_17, gbc_lblNewLabel_17);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setSize(new Dimension(100, 50));
-		textArea.setLineWrap(true);
-		textArea.setRows(2);
-		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.insets = new Insets(0, 0, 5, 5);
-		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 7;
-		gbc_textArea.gridy = 3;
-		panel_26.add(textArea, gbc_textArea);
+		JTextArea textAreaSinopse = new JTextArea();
+		textAreaSinopse.setSize(new Dimension(100, 50));
+		textAreaSinopse.setLineWrap(true);
+		textAreaSinopse.setRows(2);
+		GridBagConstraints gbc_textAreaSinopse = new GridBagConstraints();
+		gbc_textAreaSinopse.insets = new Insets(0, 0, 5, 5);
+		gbc_textAreaSinopse.fill = GridBagConstraints.BOTH;
+		gbc_textAreaSinopse.gridx = 7;
+		gbc_textAreaSinopse.gridy = 3;
+		panel_26.add(textAreaSinopse, gbc_textAreaSinopse);
 		
 		JButton btnNewButton_4 = new JButton("Enviar");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -1326,6 +1326,14 @@ public class Frames {
                 }
             }
         });
+        btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO: botao pra pegar o autor o nome do livro e sinopse
+				String nome = textFieldNomeLivro.getText();
+				String autor = textFieldAutor.getText();
+				String sinopse = textAreaSinopse.getText();
+			}
+		});
 
         
     }
