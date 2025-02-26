@@ -770,7 +770,7 @@ public class Frames {
         panel_17.add(panel_20);
         panel_20.setLayout(new BorderLayout(0, 0));
 
-        JToggleButton botaoCurtida = new JToggleButton(" Curtir");
+            JToggleButton botaoCurtida = new JToggleButton(" Curtir");
         botaoCurtida.setFont(new Font("Tahoma", Font.PLAIN, 18));
         panel_20.add(botaoCurtida);
         botaoCurtida.setSelectedIcon(new ImageIcon(Objects.requireNonNull(Frames.class.getResource("/br/com/ufc/librate/gui/imagens/coracaoCheio (2).png"))));
@@ -1163,51 +1163,80 @@ public class Frames {
 				}
             }
         });
-        
+
         btnNewButton_2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		JRadioButton oneStar = new JRadioButton("☆");
-        		JRadioButton twoStars = new JRadioButton("☆☆");
-        		JRadioButton threeStars = new JRadioButton("☆☆☆");
-        		JRadioButton fourStars = new JRadioButton("☆☆☆☆");
-        		JRadioButton fiveStars = new JRadioButton("☆☆☆☆☆");
+            public void actionPerformed(ActionEvent e) {
+                JRadioButton oneStar = new JRadioButton("☆");
+                JRadioButton twoStars = new JRadioButton("☆☆");
+                JRadioButton threeStars = new JRadioButton("☆☆☆");
+                JRadioButton fourStars = new JRadioButton("☆☆☆☆");
+                JRadioButton fiveStars = new JRadioButton("☆☆☆☆☆");
 
-    	        ButtonGroup group = new ButtonGroup();
-    	        group.add(oneStar);
-    	        group.add(twoStars);
-    	        group.add(threeStars);
-    	        group.add(fourStars);
-    	        group.add(fiveStars);
-    	        
-    	        JPanel panelRate = new JPanel();
-    	        int optionRate = JOptionPane.showConfirmDialog(
-    	                null, panelRate, "Escolha uma opção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                ButtonGroup group = new ButtonGroup();
+                group.add(oneStar);
+                group.add(twoStars);
+                group.add(threeStars);
+                group.add(fourStars);
+                group.add(fiveStars);
 
-    	        if (optionRate == JOptionPane.OK_OPTION) {
-    	            if (oneStar.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
-    	            } else if (twoStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
-    	            } else if (threeStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
-    	            } else if (fourStars.isSelected()) {
-		                JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
-		            } else if (fiveStars.isSelected()) {
-    	                JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
-    	            } else {
-    	                JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
-    	            }
-    	        } else {
-    	            JOptionPane.showMessageDialog(null, "Operação cancelada.");
-    	        }
-        	}
+                JPanel panelRate = new JPanel();
+                panelRate.add(oneStar);
+                panelRate.add(twoStars);
+                panelRate.add(threeStars);
+                panelRate.add(fourStars);
+                panelRate.add(fiveStars);
+
+                int optionRate = JOptionPane.showConfirmDialog(
+                        null, panelRate, "Escolha uma opção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (optionRate == JOptionPane.OK_OPTION) {
+                    if (oneStar.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 1 estrela!");
+                        AccountManager.getLoggedAccount().makeRate(livroSelecionado,1);
+                    } else if (twoStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 2 estrelas!");
+                        AccountManager.getLoggedAccount().makeRate(livroSelecionado,2);
+                    } else if (threeStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 3 estrelas!");
+                        AccountManager.getLoggedAccount().makeRate(livroSelecionado,3);
+                    } else if (fourStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 4 estrelas!");
+                        AccountManager.getLoggedAccount().makeRate(livroSelecionado,4);
+                    } else if (fiveStars.isSelected()) {
+                        JOptionPane.showMessageDialog(null, "Você deu 5 estrelas!");
+                        AccountManager.getLoggedAccount().makeRate(livroSelecionado,5);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nenhuma opção foi selecionada.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operação cancelada.");
+                }
+                System.out.println(livroSelecionado.getRating());
+            }
         });
-        
+
+
         btnNewButton_3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//TODO: event do botao de curtida dos livros
+                if(!(AccountManager.getLoggedAccount().getLikedBooks().contains(livroSelecionado))) {
+                    AccountManager.getLoggedAccount().like(livroSelecionado);
+                }else{
+                    System.out.println("livro ja foi curtido!");
+                }
         	}
         });
+
+        botaoCurtida.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!(AccountManager.getLoggedAccount().getLikedAuthors().contains(livroSelecionado.getAuthor()))) {
+                    AccountManager.getLoggedAccount().like(livroSelecionado.getAuthor());
+                }else{
+                    System.out.println("autor ja foi curtido!");
+                }
+            }
+        });
+
         
     }
 

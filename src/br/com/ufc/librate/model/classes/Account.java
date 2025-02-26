@@ -1,10 +1,11 @@
 package br.com.ufc.librate.model.classes;
 
+import br.com.ufc.librate.model.interfaces.CanLike;
 import br.com.ufc.librate.model.interfaces.Likeable;
 
 import java.util.List;
 
-public abstract class Account {
+public abstract class Account implements CanLike {
 	protected String user;
 	protected String password;
 	protected String bio;
@@ -70,4 +71,32 @@ public abstract class Account {
 		this.likes = likes;
 	}
 
+	@Override
+	public void like(Likeable likeable) {
+		if (likeable instanceof Book) {
+			this.getLikedBooks().add((Book) likeable);
+		}else if(likeable instanceof Author){
+			this.getLikedAuthors().add((Author) likeable);
+		}
+		likeable.addLike();
+	}
+
+	@Override
+	public void dislike(Likeable likeable) {
+		if(likeable instanceof Book){
+			this.getLikedBooks().remove(likeable);
+		}else if(likeable instanceof Author){
+			this.getLikedAuthors().remove(likeable);
+		}
+		likeable.removelike();
+	}
+
+	public void makeRate(Book book,float rate){
+		float totalRating = (book.getRating() * book.getRatingCount()) + rate;
+
+		float newCount = book.getRatingCount() + 1;
+		book.setRatingCount(newCount);
+
+		book.setRating(totalRating / newCount);
+	}
 }

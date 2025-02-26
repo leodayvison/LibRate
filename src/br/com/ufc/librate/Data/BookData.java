@@ -74,7 +74,6 @@ public class BookData {
                 }
                 book.setIdBook("B" + (BookData.getBookList().size()));
                 BookData.bookList.add(book);
-                System.out.println(book.getIdBook());
             }
         } catch (IOException e) {
             e.printStackTrace();
